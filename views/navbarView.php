@@ -23,8 +23,8 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">About This Site <span class="sr-only">(current)</span></a></li>
-                <li><a href="#">Dictionary</a></li>
+                <li id='aboutLink'><a href="../controllers/aboutController.php">About This Site</a></li>
+                <li id='dictionaryLink'><a href="../controllers/adminController.php">Dictionary</a></li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
