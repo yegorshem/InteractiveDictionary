@@ -43,7 +43,7 @@ class UserAdapter {
         $statement->bindParam(':password', $pass, PDO::PARAM_STR);
 
         //execute
-        $success = $statement->execute();
+        $statement->execute();
 
         $row = $statement->fetch();
         if ($row != null) {
