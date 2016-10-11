@@ -40,10 +40,9 @@ if ($isValid) {
     $adapter = new UserAdapter($db);
 
     $user = $adapter->loginFunction($username, $password);
-    $_SESSION['user'] = $user->getPriority();
-
-    if ($_SESSION['user'] == 1) {
-        header("Location: adminController.php");
+    echo $user->getPriority();
+    if ($user != null) {
+        $_SESSION['user'] = $user->getPriority();
     }
 
 }

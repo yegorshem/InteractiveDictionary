@@ -30,5 +30,6 @@
     <?php include 'modals/login.php'; ?>
     <script src="http://code.jquery.com/jquery.js"></script>
     <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/login.js"></script>
 </body>
 </html>
