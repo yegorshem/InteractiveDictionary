@@ -22,7 +22,7 @@
 
                     <div class="row">
                         <div class="col-md-12">
-
+                            <p id="add_err"></p>
                             <div class="row">
 
                                 <div class="col-md-10 col-md-offset-1">
@@ -48,7 +48,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" data-dismiss="modal" class="btn btn-secondary">Cancel</button>
-                    <button type="submit" value="SUBMIT" class="btn btn-success" id="login">Sign In</button>
+                    <input type="submit" value="Login" class="btn btn-success" name='login' id="login" />
                 </div>
             </form>
         </div><!-- /.modal-content -->

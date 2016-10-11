@@ -21,12 +21,13 @@
     <link href="../css/bootstrap.min.css" rel="stylesheet" media="screen">
 </head>
 <body>
-<?php include "navbarView.php"; ?>
-<h1>Hello, world!</h1>
+    <?php include "navbarView.php"; ?>
+    <h1>Hello, world!</h1>
 
 
-<?php include 'modals/login.php'; ?>
-<script src="http://code.jquery.com/jquery.js"></script>
-<script src="../js/bootstrap.min.js"></script>
+    <?php include 'modals/login.php'; ?>
+    <script src="http://code.jquery.com/jquery.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/login.js"></script>
 </body>
 </html>
