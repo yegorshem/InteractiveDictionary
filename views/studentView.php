@@ -22,12 +22,23 @@
 </head>
 <body>
     <?php include "navbarView.php"; ?>
-    <h1>Hello, world!</h1>
+    <div class="container">
 
+        <h1>Student Panel</h1>
+        <br>
+        <table id="studentTable"></table>
+
+    </div>
 
     <?php include 'modals/login.php'; ?>
+    <!--   jQuery-->
     <script src="http://code.jquery.com/jquery.js"></script>
+    <!-- javascript for table -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.js"></script>
+    <!--bootstrap JS-->
     <script src="../js/bootstrap.min.js"></script>
+    <!--custom JS-->
+    <script src="../js/studentJS.js"></script>
     <script src="../js/login.js"></script>
 </body>
 </html>
