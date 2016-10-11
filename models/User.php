@@ -16,7 +16,6 @@ class User
 
     /**
      * This function sets the password for a user
-     *
      * @param $pass- A string of the desired password
      */
     public function setPassword($pass) {
@@ -24,6 +23,7 @@ class User
     }
 
     /**
+     * This function gets the priority of the user
      * @return mixed
      */
     public function getPriority()
@@ -32,6 +32,7 @@ class User
     }
 
     /**
+     * This function sets the priority of the user
      * @param mixed $priority
      */
     public function setPriority($priority)
