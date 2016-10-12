@@ -25,16 +25,18 @@
                             <h4>Word</h4>
 
                             <div class="row">
-
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <div class="input-group">
                                         <label class="input-group-addon" for="word">Word</label>
                                         <input required="required" type="text" class="form-control"
                                                id="word" name="word"/>
                                     </div>
                                 </div>
+                            </div>
 
-                                <div class="col-md-6">
+                            <br>
+                            <div class="row">
+                                <div class="col-md-10">
                                     <div class="input-group">
                                         <label class="input-group-addon" for="definition">Definition</label>
                                         <input required="required" type="text" class="form-control"

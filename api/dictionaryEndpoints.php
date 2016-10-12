@@ -58,8 +58,8 @@ SWITCH ($_SERVER["REQUEST_METHOD"]) {
         parse_str(file_get_contents("php://input"), $_PUT);
 
         $id = $_PUT['id_update'];
-        $word = $_PUT['word'];
-        $definition = $_PUT['definition'];
+        $word = $_PUT['word_update'];
+        $definition = $_PUT['definition_update'];
 
         $adapter->updateWord($id, $word, $definition);
 

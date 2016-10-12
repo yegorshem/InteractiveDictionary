@@ -27,16 +27,19 @@
                             <div class="row">
 
                                 <input type="hidden" id="id_update" name="id_update" value="0">
-                                
-                                <div class="col-md-6">
+
+                                <div class="col-md-4">
                                     <div class="input-group">
                                         <label class="input-group-addon" for="word_update">Word</label>
                                         <input required="required" type="text" class="form-control"
                                                id="word_update" name="word_update"/>
                                     </div>
                                 </div>
+                            </div>
 
-                                <div class="col-md-6">
+                            <br>
+                            <div class="row">
+                                <div class="col-md-10">
                                     <div class="input-group">
                                         <label class="input-group-addon" for="definition_update">Definition</label>
                                         <input required="required" type="text" class="form-control"

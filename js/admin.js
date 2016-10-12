@@ -75,7 +75,7 @@ $(function () {
         e.preventDefault();
 
         $.ajax({
-            url: "..api/dictionaryEndpoints.php",
+            url: "../api/dictionaryEndpoints.php",
             type: 'POST',
             data: $('#add-word-form').serialize(),
             success: function (data) {
@@ -100,7 +100,7 @@ $(function () {
 
         //Server call to delete post
         $.ajax({
-            url: '..api/dictionaryEndpoints.php',
+            url: '../api/dictionaryEndpoints.php',
             type: 'PUT',
             data: $('#update-word-form').serialize(),
             contentType: 'application/json',
@@ -127,7 +127,7 @@ $(function () {
 
             //Server call to delete post
             $.ajax({
-                url: '..api/dictionaryEndpoints.php',
+                url: '../api/dictionaryEndpoints.php',
                 type: 'DELETE',
                 data: {
                     id: id
