@@ -7,7 +7,7 @@
  */
 
 session_start();
-
+$thisPage = 'Dictionary';
 //validation
 $isValid = true;
 

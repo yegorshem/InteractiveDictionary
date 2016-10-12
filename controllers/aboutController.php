@@ -6,6 +6,7 @@
  * Time: 6:06 PM
  */
 session_start();
+$thisPage = 'About';
 
 //validation
 $isValid = true;

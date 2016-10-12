@@ -6,6 +6,7 @@
  * Time: 2:32 PM
  */
 session_start();
+$thisPage = 'Dictionary';
 
 if (!$_SESSION['user'] == 1) {
 
