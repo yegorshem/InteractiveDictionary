@@ -32,7 +32,7 @@
 </div>
 
 <?php include 'modals/addWord.php'; ?>
-
+<?php include 'modals/updateWord.php'; ?>
 
 <!--   jQuery-->
 <script src="http://code.jquery.com/jquery.js"></script>
@@ -41,6 +41,6 @@
 <!--bootstrap JS-->
 <script src="../js/bootstrap.min.js"></script>
 <!--custom JS-->
-<script src="../js/adminJS.js"></script>
+<script src="../js/admin.js"></script>
 </body>
 </html>

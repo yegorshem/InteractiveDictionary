@@ -11,7 +11,5 @@ class Word
     public $id;
     public $word;
     public $definition;
-    public $updated_at;
-    public $created_at;
 
 }

@@ -40,12 +40,47 @@ class DictionaryAdapter
     private function read($row)
     {
         // Format date
-        //$date = new DateTime($row["post_date"]);
-        //$formatted_date = $date->format('m/d/Y');
+
         $result = new Word();
-        $result->word= $row["word"];
-        $result->definition = $row["definition"];
+        $result->id = $row['id'];
+        $result->word = $row['word'];
+        $result->definition = $row['definition'];
         return $result;
+    }
+
+    public function submitWord($word, $definition)
+    {
+
+        $sql = "INSERT INTO dictionary (word, definition) VALUES (:word, :definition)";
+        $statement = $this->db->prepare($sql);
+
+        $statement->bindValue(':word', $word, PDO::PARAM_STR);
+        $statement->bindValue(':definition', $definition, PDO::PARAM_STR);
+
+        $statement->execute();
+    }
+
+    public function updateWord($id, $word, $definition)
+    {
+
+        $sql = "UPDATE dictionary SET word= :word, definition= :definition WHERE id= :id";
+        $statement = $this->db->prepare($sql);
+
+        $statement->bindValue(':id', $id, PDO::PARAM_INT);
+        $statement->bindValue(':word', $word, PDO::PARAM_STR);
+        $statement->bindValue(':definition', $definition, PDO::PARAM_STR);
+
+        $statement->execute();
+    }
+
+    public function deleteWord($id)
+    {
+
+        $sql = "DELETE FROM dictionary WHERE id= :id";
+        $statement = $this->db->prepare($sql);
+
+        $statement->bindValue(':id', $id, PDO::PARAM_INT);
+        $statement->execute();
     }
 
 
