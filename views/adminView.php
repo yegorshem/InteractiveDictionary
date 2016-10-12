@@ -20,6 +20,7 @@
     <link href="../css/bootstrap.min.css" rel="stylesheet" media="screen">
 </head>
 <body>
+<?php include "navbarView.php"; ?>
 <div class="container">
     <h1>Interactive Dictionary - Admin Panel</h1>
 <br>
