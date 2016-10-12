@@ -6,6 +6,13 @@
  * Time: 4:35 PM
  */
 
+/**
+ * This page defines the User class
+ */
+
+/**
+ * Class User holds the user_id, username, password and priority level of each user
+ */
 class User
 {
     public $user_id;
@@ -24,7 +31,7 @@ class User
 
     /**
      * This function gets the priority of the user
-     * @return mixed
+     * @return int- priority
      */
     public function getPriority()
     {
@@ -33,7 +40,7 @@ class User
 
     /**
      * This function sets the priority of the user
-     * @param mixed $priority
+     * @param $priority
      */
     public function setPriority($priority)
     {

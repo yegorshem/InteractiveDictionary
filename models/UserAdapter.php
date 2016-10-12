@@ -7,15 +7,22 @@
  */
 
 require 'User.php';
+/**
+ * This page is created to handle the user able in the database
+ */
+/**
+ * Class UserAdapter is used to add new users,
+ * delete old users, log users in and log users out
+ */
 
 class UserAdapter {
 
     protected $db;
 
     /**
-     * This function constructs a DBTools object
-     *
+     * This function constructs a DBTools object     *
      * @param PDO $db - the database we are storing information in.
+     * @return
      */
     public function UserAdapter(PDO $db) {
         $this->db = $db;
@@ -29,7 +36,7 @@ class UserAdapter {
      * @param string $login - the username the admin uses to log in
      * @param string $pass - the password the admin uses to log in
      *
-     *@return - an array of information
+     *@return login
      */
     public function loginFunction($login, $pass) {
         // Define the query
@@ -66,6 +73,7 @@ class UserAdapter {
      * @param-$username is a string
      * @param-$password is a string
      * @param-$priority is an int
+     * @return user
      */
     public function createNewUser($username, $password, $priority) {
         // Define the query
@@ -95,7 +103,6 @@ class UserAdapter {
 
     /**
      * This function removes one user from the user table
-     *
      * @param $username - the id of the user you wish to delete
      * @return bool- true if one row was removed from the table
      *

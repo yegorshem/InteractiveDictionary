@@ -8,10 +8,14 @@
  */
 
 require "Word.php";
-
-class DictionaryAdapter
+/**
+ * This page is created to work with dictionary table
+ */
+/**
+ * The dictionaryAdapter class is used to select, insert, update and delete word
+ */
+ class DictionaryAdapter
 {
-
     // Fields
     protected $db;
 
@@ -21,6 +25,11 @@ class DictionaryAdapter
         $this->db = $db;
     }
 
+     /**
+      * This method is used to return an array of all the results fron the query
+      *
+      * @return array
+      */
     public function getAllWords()
     {
         $sql = "SELECT * FROM dictionary";
@@ -47,10 +56,12 @@ class DictionaryAdapter
         $result->definition = $row['definition'];
         return $result;
     }
-
+    /**
+     * This method is used to submit a word into the table
+     * void
+     */
     public function submitWord($word, $definition)
     {
-
         $sql = "INSERT INTO dictionary (word, definition) VALUES (:word, :definition)";
         $statement = $this->db->prepare($sql);
 
@@ -82,6 +93,5 @@ class DictionaryAdapter
         $statement->bindValue(':id', $id, PDO::PARAM_INT);
         $statement->execute();
     }
-
 
 }
