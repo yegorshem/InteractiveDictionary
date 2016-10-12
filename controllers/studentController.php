@@ -29,7 +29,7 @@ if ($isValid) {
     try {
         $db = new PDO ($config["connectionString"], $config["username"], $config["password"]);
 
-        //ser the PDO error mode to ecxeption
+        //set the PDO error mode to exception
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         //echo "Connected successfully";
     } catch (PDOException $e) {
