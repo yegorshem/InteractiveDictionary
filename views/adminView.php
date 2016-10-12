@@ -5,6 +5,11 @@
  * Date: 10/4/2016
  * Time: 2:32 PM
  */
+$actual_link = $_SERVER['PHP_SELF'];
+
+if ($actual_link == '/views/adminView.php' ) {
+    header('Location: ../controllers/adminController.php');
+}
 ?>
 <!doctype html>
 
