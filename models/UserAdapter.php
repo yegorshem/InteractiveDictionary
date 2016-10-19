@@ -13,11 +13,11 @@ class UserAdapter {
     protected $db;
 
     /**
-     * This function constructs a DBTools object
+     * This function constructs a UserAdapter object
      *
      * @param PDO $db - the database we are storing information in.
      */
-    public function UserAdapter(PDO $db) {
+    public function __construct(PDO $db) {
         $this->db = $db;
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
