@@ -43,7 +43,19 @@
                                                id="definition" name="definition"/>
                                     </div>
                                 </div>
+                            </div>
 
+                            <br>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="input-group">
+                                        <div id="myDropzone" class="dropzone">
+                                            <div class="fallback">
+                                                <input name="file" type="file" multiple />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -51,7 +63,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" data-dismiss="modal" class="btn btn-secondary">Cancel</button>
-                    <button type="submit" value="SUBMIT" class="btn btn-success">Submit</button>
+                    <button type="submit" value="SUBMIT" class="btn btn-success" id="submit-all">Submit</button>
                 </div>
             </form>
         </div><!-- /.modal-content -->

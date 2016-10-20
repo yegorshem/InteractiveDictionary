@@ -6,6 +6,25 @@
  * Time: 2:55 PM
  */
 
+$ds = DIRECTORY_SEPARATOR;
+
+$storeFolder = '../uploads';
+
+if (!empty($_FILES)) {
+    //creating random name to avoid overriding previously uploaded pictures
+    $ext = pathinfo($_FILES['file']['name'][0], PATHINFO_EXTENSION);
+    $newname = time();
+    $random = rand(100, 999);
+    $image = $newname.$random.'.'.$ext;
+
+    $tempFile = $_FILES['file']['tmp_name'][0];
+
+    $targetPath = dirname( __FILE__ ) . $ds. $storeFolder . $ds;
+
+    $targetFile =  $targetPath. $image;
+
+    move_uploaded_file($tempFile,$targetFile);
+}
 
 //Includes DB files
 $config = include("../config.php");
@@ -40,7 +59,7 @@ SWITCH ($_SERVER["REQUEST_METHOD"]) {
         $word = $_POST['word'];
         $definition = $_POST['definition'];
 
-        $adapter->submitWord($word, $definition);
+        $adapter->submitWord($word, $definition, $image);
 
         //Initializing array to hold possible errors
         //$error = array();
