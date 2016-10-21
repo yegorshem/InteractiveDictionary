@@ -73,7 +73,7 @@ function imageFormatter(value, row, index) {
         '<a class="image" href="../uploads/'+value+'" title="Image">',
         '<img height="100" src="../uploads/'+value+'">',
         '</a>'
-    ]
+    ].join('');
 }
 
 /**
