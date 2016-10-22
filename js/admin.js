@@ -241,7 +241,7 @@ $(function () {
         }
     }
 
-    // Update contact --------------------------------------------------
+    // Update word --------------------------------------------------
     $("#update-word-form").on('submit', function (e) {
         e.preventDefault();
 
@@ -265,7 +265,7 @@ $(function () {
         $('#updateModal').modal('hide');
     });
 
-    // Delete contact --------------------------------------------------
+    // Delete word --------------------------------------------------
     $('#delete-btn').click(function () {
         var ids = $.map($table.bootstrapTable('getSelections'), function (row) {
 
