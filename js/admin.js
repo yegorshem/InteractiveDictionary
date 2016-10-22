@@ -4,15 +4,22 @@
 
 var $table = $('#adminTable');
 
+
+
 window.operateEvents = {
     'click .edit': function (e, value, row, index) {
 
+        console.log("edit clicked")
         $("#updateModal").modal("show");
         //Populate from inputs with row data
         $("#id_update").val(row.id);
         $("#word_update").val(row.word);
         $("#definition_update").val(row.definition);
 
+    },
+
+    'click .voice': function (e, value, row, index) {
+        responsiveVoice.speak(row.word);
     }
 };
 
@@ -76,18 +83,6 @@ function imageFormatter(value, row, index) {
     ]
 }
 
-//voice button
-window.voiceEvents = {
-    'click .edit': function (e, value, row, index) {
-
-        $("#updateModal").modal("show");
-        //Populate from inputs with row data
-        $("#id_update").val(row.id);
-        $("#word_update").val(row.word);
-        $("#definition_update").val(row.definition);
-
-    }
-};
 
 function voiceFormatter(value, row, index) {
     return [
@@ -119,10 +114,10 @@ $table.bootstrapTable({
         title: 'Word',
         sortable: true
     }, {
-        field: 'operate',
-        title: 'Pronounce',
+        field: 'say',
+        title: 'Say',
         align: 'center',
-        events: voiceEvents,
+        events: operateEvents,
         formatter: voiceFormatter
     }, {
         field: 'definition',
@@ -134,7 +129,7 @@ $table.bootstrapTable({
         formatter: imageFormatter
 
     }, {
-        field: 'operate',
+        field: 'edit',
         title: 'Edit',
         align: 'center',
         events: operateEvents,
