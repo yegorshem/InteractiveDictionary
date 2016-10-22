@@ -38,7 +38,7 @@
     <!--bootstrap JS-->
     <script src="../js/bootstrap.min.js"></script>
     <!--custom JS-->
-    <script src="../js/studentJS.js"></script>
+    <script src="../js/student.js"></script>
     <script src="../js/login.js"></script>
 </body>
 </html>
