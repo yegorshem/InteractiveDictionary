@@ -22,7 +22,7 @@ window.operateEvents = {
 function base64ToFile(dataURI, origFile) {
     var byteString, mimestring;
 
-    if(dataURI.split(',')[0].indexOf('base64') !== -1 ) {
+    if (dataURI.split(',')[0].indexOf('base64') !== -1) {
         byteString = atob(dataURI.split(',')[1]);
     } else {
         byteString = decodeURI(dataURI.split(',')[1]);
@@ -46,7 +46,7 @@ function base64ToFile(dataURI, origFile) {
         "upload", "status", "previewElement", "previewTemplate", "accepted"
     ];
 
-    $.each(origProps, function(i, p) {
+    $.each(origProps, function (i, p) {
         newFile[p] = origFile[p];
     });
 
@@ -70,10 +70,31 @@ function operateFormatter(value, row, index) {
  */
 function imageFormatter(value, row, index) {
     return [
-        '<a class="image" href="../uploads/'+value+'" title="Image">',
-        '<img class="thumb" src="../uploads/"'+value+'">',
+        '<a class="image" href="../uploads/' + value + '" title="Image">',
+        '<img class="thumb" src="../uploads/"' + value + '">',
         '</a>'
     ]
+}
+
+//voice button
+window.voiceEvents = {
+    'click .edit': function (e, value, row, index) {
+
+        $("#updateModal").modal("show");
+        //Populate from inputs with row data
+        $("#id_update").val(row.id);
+        $("#word_update").val(row.word);
+        $("#definition_update").val(row.definition);
+
+    }
+};
+
+function voiceFormatter(value, row, index) {
+    return [
+        '<a class="voice" href="javascript:void(0)" title="Voice">',
+        '<i class="glyphicon glyphicon-bell"></i>',
+        '</a>'
+    ].join('');
 }
 
 /**
@@ -98,6 +119,12 @@ $table.bootstrapTable({
         title: 'Word',
         sortable: true
     }, {
+        field: 'operate',
+        title: 'Pronounce',
+        align: 'center',
+        events: voiceEvents,
+        formatter: voiceFormatter
+    }, {
         field: 'definition',
         title: 'Definition',
         sortable: true
@@ -119,13 +146,15 @@ $table.bootstrapTable({
 });
 
 
+
+
 /**
  * Ajax/dropzone calls
  */
 $(function () {
 
     // Add Word --------------------------------------------------
-    Dropzone.options.myDropzone= {
+    Dropzone.options.myDropzone = {
         url: '../api/dictionaryEndpoints.php',
         autoProcessQueue: false,
         uploadMultiple: true,
@@ -146,18 +175,18 @@ $(function () {
                 dzClosure.processQueue();
             });
 
-            this.on("addedfile", function(origFile) {
-                var MAX_WIDTH  = 800;
+            this.on("addedfile", function (origFile) {
+                var MAX_WIDTH = 800;
                 var MAX_HEIGHT = 600;
                 var reader = new FileReader();
 
                 // Convert file to img
-                reader.addEventListener("load", function(event) {
+                reader.addEventListener("load", function (event) {
                     var origImg = new Image();
                     origImg.src = event.target.result;
 
-                    origImg.addEventListener("load", function(event) {
-                        var width  = event.target.width;
+                    origImg.addEventListener("load", function (event) {
+                        var width = event.target.width;
                         var height = event.target.height;
 
                         // Don't resize if it's small enough
@@ -204,7 +233,7 @@ $(function () {
                 formData.append("definition", jQuery("#definition").val());
             });
 
-            this.on("success", function() {
+            this.on("success", function () {
                 //Clear form
                 $('#add-word-form').trigger("reset");
 
