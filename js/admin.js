@@ -70,8 +70,8 @@ function operateFormatter(value, row, index) {
  */
 function imageFormatter(value, row, index) {
     return [
-        '<a class="image" href="../uploads/' + value + '" title="Image">',
-        '<img class="thumb" src="../uploads/"' + value + '">',
+        '<a class="image" href="../uploads/'+value+'" title="Image">',
+        '<img height="100" src="../uploads/'+value+'">',
         '</a>'
     ]
 }
