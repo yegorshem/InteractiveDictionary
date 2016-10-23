@@ -4,15 +4,22 @@
 
 var $table = $('#adminTable');
 
+
+
 window.operateEvents = {
     'click .edit': function (e, value, row, index) {
 
+        console.log("edit clicked")
         $("#updateModal").modal("show");
         //Populate from inputs with row data
         $("#id_update").val(row.id);
         $("#word_update").val(row.word);
         $("#definition_update").val(row.definition);
 
+    },
+
+    'click .voice': function (e, value, row, index) {
+        responsiveVoice.speak(row.word);
     }
 };
 
@@ -22,7 +29,7 @@ window.operateEvents = {
 function base64ToFile(dataURI, origFile) {
     var byteString, mimestring;
 
-    if(dataURI.split(',')[0].indexOf('base64') !== -1 ) {
+    if (dataURI.split(',')[0].indexOf('base64') !== -1) {
         byteString = atob(dataURI.split(',')[1]);
     } else {
         byteString = decodeURI(dataURI.split(',')[1]);
@@ -46,7 +53,7 @@ function base64ToFile(dataURI, origFile) {
         "upload", "status", "previewElement", "previewTemplate", "accepted"
     ];
 
-    $.each(origProps, function(i, p) {
+    $.each(origProps, function (i, p) {
         newFile[p] = origFile[p];
     });
 
@@ -76,6 +83,15 @@ function imageFormatter(value, row, index) {
     ].join('');
 }
 
+
+function voiceFormatter(value, row, index) {
+    return [
+        '<a class="voice" href="javascript:void(0)" title="Voice">',
+        '<i class="glyphicon glyphicon-bell"></i>',
+        '</a>'
+    ].join('');
+}
+
 /**
  * Bootstrap table configurations
  */
@@ -98,6 +114,12 @@ $table.bootstrapTable({
         title: 'Word',
         sortable: true
     }, {
+        field: 'say',
+        title: 'Say',
+        align: 'center',
+        events: operateEvents,
+        formatter: voiceFormatter
+    }, {
         field: 'definition',
         title: 'Definition',
         sortable: true
@@ -107,7 +129,7 @@ $table.bootstrapTable({
         formatter: imageFormatter
 
     }, {
-        field: 'operate',
+        field: 'edit',
         title: 'Edit',
         align: 'center',
         events: operateEvents,
@@ -119,13 +141,15 @@ $table.bootstrapTable({
 });
 
 
+
+
 /**
  * Ajax/dropzone calls
  */
 $(function () {
 
     // Add Word --------------------------------------------------
-    Dropzone.options.myDropzone= {
+    Dropzone.options.myDropzone = {
         url: '../api/dictionaryEndpoints.php',
         autoProcessQueue: false,
         uploadMultiple: true,
@@ -146,18 +170,18 @@ $(function () {
                 dzClosure.processQueue();
             });
 
-            this.on("addedfile", function(origFile) {
-                var MAX_WIDTH  = 800;
+            this.on("addedfile", function (origFile) {
+                var MAX_WIDTH = 800;
                 var MAX_HEIGHT = 600;
                 var reader = new FileReader();
 
                 // Convert file to img
-                reader.addEventListener("load", function(event) {
+                reader.addEventListener("load", function (event) {
                     var origImg = new Image();
                     origImg.src = event.target.result;
 
-                    origImg.addEventListener("load", function(event) {
-                        var width  = event.target.width;
+                    origImg.addEventListener("load", function (event) {
+                        var width = event.target.width;
                         var height = event.target.height;
 
                         // Don't resize if it's small enough
@@ -204,7 +228,7 @@ $(function () {
                 formData.append("definition", jQuery("#definition").val());
             });
 
-            this.on("success", function() {
+            this.on("success", function () {
                 //Clear form
                 $('#add-word-form').trigger("reset");
 
@@ -217,7 +241,7 @@ $(function () {
         }
     }
 
-    // Update contact --------------------------------------------------
+    // Update word --------------------------------------------------
     $("#update-word-form").on('submit', function (e) {
         e.preventDefault();
 
@@ -241,7 +265,7 @@ $(function () {
         $('#updateModal').modal('hide');
     });
 
-    // Delete contact --------------------------------------------------
+    // Delete word --------------------------------------------------
     $('#delete-btn').click(function () {
         var ids = $.map($table.bootstrapTable('getSelections'), function (row) {
 
