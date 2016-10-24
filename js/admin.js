@@ -4,17 +4,62 @@
 
 var $table = $('#adminTable');
 
+
+
 window.operateEvents = {
     'click .edit': function (e, value, row, index) {
 
+        console.log("edit clicked")
         $("#updateModal").modal("show");
         //Populate from inputs with row data
         $("#id_update").val(row.id);
         $("#word_update").val(row.word);
         $("#definition_update").val(row.definition);
 
+    },
+
+    'click .voice': function (e, value, row, index) {
+        responsiveVoice.speak(row.word);
     }
 };
+
+/**
+ * This function takes the resized image and converts it from a dataURL to a dropzone
+ */
+function base64ToFile(dataURI, origFile) {
+    var byteString, mimestring;
+
+    if (dataURI.split(',')[0].indexOf('base64') !== -1) {
+        byteString = atob(dataURI.split(',')[1]);
+    } else {
+        byteString = decodeURI(dataURI.split(',')[1]);
+    }
+
+    mimestring = dataURI.split(',')[0].split(':')[1].split(';')[0];
+
+    var content = new Array();
+    for (var i = 0; i < byteString.length; i++) {
+        content[i] = byteString.charCodeAt(i);
+    }
+
+    var newFile = new File(
+        [new Uint8Array(content)], origFile.name, {type: mimestring}
+    );
+
+
+    // Copy props set by the dropzone in the original file
+
+    var origProps = [
+        "upload", "status", "previewElement", "previewTemplate", "accepted"
+    ];
+
+    $.each(origProps, function (i, p) {
+        newFile[p] = origFile[p];
+    });
+
+    return newFile;
+}
+
 
 /**
  * The edit button in the Bootsrap table
@@ -23,6 +68,26 @@ function operateFormatter(value, row, index) {
     return [
         '<a class="edit" href="javascript:void(0)" title="Edit">',
         '<i class="glyphicon glyphicon-edit edit-icon"></i>',
+        '</a>'
+    ].join('');
+}
+
+/**
+ * The image in the boostrap table
+ */
+function imageFormatter(value, row, index) {
+    return [
+        '<a class="image" href="../uploads/'+value+'" title="Image">',
+        '<img height="100" src="../uploads/'+value+'">',
+        '</a>'
+    ]
+}
+
+
+function voiceFormatter(value, row, index) {
+    return [
+        '<a class="voice" href="javascript:void(0)" title="Voice">',
+        '<i class="glyphicon glyphicon-bell"></i>',
         '</a>'
     ].join('');
 }
@@ -49,11 +114,22 @@ $table.bootstrapTable({
         title: 'Word',
         sortable: true
     }, {
+        field: 'say',
+        title: 'Say',
+        align: 'center',
+        events: operateEvents,
+        formatter: voiceFormatter
+    }, {
         field: 'definition',
         title: 'Definition',
         sortable: true
     }, {
-        field: 'operate',
+        field: 'image',
+        title: 'Image',
+        formatter: imageFormatter
+
+    }, {
+        field: 'edit',
         title: 'Edit',
         align: 'center',
         events: operateEvents,
@@ -65,23 +141,94 @@ $table.bootstrapTable({
 });
 
 
+
+
 /**
- * Ajax calls
+ * Ajax/dropzone calls
  */
 $(function () {
 
-    // Add contact --------------------------------------------------
-    $("#add-word-form").on('submit', function (e) {
-        e.preventDefault();
+    // Add Word --------------------------------------------------
+    Dropzone.options.myDropzone = {
+        url: '../api/dictionaryEndpoints.php',
+        autoProcessQueue: false,
+        uploadMultiple: true,
+        parallelUploads: 5,
+        maxFiles: 1,
+        maxFilesize: 10,
+        acceptedFiles: 'image/*',
+        addRemoveLinks: true,
+        init: function () {
+            var submitButton = document.querySelector("#submit-all");
+            dzClosure = this; // Makes sure that 'this' is understood inside the functions below.
 
-        $.ajax({
-            url: "../api/dictionaryEndpoints.php",
-            type: 'POST',
-            data: $('#add-word-form').serialize(),
-            success: function (data) {
+            // for Dropzone to process the queue (instead of default form behavior):
+            submitButton.addEventListener("click", function (e) {
+                // Make sure that the form isn't actually being sent.
+                e.preventDefault();
+                e.stopPropagation();
+                dzClosure.processQueue();
+            });
 
-                console.log(data);
+            this.on("addedfile", function (origFile) {
+                var MAX_WIDTH = 800;
+                var MAX_HEIGHT = 600;
+                var reader = new FileReader();
 
+                // Convert file to img
+                reader.addEventListener("load", function (event) {
+                    var origImg = new Image();
+                    origImg.src = event.target.result;
+
+                    origImg.addEventListener("load", function (event) {
+                        var width = event.target.width;
+                        var height = event.target.height;
+
+                        // Don't resize if it's small enough
+                        if (width <= MAX_WIDTH && height <= MAX_HEIGHT) {
+                            dropzone.enqueueFile(origFile);
+                            return;
+                        }
+
+                        // Calc new dims otherwise
+                        if (width > height) {
+                            if (width > MAX_WIDTH) {
+                                height *= MAX_WIDTH / width;
+                                width = MAX_WIDTH;
+                            }
+                        } else {
+                            if (height > MAX_HEIGHT) {
+                                width *= MAX_HEIGHT / height;
+                                height = MAX_HEIGHT;
+                            }
+                        }
+
+                        // Resize
+                        var canvas = document.createElement('canvas');
+                        canvas.width = width;
+                        canvas.height = height;
+
+                        var ctx = canvas.getContext("2d");
+                        ctx.drawImage(origImg, 0, 0, width, height);
+
+                        var resizedFile = base64ToFile(canvas.toDataURL(), origFile);
+
+                        // Replace original with resized
+                        var origFileIndex = dzClosure.files.indexOf(origFile);
+                        dzClosure.files[origFileIndex] = resizedFile;
+
+                    });
+                });
+                reader.readAsDataURL(origFile);
+            });
+
+            //send all the form data along with the files:
+            this.on("sendingmultiple", function (data, xhr, formData) {
+                formData.append("word", jQuery("#word").val());
+                formData.append("definition", jQuery("#definition").val());
+            });
+
+            this.on("success", function () {
                 //Clear form
                 $('#add-word-form').trigger("reset");
 
@@ -90,11 +237,11 @@ $(function () {
                 $table.bootstrapTable('refresh', {
                     silent: true
                 });
-            }
-        });
-    });
+            });
+        }
+    }
 
-    // Update contact --------------------------------------------------
+    // Update word --------------------------------------------------
     $("#update-word-form").on('submit', function (e) {
         e.preventDefault();
 
@@ -118,7 +265,7 @@ $(function () {
         $('#updateModal').modal('hide');
     });
 
-    // Delete contact --------------------------------------------------
+    // Delete word --------------------------------------------------
     $('#delete-btn').click(function () {
         var ids = $.map($table.bootstrapTable('getSelections'), function (row) {
 

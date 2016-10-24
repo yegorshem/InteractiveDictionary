@@ -23,6 +23,7 @@ if ($actual_link == '/views/adminView.php' ) {
 
     <!-- Bootstrap -->
     <link href="../css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="../css/dropzone.min.css" rel="stylesheet" media="screen">
 </head>
 <body>
 <?php include "navbarView.php"; ?>
@@ -47,7 +48,12 @@ if ($actual_link == '/views/adminView.php' ) {
 <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.js"></script>
 <!--bootstrap JS-->
 <script src="../js/bootstrap.min.js"></script>
+<!--dropzone JS-->
+<script src="../js/dropzone.min.js"></script>
+<!--responsiveVoice JS-->
+<script src="http://code.responsivevoice.org/responsivevoice.js"></script>
 <!--custom JS-->
 <script src="../js/admin.js"></script>
+
 </body>
 </html>
