@@ -22,7 +22,7 @@ class UserAdapter {
     /**
      * This function constructs a DBTools object     *
      * @param PDO $db - the database we are storing information in.
-     * @return
+     * @return db
      */
     public function UserAdapter(PDO $db) {
         $this->db = $db;

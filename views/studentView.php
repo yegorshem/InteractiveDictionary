@@ -27,7 +27,7 @@
         <h1>Student Panel</h1>
         <br>
         <table id="studentTable"></table>
-
+        🔊 Play
     </div>
 
     <?php include 'modals/login.php'; ?>
@@ -40,5 +40,6 @@
     <!--custom JS-->
     <script src="../js/studentJS.js"></script>
     <script src="../js/login.js"></script>
+    <script src="http://code.responsivevoice.org/responsivevoice.js"></script>
 </body>
 </html>
