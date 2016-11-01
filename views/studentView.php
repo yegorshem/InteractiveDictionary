@@ -19,6 +19,8 @@
 
     <!-- Bootstrap -->
     <link href="../css/bootstrap.min.css" rel="stylesheet" media="screen">
+
+    <link href="../css/form_formatter.css" rel="stylesheet" media="screen">
 </head>
 <body>
 <?php include "navbarView.php"; ?>
@@ -31,6 +33,7 @@
 </div>
 
 <?php include 'modals/login.php'; ?>
+<?php include 'modals/register.php'; ?>
 <!--   jQuery-->
 <script src="http://code.jquery.com/jquery.js"></script>
 <!-- javascript for table -->
@@ -43,5 +46,7 @@
 <script src="../js/student.js"></script>
 <!-- login JS-->
 <script src="../js/login.js"></script>
+<script src="../js/register.js"></script>
+
 </body>
 </html>

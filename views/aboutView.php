@@ -19,6 +19,8 @@
 
     <!-- Bootstrap -->
     <link href="../css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="../css/form_formatter.css" rel="stylesheet" media="screen">
+
 </head>
 <body>
     <?php include "navbarView.php"; ?>
@@ -28,6 +30,7 @@
 
 
     <?php include 'modals/login.php'; ?>
+    <?php include 'modals/register.php'; ?>
     <script src="http://code.jquery.com/jquery.js"></script>
     <script src="../js/bootstrap.min.js"></script>
     <script src="../js/login.js"></script>

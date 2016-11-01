@@ -16,7 +16,10 @@
 class User
 {
     public $user_id;
+    public $first_name;
+    public $last_name;
     public $username;
+    public $class_code;
     private $password;
     private $priority;
 

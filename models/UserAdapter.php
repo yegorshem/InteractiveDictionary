@@ -40,7 +40,7 @@ class UserAdapter {
      */
     public function loginFunction($login, $pass) {
         // Define the query
-        $query = "SELECT * FROM users WHERE username = :login AND password = :password";
+        $query = "SELECT * FROM users WHERE email = :login AND pass_code = :password";
 
         //prepare the statement
         $statement = $this->db->prepare($query);
@@ -56,8 +56,11 @@ class UserAdapter {
         if ($row != null) {
             $user = new User();
             $user->user_id = $row['user_id'];
-            $user->username = $row['username'];
-            $user->setPassword($row['password']);
+            $user->first_name = $row['first_name'];
+            $user->last_name = $row['last_name'];
+            $user->username = $row['email'];
+            $user->class_code = $row['class_code'];
+            $user->setPassword($row['pass_code']);
             $user->setPriority($row['priority']);
 
             return $user;
@@ -75,16 +78,20 @@ class UserAdapter {
      * @param-$priority is an int
      * @return user
      */
-    public function createNewUser($username, $password, $priority) {
+    public function createNewUser($first_name, $last_name, $email, $pass_code, $class_code, $priority) {
         // Define the query
-        $query = "INSERT INTO users (username, password, priority) VALUES (:username, :password, :priority)";
+        $query = "INSERT INTO users (first_name, last_name, email, pass_code, class_code, priority) VALUES 
+                      (:first_name, :last_name, :email, :pass_code, :class_code, :priority)";
 
         // prepare the statement
         $statement = $this->db->prepare($query);
 
         //bind parameters
-        $statement->bindParam(':username', $username, PDO::PARAM_STR);
-        $statement->bindParam(':password', $password, PDO::PARAM_STR);
+        $statement->bindParam(':first_name', $first_name, PDO::PARAM_STR);
+        $statement->bindParam(':last_name', $last_name, PDO::PARAM_STR);
+        $statement->bindParam(':email', $email, PDO::PARAM_STR);
+        $statement->bindParam(':pass_code', $pass_code, PDO::PARAM_STR);
+        $statement->bindParam(':class_code', $class_code, PDO::PARAM_STR);
         $statement->bindParam(':priority', $priority, PDO::PARAM_INT);
 
 

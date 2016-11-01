@@ -15,7 +15,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-                <h3 class="modal-title">Please Sign In</h3>
+                <img src="../img/toolbox.jpg">
             </div>
             <form id="login-form" method="post">
                 <div class="modal-body">
@@ -49,6 +49,8 @@
                 <div class="modal-footer">
                     <button type="button" data-dismiss="modal" class="btn btn-secondary">Cancel</button>
                     <input type="submit" value="Login" class="btn btn-success" name='login' id="login" />
+                    <br>
+                    <p>Don't have an account yet? click <a data-toggle='modal' data-target='#registerModal'>Sign Up!</a> </p>
                 </div>
             </form>
         </div><!-- /.modal-content -->
