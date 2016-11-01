@@ -17,7 +17,7 @@ if ($actual_link == '/views/adminView.php' ) {
 <head>
     <meta charset="utf-8">
 
-    <title>InteractiveDictionary</title>
+    <title>Carpentry English</title>
     <meta name="description" content="Phonetic and visual dictionary for I-BEST Students">
     <meta name="author" content="Team J.J.A.Y.">
 
@@ -28,7 +28,7 @@ if ($actual_link == '/views/adminView.php' ) {
 <body>
 <?php include "navbarView.php"; ?>
 <div class="container">
-    <h1>Interactive Dictionary - Admin Panel</h1>
+    <h1>Carpentry English - Admin Panel</h1>
 <br>
     <button type="button" id="add-btn" class="btn btn-primary btn-success" data-toggle="modal" data-target="#addModal">
         Add Word &nbsp;<span class="glyphicon glyphicon-plus"></span></button>

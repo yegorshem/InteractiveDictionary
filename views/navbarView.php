@@ -37,7 +37,7 @@
 
             <ul class="nav navbar-nav navbar-right">
                 <?php if ($_SESSION['user'] == null) {
-                    print "<li><a href='#' data-toggle='modal' data-target='#loginModal'>Administrator Sign In</a></li>";
+                    print "<li><a href='#' data-toggle='modal' data-target='#loginModal'>Sign In</a></li>";
                 } else {
                     print "<li><a href='../views/logout.php'>Sign Out</a></li>'";
                 } ?>
