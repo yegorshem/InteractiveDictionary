@@ -6,7 +6,7 @@
  * Time: 6:00 PM
  */
 ?>
-
+<link href="../css/navBar.css" rel="stylesheet">
 <nav class="navbar navbar-default">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -17,7 +17,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand">Interactive Dictionary</a>
+            <a class="navbar-brand">Carpentry English</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -32,7 +32,7 @@
                     echo "class='active'";
                 }
                 ?>
-                    id='aboutLink'><a href="../controllers/aboutController.php">About This Site</a></li>
+                    id='aboutLink'><a href="../controllers/aboutController.php">Home</a></li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
