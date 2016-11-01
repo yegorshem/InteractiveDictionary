@@ -37,10 +37,15 @@
 
     <?php include 'modals/login.php'; ?>
     <?php include 'modals/register.php'; ?>
-    <script src="http://code.jquery.com/jquery.js"></script>
-    <script src="../js/bootstrap.min.js"></script>
-    <script src="../js/login.js"></script>
-    <script src="../js/register.js"></script>
 
 </body>
+<footer>
+    <div id="footer">
+        <img src=../imgs/greenriverWhite.JPG>;
+    </div>
+</footer>
+<script src="http://code.jquery.com/jquery.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js/login.js"></script>
+<script src="../js/register.js"></script>
 </html>
