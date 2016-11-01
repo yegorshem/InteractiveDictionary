@@ -13,7 +13,10 @@
 <head>
     <meta charset="utf-8">
 
-    <title>Interactive Dictionary</title>
+
+
+    <title>Carpentry English</title>
+
     <meta name="description" content="Phonetic and visual dictionary for I-BEST Students">
     <meta name="author" content="Team J.J.A.Y.">
 

@@ -5,6 +5,7 @@
  * Date: 10/7/2016
  * Time: 10:42 AM
  */
+
 ?>
 <!doctype html>
 
@@ -25,11 +26,11 @@
 <?php include "navbarView.php"; ?>
 <div class="container">
 
-    <h1>Student Panel</h1>
-    <br>
-    <table id="studentTable"></table>
-    🔊 Play
-</div>
+        <h1>Student Panel</h1>
+        <br>
+        <table id="studentTable"></table>
+        🔊 Play
+    </div>
 
 <?php include 'modals/login.php'; ?>
 <?php include 'modals/register.php'; ?>
