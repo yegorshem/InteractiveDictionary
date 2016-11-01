@@ -5,7 +5,6 @@
  * Date: 10/7/2016
  * Time: 10:42 AM
  */
-
 ?>
 <!doctype html>
 
@@ -19,8 +18,8 @@
 
     <!-- Bootstrap -->
     <link href="../css/bootstrap.min.css" rel="stylesheet" media="screen">
-
     <link href="../css/form_formatter.css" rel="stylesheet" media="screen">
+
 </head>
 <body>
 <?php include "navbarView.php"; ?>
@@ -29,7 +28,7 @@
     <h1>Student Panel</h1>
     <br>
     <table id="studentTable"></table>
-
+    🔊 Play
 </div>
 
 <?php include 'modals/login.php'; ?>
@@ -40,12 +39,10 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.js"></script>
 <!-- bootstrap JS-->
 <script src="../js/bootstrap.min.js"></script>
-<!--responsiveVoice JS-->
-<script src="http://code.responsivevoice.org/responsivevoice.js"></script>
 <!-- custom JS-->
 <script src="../js/student.js"></script>
-<!-- login JS-->
 <script src="../js/login.js"></script>
+<script src="http://code.responsivevoice.org/responsivevoice.js"></script>
 <script src="../js/register.js"></script>
 
 </body>
