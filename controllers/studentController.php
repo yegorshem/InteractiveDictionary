@@ -24,6 +24,7 @@ if (isset($_POST['password']) && $_POST['password'] != "") {
 
 if ($isValid) {
     //Includes DB files
+    $password = md5($password);
     $config = include("../config.php");
 
     try {
@@ -41,11 +42,13 @@ if ($isValid) {
     $adapter = new UserAdapter($db);
 
     $user = $adapter->loginFunction($username, $password);
-    echo $user->getPriority();
     if ($user != null) {
+        echo $user->getPriority();
         $_SESSION['user'] = $user->getPriority();
+        $_SESSION['name'] = $user.getFirstName() + ' ' + $user.getLastName();
     }
 
 
 }
+
 require '../views/studentView.php';
