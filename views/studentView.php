@@ -29,7 +29,7 @@
         <h1>Student Panel</h1>
         <br>
         <table id="studentTable"></table>
-        🔊 Play
+        
     </div>
 
 <?php include 'modals/login.php'; ?>

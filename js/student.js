@@ -6,7 +6,7 @@ var $table = $('#studentTable');
 
 window.operateEvents = {
     'click .voice': function (e, value, row, index) {
-        responsiveVoice.speak(row.word);
+        responsiveVoice.speak(row.word, "US English Female");
     }
 };
 
@@ -24,7 +24,7 @@ function imageFormatter(value, row, index) {
 function voiceFormatter(value, row, index) {
     return [
         '<a class="voice" href="javascript:void(0)" title="Voice">',
-        '<i class="glyphicon glyphicon-bell"></i>',
+        '<i class="glyphicon glyphicon-volume-up"></i>',
         '</a>'
     ].join('');
 }
