@@ -53,9 +53,17 @@ $table.bootstrapTable({
         title: 'Definition',
         sortable: true
     }, {
+        field: 'category',
+        title: 'Category',
+        sortable: true
+    }, {
         field: 'image',
         title: 'Image',
         formatter: imageFormatter
+    }, {
+        field: 'created_by',
+        title: 'Author',
+        sortable: true
     }],
     onClickRow: function (row, elm) {
         //...

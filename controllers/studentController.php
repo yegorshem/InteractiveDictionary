@@ -45,7 +45,7 @@ if ($isValid) {
     if ($user != null) {
         echo $user->getPriority();
         $_SESSION['user'] = $user->getPriority();
-        $_SESSION['name'] = $user.getFirstName() + ' ' + $user.getLastName();
+        $_SESSION['name'] = $user->first_name.' '.$user->last_name;
     }
 
 

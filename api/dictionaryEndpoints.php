@@ -6,6 +6,8 @@
  * Time: 2:55 PM
  */
 
+session_start();
+
 $ds = DIRECTORY_SEPARATOR;
 
 $storeFolder = '../uploads';
@@ -58,8 +60,9 @@ SWITCH ($_SERVER["REQUEST_METHOD"]) {
     case "POST":
         $word = $_POST['word'];
         $definition = $_POST['definition'];
+        $category = $_POST['category'];
 
-        $adapter->submitWord($word, $definition, $image);
+        $adapter->submitWord($word, $definition, $image, $category, $_SESSION['name']);
 
         //Initializing array to hold possible errors
         //$error = array();

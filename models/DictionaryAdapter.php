@@ -47,18 +47,22 @@ class DictionaryAdapter
         $result->word = $row['word'];
         $result->definition = $row['definition'];
         $result->image = $row['image'];
+        $result->category = $row['category'];
+        $result->created_by = $row['created_by'];
         return $result;
     }
 
-    public function submitWord($word, $definition, $image)
+    public function submitWord($word, $definition, $image, $category, $created_by)
     {
 
-        $sql = "INSERT INTO dictionary (word, definition, image) VALUES (:word, :definition, :image)";
+        $sql = "INSERT INTO dictionary (word, definition, image, category, created_by) VALUES (:word, :definition, :image, :category, :created_by)";
         $statement = $this->db->prepare($sql);
 
         $statement->bindValue(':word', $word, PDO::PARAM_STR);
         $statement->bindValue(':definition', $definition, PDO::PARAM_STR);
         $statement->bindValue(':image', $image, PDO::PARAM_STR);
+        $statement->bindValue(':category', $category, PDO::PARAM_STR);
+        $statement->bindValue(':created_by', $created_by, PDO::PARAM_STR);
 
         $statement->execute();
     }

@@ -87,7 +87,7 @@ function imageFormatter(value, row, index) {
 function voiceFormatter(value, row, index) {
     return [
         '<a class="voice" href="javascript:void(0)" title="Voice">',
-        '<i class="glyphicon glyphicon-bell"></i>',
+        '<i class="glyphicon glyphicon-volume-up"></i>',
         '</a>'
     ].join('');
 }
@@ -124,9 +124,17 @@ $table.bootstrapTable({
         title: 'Definition',
         sortable: true
     }, {
+        field: 'category',
+        title: 'Category',
+        sortable: true
+    }, {
         field: 'image',
         title: 'Image',
         formatter: imageFormatter
+    }, {
+        field: 'created_by',
+        title: 'Author',
+        sortable: true
 
     }, {
         field: 'edit',
@@ -167,7 +175,12 @@ $(function () {
                 // Make sure that the form isn't actually being sent.
                 e.preventDefault();
                 e.stopPropagation();
-                dzClosure.processQueue();
+                if (jQuery("#word").val() == "" || jQuery("#category").val() == "" || jQuery("#definition").val() == "") {
+                    jQuery("#add_word_error").text("Please make sure all fields are filled.")
+                } else {
+                    jQuery("#add_word_error").text("");
+                    dzClosure.processQueue();
+                }
             });
 
             this.on("addedfile", function (origFile) {
@@ -226,6 +239,7 @@ $(function () {
             this.on("sendingmultiple", function (data, xhr, formData) {
                 formData.append("word", jQuery("#word").val());
                 formData.append("definition", jQuery("#definition").val());
+                formData.append("category", jQuery("#category").val());
             });
 
             this.on("success", function () {

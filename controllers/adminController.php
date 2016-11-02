@@ -8,7 +8,7 @@
 session_start();
 $thisPage = 'Dictionary';
 
-if (!$_SESSION['user'] == 1) {
+if ($_SESSION['user'] != 1) {
 
     header("Location: studentController.php");
 } else {

@@ -24,12 +24,24 @@
                         <div class="col-md-12">
                             <h4>Word</h4>
 
+                            <div id="add_word_error"></div>
+
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="input-group">
                                         <label class="input-group-addon" for="word">Word</label>
                                         <input required="required" type="text" class="form-control"
                                                id="word" name="word"/>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="input-group">
+                                        <label class="input-group-addon" for="category">Category</label>
+                                        <select id="category" class="form-control" required>
+                                            <option value="">Select Category</option>
+                                            <option value="Hand Tool">Hand Tool</option>
+                                            <option value="Power Tool">Power Tool</option>
+                                        </select>
                                     </div>
                                 </div>
                             </div>
@@ -47,7 +59,7 @@
 
                             <br>
                             <div class="row">
-                                <div class="col-md-4">
+                                <div class="col-md-10">
                                     <div class="input-group">
                                         <div id="myDropzone" class="dropzone">
                                             <div class="fallback">

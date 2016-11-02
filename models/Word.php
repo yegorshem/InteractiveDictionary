@@ -15,5 +15,7 @@ class Word
     public $id;
     public $word;
     public $definition;
-
+    public $image;
+    public $category;
+    public $created_by;
 }
