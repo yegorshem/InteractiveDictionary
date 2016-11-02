@@ -39,7 +39,8 @@
                 <?php if ($_SESSION['user'] == null) {
                     print "<li><a href='#' data-toggle='modal' data-target='#loginModal'>Sign In</a></li>";
                 } else {
-                    print "<li><a href='../views/logout.php'>Sign Out</a></li>'";
+                    print "<li><a>Welcome ".$_SESSION['name']."</a></li>";
+                    print "<li><a href='../views/logout.php'>Sign Out</a></li>";
                 } ?>
             </ul>
         </div><!-- /.navbar-collapse -->

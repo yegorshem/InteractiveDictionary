@@ -16,12 +16,15 @@ $(document).ready(function(){
             data: dataString,
             success: function(data) {
                 if (data[0]==1) {
-                    window.location.replace('adminController.php')
+                    window.location.replace('adminController.php');
+                }
+                else if(data[0]==3) {
+                    window.location.replace('studentController.php');
                 }
                 else    {
                     $("#add_err").css('display', 'inline', 'important');
                     $("#add_err").text('Incorrect username or password.');
-                    $("#password").val('')
+                    $("#password").val('');
                 }
             },
             beforeSend:function() {

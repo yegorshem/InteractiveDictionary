@@ -15,7 +15,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-                <img src="../img/toolbox.jpg">
+                <img src="../imgs/toolbox.jpg">
             </div>
             <form id="login-form" method="post">
                 <div class="modal-body">

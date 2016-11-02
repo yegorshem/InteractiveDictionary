@@ -13,8 +13,6 @@
 <head>
     <meta charset="utf-8">
 
-
-
     <title>Carpentry English</title>
 
     <meta name="description" content="Phonetic and visual dictionary for I-BEST Students">
@@ -30,9 +28,6 @@
     <?php include "navbarView.php"; ?>
 
     <div id="container">
-
-
-
 
     </div>
 
