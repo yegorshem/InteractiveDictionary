@@ -41,6 +41,8 @@ if ($actual_link == '/views/adminView.php' ) {
 
 <?php include 'modals/addWord.php'; ?>
 <?php include 'modals/updateWord.php'; ?>
+<?php include 'modals/showImage.php'; ?>
+
 
 <!--   jQuery-->
 <script src="http://code.jquery.com/jquery.js"></script>

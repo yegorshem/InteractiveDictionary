@@ -7,18 +7,23 @@ var $table = $('#adminTable');
 
 window.operateEvents = {
     'click .edit': function (e, value, row, index) {
-
         console.log("edit clicked")
         $("#updateModal").modal("show");
         //Populate from inputs with row data
         $("#id_update").val(row.id);
         $("#word_update").val(row.word);
         $("#definition_update").val(row.definition);
-
     },
 
     'click .voice': function (e, value, row, index) {
         responsiveVoice.speak(row.word, "US English Female");
+    },
+
+    'click .image': function (e, value, row, index) {
+        console.log("image clicked")
+        $("#showImage").modal("show");
+        $("#imageDisplay").attr("src", "../uploads/" + row.image);
+        $("#imageName").text(row.word);
     }
 };
 
@@ -76,7 +81,7 @@ function operateFormatter(value, row, index) {
  */
 function imageFormatter(value, row, index) {
     return [
-        '<a class="image" href="../uploads/' + value + '" title="Image">',
+        '<a class="image" href="javascript:void(0)" title="Image">',
         '<img height="100" src="../uploads/' + value + '">',
         '</a>'
     ].join('');
@@ -129,6 +134,7 @@ $table.bootstrapTable({
     }, {
         field: 'image',
         title: 'Image',
+        events: operateEvents,
         formatter: imageFormatter
     }, {
         field: 'created_by',
