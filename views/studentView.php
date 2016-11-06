@@ -23,19 +23,23 @@ if ($actual_link == '/views/studentView.php' ) {
 
     <!-- Bootstrap -->
     <link href="../css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="../css/dropzone.min.css" rel="stylesheet" media="screen">
     <link href="../css/form_formatter.css" rel="stylesheet" media="screen">
 
 </head>
 <body>
-<?php include "navbarView.php"; ?>
-<div class="container">
+    <?php include "navbarView.php"; ?>
+    <div class="container">
 
         <h1>Student Panel</h1>
+        <br>
+        <button type="button" id="add-btn" class="btn btn-primary btn-success" data-toggle="modal" data-target="#addModal">
+        Add Word &nbsp;<span class="glyphicon glyphicon-plus"></span></button>
         <br>
         <table id="studentTable"></table>
         
     </div>
-
+<?php include 'modals/addWord.php'; ?>
 <?php include 'modals/showImage.php'; ?>
 
 <!--   jQuery-->
@@ -44,7 +48,10 @@ if ($actual_link == '/views/studentView.php' ) {
 <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.js"></script>
 <!-- bootstrap JS-->
 <script src="../js/bootstrap.min.js"></script>
+<!--dropzone JS-->
+<script src="../js/dropzone.min.js"></script>
 <!-- custom JS-->
+<script src="../js/admin.js"></script>
 <script src="../js/student.js"></script>
 <script src="http://code.responsivevoice.org/responsivevoice.js"></script>
 
