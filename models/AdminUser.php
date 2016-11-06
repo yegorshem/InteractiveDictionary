@@ -11,15 +11,14 @@
  */
 
 /**
- * Class User holds the user_id, username, password and priority level of each user
+ * Class Admin holds the user_id, username, password and priority level of each user
  */
-class User
+class Admin
 {
     public $user_id;
     public $first_name;
     public $last_name;
     public $username;
-    public $class_code;
     private $password;
     private $priority;
 

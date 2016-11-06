@@ -4,26 +4,67 @@
 
 $(document).ready(function(){
     $("#add_err").css('display', 'none', 'important');
-    $("#login-form").submit(function(e) {
+
+    $("#student-login-form").hide();
+
+    $('input[type="radio"]').click(function() {
+        if($(this).attr('id') == 'adminForm') {
+            $('#admin-login-form').show();
+            $('#student-login-form').hide();
+        }
+
+        else {
+            $('#admin-login-form').hide();
+            $('#student-login-form').show();
+        }
+    });
+
+    $("#admin-login-form").submit(function(e) {
         e.preventDefault();
-        var username=$("#username").val();
-        var password=$("#password").val();
-        var dataString = 'username='+username+'&password='+password;
+        var adminUsername=$("#adminUsername").val();
+        var adminPassword=$("#adminPassword").val();
+        var dataString = 'adminUsername='+adminUsername+'&adminPassword='+adminPassword;
 
         $.ajax({
             type: "POST",
-            url: 'studentController.php',
+            url: '../api/adminLoginValidate.php',
             data: dataString,
             success: function(data) {
                 if (data[0]==1) {
                     window.location.replace('adminController.php');
                 }
-                else if(data[0]==3) {
+                else    {
+                    $("#add_err").css('display', 'inline', 'important');
+                    $("#add_err").text("Incorrect username or password");
+                    $("#password").val('');
+                }
+            },
+            beforeSend:function() {
+                $("#add_err").css('display', 'inline', 'important');
+                $("#add_err").text("Loading...");
+            }
+        });
+        return false;
+    });
+
+
+    $("#student-login-form").submit(function(e) {
+        e.preventDefault();
+        var studentUsername=$("#studentUsername").val();
+        var studentPassword=$("#studentPassword").val();
+        var dataString = 'studentUsername='+studentUsername+'&studentPassword='+studentPassword;
+
+        $.ajax({
+            type: "POST",
+            url: '../api/studentLoginValidate.php',
+            data: dataString,
+            success: function(data) {
+                if (data[0] != null) {
                     window.location.replace('studentController.php');
                 }
                 else    {
                     $("#add_err").css('display', 'inline', 'important');
-                    $("#add_err").text('Incorrect username or password.');
+                    $("#add_err").text("Incorrect username or password");
                     $("#password").val('');
                 }
             },

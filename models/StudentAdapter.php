@@ -2,20 +2,13 @@
 /**
  * Created by PhpStorm.
  * User: Joel
- * Date: 10/7/2016
- * Time: 4:44 PM
+ * Date: 11/5/2016
+ * Time: 5:23 PM
  */
+require "StudentUser.php";
 
-require 'User.php';
-/**
- * This page is created to handle the user able in the database
- */
-/**
- * Class UserAdapter is used to add new users,
- * delete old users, log users in and log users out
- */
-
-class UserAdapter {
+class StudentAdapter
+{
 
     protected $db;
 
@@ -24,7 +17,7 @@ class UserAdapter {
      * @param PDO $db - the database we are storing information in.
      * @return db
      */
-    public function UserAdapter(PDO $db) {
+    public function __construct(PDO $db) {
         $this->db = $db;
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
@@ -40,7 +33,7 @@ class UserAdapter {
      */
     public function loginFunction($login, $pass) {
         // Define the query
-        $query = "SELECT * FROM users WHERE email = :login AND pass_code = :password";
+        $query = "SELECT * FROM student WHERE email = :login AND pass_code = :password";
 
         //prepare the statement
         $statement = $this->db->prepare($query);
@@ -54,14 +47,13 @@ class UserAdapter {
 
         $row = $statement->fetch();
         if ($row != null) {
-            $user = new User();
+            $user = new Student();
             $user->user_id = $row['user_id'];
             $user->first_name = $row['first_name'];
             $user->last_name = $row['last_name'];
             $user->username = $row['email'];
-            $user->class_code = $row['class_code'];
             $user->setPassword($row['pass_code']);
-            $user->setPriority($row['priority']);
+            $user->setClassCode($row['class_code']);
 
             return $user;
         }
@@ -76,12 +68,12 @@ class UserAdapter {
      * @param-$username is a string
      * @param-$password is a string
      * @param-$priority is an int
-     * @return user
+     * @return Admin
      */
-    public function createNewUser($first_name, $last_name, $email, $pass_code, $class_code, $priority) {
+    public function createNewUser($first_name, $last_name, $email, $pass_code, $class_code) {
         // Define the query
-        $query = "INSERT INTO users (first_name, last_name, email, pass_code, class_code, priority) VALUES 
-                      (:first_name, :last_name, :email, :pass_code, :class_code, :priority)";
+        $query = "INSERT INTO student (first_name, last_name, email, pass_code, class_code) VALUES 
+                      (:first_name, :last_name, :email, :pass_code, :class_code)";
 
         // prepare the statement
         $statement = $this->db->prepare($query);
@@ -91,8 +83,7 @@ class UserAdapter {
         $statement->bindParam(':last_name', $last_name, PDO::PARAM_STR);
         $statement->bindParam(':email', $email, PDO::PARAM_STR);
         $statement->bindParam(':pass_code', $pass_code, PDO::PARAM_STR);
-        $statement->bindParam(':class_code', $class_code, PDO::PARAM_STR);
-        $statement->bindParam(':priority', $priority, PDO::PARAM_INT);
+        $statement->bindParam(':class_code', $class_code, PDO::PARAM_INT);
 
 
         //execute the statement
@@ -109,14 +100,15 @@ class UserAdapter {
     }
 
     /**
-     * This function removes one user from the user table
+     * This function removes one user from the teacher table
+     *
      * @param $username - the id of the user you wish to delete
      * @return bool- true if one row was removed from the table
      *
      */
     public function deleteOneUser($username) {
         // define query
-        $query = "DELETE FROM users WHERE username = :$username";
+        $query = "DELETE FROM student WHERE username = :$username";
 
         //prepare the statement
         $statement = $this->db->prepare($query);

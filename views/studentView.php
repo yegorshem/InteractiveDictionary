@@ -6,6 +6,10 @@
  * Time: 10:42 AM
  */
 
+if ($actual_link == '/views/studentView.php' ) {
+    header('Location: ../controllers/studentController.php');
+}
+
 ?>
 <!doctype html>
 
@@ -32,8 +36,8 @@
         
     </div>
 
-<?php include 'modals/login.php'; ?>
-<?php include 'modals/register.php'; ?>
+<?php include 'modals/showImage.php'; ?>
+
 <!--   jQuery-->
 <script src="http://code.jquery.com/jquery.js"></script>
 <!-- javascript for table -->
@@ -42,9 +46,7 @@
 <script src="../js/bootstrap.min.js"></script>
 <!-- custom JS-->
 <script src="../js/student.js"></script>
-<script src="../js/login.js"></script>
 <script src="http://code.responsivevoice.org/responsivevoice.js"></script>
-<script src="../js/register.js"></script>
 
 </body>
 </html>

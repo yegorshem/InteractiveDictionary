@@ -36,7 +36,7 @@
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
-                <?php if ($_SESSION['user'] == null) {
+                <?php if ($_SESSION['name'] == null) {
                     print "<li><a href='#' data-toggle='modal' data-target='#loginModal'>Sign In</a></li>";
                 } else {
                     print "<li><a>Welcome ".$_SESSION['name']."</a></li>";
