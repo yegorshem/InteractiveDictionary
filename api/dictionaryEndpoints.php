@@ -62,7 +62,7 @@ SWITCH ($_SERVER["REQUEST_METHOD"]) {
         $definition = $_POST['definition'];
         $category = $_POST['category'];
         if ($_SESSION['priority'] != null) {
-            $adapter->submitWord($word, $definition, $image, $category, $_SESSION['name'], $_SESSION['admin_class']);
+            $adapter->submitWord($word, $definition, $image, $category, $_SESSION['name'], $_SESSION[1]);
         }
         else {
             $adapter->submitWord($word, $definition, $image, $category, $_SESSION['name'], $_SESSION['class_code']);
