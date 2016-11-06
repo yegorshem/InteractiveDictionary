@@ -55,6 +55,7 @@ if ($isValid) {
             $user = $adapter->loginFunction($adminUsername, $adminPassword);
 
             if ($user != null) {
+                $_SESSION['admin_id'] = $user->user_id;
                 $_SESSION['priority'] = $user->getPriority();
                 $_SESSION['name'] = $user->first_name . ' ' . $user->last_name;
                 echo $user->getPriority();

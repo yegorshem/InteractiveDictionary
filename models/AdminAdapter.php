@@ -55,13 +55,13 @@ class AdminAdapter {
         $row = $statement->fetch();
         if ($row != null) {
             $user = new Admin();
-            $user->user_id = $row['user_id'];
+            $user->user_id = $row['admin_id'];
             $user->first_name = $row['first_name'];
             $user->last_name = $row['last_name'];
             $user->username = $row['email'];
             $user->setPassword($row['pass_code']);
             $user->setPriority($row['priority']);
-            
+
             return $user;
         }
         else {

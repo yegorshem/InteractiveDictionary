@@ -29,12 +29,13 @@ if ($actual_link == '/views/adminView.php' ) {
 <?php include "navbarView.php"; ?>
 <div class="container">
     <h1>Carpentry English - Admin Panel</h1>
-<br>
+    <br>
+
     <button type="button" id="add-btn" class="btn btn-primary btn-success" data-toggle="modal" data-target="#addModal">
         Add Word &nbsp;<span class="glyphicon glyphicon-plus"></span></button>
     <button type="button" id="delete-btn" class="btn btn-primary btn-danger" data-toggle="modal" >
         Delete Word &nbsp;<span class="glyphicon glyphicon-minus"></span></button>
-
+    <select id="classPicker" class="selectpicker"></select>
     <table id="adminTable"></table>
 
 </div>
@@ -56,6 +57,7 @@ if ($actual_link == '/views/adminView.php' ) {
 <script src="http://code.responsivevoice.org/responsivevoice.js"></script>
 <!--custom JS-->
 <script src="../js/admin.js"></script>
+<script src="../js/class.js"></script>
 
 </body>
 </html>

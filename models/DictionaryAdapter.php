@@ -24,7 +24,7 @@ class DictionaryAdapter
 
     public function getAllWords()
     {
-        $sql = "SELECT dictionary.id, dictionary.word, dictionary.definition, dictionary.category, dictionary.image, dictionary.created_by, class.class_name FROM dictionary INNER JOIN  class ON dictionary.class_id = class.class_id";
+        $sql = "SELECT dictionary.id, dictionary.word, dictionary.definition, dictionary.category, dictionary.image, dictionary.created_by, class.class_name FROM dictionary INNER JOIN  class ON dictionary.class_id = class.class_id WHERE dictinary.class_id = ".$_SESSION['class_code'];
 
         $query = $this->db->prepare($sql);
         $query->execute();

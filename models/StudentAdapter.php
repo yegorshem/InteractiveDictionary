@@ -108,7 +108,7 @@ class StudentAdapter
      */
     public function deleteOneUser($username) {
         // define query
-        $query = "DELETE FROM student WHERE username = :$username";
+        $query = "DELETE FROM student WHERE username = :username";
 
         //prepare the statement
         $statement = $this->db->prepare($query);
