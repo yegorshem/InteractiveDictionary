@@ -24,7 +24,8 @@ class DictionaryAdapter
 
     public function getAllWords()
     {
-        $sql = "SELECT * FROM dictionary";
+        $sql = "SELECT dictionary.id, dictionary.word, dictionary.definition, dictionary.category, dictionary.image, dictionary.created_by, class.class_name FROM dictionary INNER JOIN  class ON dictionary.class_id = class.class_id";
+
         $query = $this->db->prepare($sql);
         $query->execute();
         $rows = $query->fetchAll();
@@ -49,13 +50,14 @@ class DictionaryAdapter
         $result->image = $row['image'];
         $result->category = $row['category'];
         $result->created_by = $row['created_by'];
+        $result->class_name = $row['class_name'];
         return $result;
     }
 
-    public function submitWord($word, $definition, $image, $category, $created_by)
+    public function submitWord($word, $definition, $image, $category, $created_by, $class_id)
     {
 
-        $sql = "INSERT INTO dictionary (word, definition, image, category, created_by) VALUES (:word, :definition, :image, :category, :created_by)";
+        $sql = "INSERT INTO dictionary (word, definition, image, category, created_by, class_id) VALUES (:word, :definition, :image, :category, :created_by, :class_id)";
         $statement = $this->db->prepare($sql);
 
         $statement->bindValue(':word', $word, PDO::PARAM_STR);
@@ -63,6 +65,7 @@ class DictionaryAdapter
         $statement->bindValue(':image', $image, PDO::PARAM_STR);
         $statement->bindValue(':category', $category, PDO::PARAM_STR);
         $statement->bindValue(':created_by', $created_by, PDO::PARAM_STR);
+        $statement->bindValue(':class_id', $class_id, PDO::PARAM_INT);
 
         $statement->execute();
     }

@@ -18,4 +18,5 @@ class Word
     public $image;
     public $category;
     public $created_by;
+    public $class_id;
 }

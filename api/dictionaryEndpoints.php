@@ -61,9 +61,12 @@ SWITCH ($_SERVER["REQUEST_METHOD"]) {
         $word = $_POST['word'];
         $definition = $_POST['definition'];
         $category = $_POST['category'];
-
-        $adapter->submitWord($word, $definition, $image, $category, $_SESSION['name']);
-
+        if ($_SESSION['priority'] != null) {
+            $adapter->submitWord($word, $definition, $image, $category, $_SESSION['name'], $_SESSION['admin_class']);
+        }
+        else {
+            $adapter->submitWord($word, $definition, $image, $category, $_SESSION['name'], $_SESSION['class_code']);
+        }
         //Initializing array to hold possible errors
         //$error = array();
         //$error = $adapter->validateWord($word, $definition);

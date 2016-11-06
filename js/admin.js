@@ -140,7 +140,10 @@ $table.bootstrapTable({
         field: 'created_by',
         title: 'Author',
         sortable: true
-
+    }, {
+        field: 'class_name',
+        title: 'Class',
+        sortable: true
     }, {
         field: 'edit',
         title: 'Edit',
