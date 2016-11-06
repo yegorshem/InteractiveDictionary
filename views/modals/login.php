@@ -87,8 +87,8 @@
                         <button type="button" data-dismiss="modal" class="btn btn-secondary">Cancel</button>
                         <input type="submit" value="Login" class="btn btn-success" name='login' id="login" />
                     </div>
+                    <p>Don't have an account yet? click <a data-toggle='modal' data-target='#registerModal' data-dismiss='modal'>Sign Up!</a> </p>
                 </form>
-                <p>Don't have an account yet? click <a data-toggle='modal' data-target='#registerModal' data-dismiss='modal'>Sign Up!</a> </p>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->

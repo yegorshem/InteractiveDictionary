@@ -49,11 +49,11 @@ if ($isValid == true) {
         echo "Connection failed: " . $e->getMessage();
     }
 
-    require '../models/UserAdapter.php';
+    require '../models/StudentAdapter.php';
 
-    $adapter = new UserAdapter($db);
+    $adapter = new StudentAdapter($db);
 
-    $created = $adapter->createNewUser($first_name, $last_name, $email, $pass_code, $class_code, 3);
+    $created = $adapter->createNewUser($first_name, $last_name, $email, $pass_code, $class_code);
 
     echo $created;
 }
