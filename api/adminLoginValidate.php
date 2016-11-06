@@ -25,6 +25,7 @@ if (isset($_POST['adminPassword']) && $_POST['adminPassword'] != "") {
 if ($isValid) {
     //Includes DB files
     $adminPassword = md5($adminPassword);
+    $adminUsername = strtolower($adminUsername);
     $config = include("../config.php");
 
     try {

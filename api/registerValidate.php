@@ -38,6 +38,7 @@ if ($isValid == true) {
 
     $config = include("../config.php");
     $pass_code = md5($pass_code);
+    $email = strtolower($email);
 
     try {
         $db = new PDO ($config["connectionString"], $config["username"], $config["password"]);
