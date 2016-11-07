@@ -7,7 +7,7 @@
  */
 $actual_link = $_SERVER['PHP_SELF'];
 
-if ($actual_link == '/views/adminView.php' ) {
+if ($actual_link == '/views/adminView.php') {
     header('Location: ../controllers/adminController.php');
 }
 ?>
@@ -31,13 +31,24 @@ if ($actual_link == '/views/adminView.php' ) {
     <h1>Carpentry English - Admin Panel</h1>
     <br>
 
-    <button type="button" id="add-btn" class="btn btn-primary btn-success" data-toggle="modal" data-target="#addModal">
-        Add Word &nbsp;<span class="glyphicon glyphicon-plus"></span></button>
-    <button type="button" id="delete-btn" class="btn btn-primary btn-danger" data-toggle="modal" >
-        Delete Word &nbsp;<span class="glyphicon glyphicon-minus"></span></button>
-    <select id="classPicker" class="selectpicker">
-        <option>Select a class</option>
-    </select>
+    <div class="form-group row">
+
+        <!-- add button-->
+        <button type="button" id="add-btn" class="btn btn-primary btn-success" data-toggle="modal"
+                data-target="#addModal">
+            Add Word &nbsp;<span class="glyphicon glyphicon-plus"></span></button>
+
+        <!-- delete button-->
+        <button type="button" id="delete-btn" class="btn btn-primary btn-danger" data-toggle="modal">
+            Delete Word &nbsp;<span class="glyphicon glyphicon-minus"></span></button>
+
+        <!-- class selector-->
+        <div class="col-xs-4">
+            <select id="classPicker" class="selectpicker form-control">
+                <option value="0" disabled="disabled" selected="selected">Select a class</option>
+            </select>
+        </div>
+    </div>
     <table id="adminTable"></table>
 
 </div>

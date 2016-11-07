@@ -22,7 +22,6 @@ class AdminAdapter {
     /**
      * This function constructs a DBTools object     *
      * @param PDO $db - the database we are storing information in.
-     * @return db
      */
     public function __construct(PDO $db) {
         $this->db = $db;
