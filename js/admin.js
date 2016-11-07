@@ -161,6 +161,10 @@ $table.bootstrapTable({
  * Ajax/dropzone calls
  */
 $(function () {
+    // New Teacher --------------------------------------------------
+
+    // New Class --------------------------------------------------
+
 
     // Add Word --------------------------------------------------
     Dropzone.options.myDropzone = {

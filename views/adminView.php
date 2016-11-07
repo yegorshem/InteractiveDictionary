@@ -33,22 +33,36 @@ if ($actual_link == '/views/adminView.php') {
 
     <div class="form-group row">
 
-        <!-- add button-->
-        <button type="button" id="add-btn" class="btn btn-primary btn-success" data-toggle="modal"
-                data-target="#addModal">
-            Add Word &nbsp;<span class="glyphicon glyphicon-plus"></span></button>
-
-        <!-- delete button-->
-        <button type="button" id="delete-btn" class="btn btn-primary btn-danger" data-toggle="modal">
-            Delete Word &nbsp;<span class="glyphicon glyphicon-minus"></span></button>
-
         <!-- class selector-->
         <div class="col-xs-4">
             <select id="classPicker" class="selectpicker form-control">
                 <option value="0" disabled="disabled" selected="selected">Select a class</option>
             </select>
         </div>
+
+        <!-- add button-->
+        <button type="button" id="add-btn" class="btn btn-success" data-toggle="modal"
+                data-target="#addModal">
+            Add Word &nbsp;<span class="glyphicon glyphicon-plus"></span></button>
+
+        <!-- delete button-->
+        <button type="button" id="delete-btn" class="btn btn-danger" data-toggle="modal">
+            Delete Word &nbsp;<span class="glyphicon glyphicon-minus"></span></button>
+
+        <!-- new teacher button-->
+        <button type="button" id="add-btn" class="btn btn-primary" data-toggle="modal"
+                data-target="#newTeacher">
+            New Teacher &nbsp;<span class="glyphicon glyphicon-user"></span></button>
+
+        <!-- new teacher button-->
+        <button type="button" id="add-btn" class="btn btn-info" data-toggle="modal"
+                data-target="#newClass">
+            New Class &nbsp;<span class="glyphicon glyphicon-calendar"></span></button>
+
     </div>
+
+    <hr>
+
     <table id="adminTable"></table>
 
 </div>
@@ -56,6 +70,10 @@ if ($actual_link == '/views/adminView.php') {
 <?php include 'modals/addWord.php'; ?>
 <?php include 'modals/updateWord.php'; ?>
 <?php include 'modals/showImage.php'; ?>
+<?php include 'modals/newTeacher.php'; ?>
+
+<?php include 'modals/newClass.php'; ?>
+
 
 
 <!--   jQuery-->
