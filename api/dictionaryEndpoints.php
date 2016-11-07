@@ -53,11 +53,14 @@ SWITCH ($_SERVER["REQUEST_METHOD"]) {
 
     // Retrieve all words
     case "GET":
+        //check if admin
         if ($_SESSION['priority'] != null) {
             $class_code = $_GET['classPicker'];
+            $_SESSION['class_code'] = $class_code;
             $result = $adapter->getAllWords($class_code);
         }
         else {
+            //student
             $result = $adapter->getAllWords($_SESSION['class_code']);
         }
         break;
@@ -68,9 +71,11 @@ SWITCH ($_SERVER["REQUEST_METHOD"]) {
         $definition = $_POST['definition'];
         $category = $_POST['category'];
         if ($_SESSION['priority'] != null) {
-            $adapter->submitWord($word, $definition, $image, $category, $_SESSION['name'], $_SESSION[1]);
+            //admin
+            $adapter->submitWord($word, $definition, $image, $category, $_SESSION['name'], $_SESSION['class_code']);
         }
         else {
+            //student
             $adapter->submitWord($word, $definition, $image, $category, $_SESSION['name'], $_SESSION['class_code']);
         }
         //Initializing array to hold possible errors
