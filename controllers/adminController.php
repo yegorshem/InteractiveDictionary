@@ -12,8 +12,5 @@ if ($_SESSION['priority'] == null) {
     header("Location: studentController.php");
 } else {
 
-    $adapter = new ClassAdapter();
-
-
     require '../views/adminView.php';
 }
