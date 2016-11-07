@@ -35,7 +35,9 @@ if ($actual_link == '/views/adminView.php' ) {
         Add Word &nbsp;<span class="glyphicon glyphicon-plus"></span></button>
     <button type="button" id="delete-btn" class="btn btn-primary btn-danger" data-toggle="modal" >
         Delete Word &nbsp;<span class="glyphicon glyphicon-minus"></span></button>
-    <select id="classPicker" class="selectpicker"></select>
+    <select id="classPicker" class="selectpicker">
+        <option>Select a class</option>
+    </select>
     <table id="adminTable"></table>
 
 </div>

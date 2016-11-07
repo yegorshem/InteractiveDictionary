@@ -9,7 +9,7 @@ $(document).ready(function() {
         dataType: 'json',
         success: function (result) {
             var options = $("#classPicker");
-            console.log(result);
+
             var i=0
             if (result.length > 0) {
                 $.each(result, function(i){
@@ -20,7 +20,19 @@ $(document).ready(function() {
                 options.append($("<option />").val(null).text("No Classes"));
             }
         }
+    })
 
+    $("#classPicker").on('change', function () {
+        var classPicker = $("#classPicker").val();
+        $.ajax({
+            url: '../api/dictionaryEndpoints.php',
+            type: 'GET',
+            data: 'classPicker='+classPicker,
+            success: function(result) {
+                console.log(result);
+                $('#adminTable').bootstrapTable("load", result);
+            }
+        })
     })
 });
 

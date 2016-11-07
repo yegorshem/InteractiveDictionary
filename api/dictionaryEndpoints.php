@@ -53,7 +53,13 @@ SWITCH ($_SERVER["REQUEST_METHOD"]) {
 
     // Retrieve all words
     case "GET":
-        $result = $adapter->getAllWords();
+        if ($_SESSION['priority'] != null) {
+            $class_code = $_GET['classPicker'];
+            $result = $adapter->getAllWords($class_code);
+        }
+        else {
+            $result = $adapter->getAllWords($_SESSION['class_code']);
+        }
         break;
 
     // Add word
