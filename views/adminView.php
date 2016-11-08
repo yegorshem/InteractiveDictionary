@@ -73,8 +73,8 @@ if ($actual_link == '/views/adminView.php') {
 <?php include 'modals/updateWord.php'; ?>
 <?php include 'modals/showImage.php'; ?>
 <?php include 'modals/newTeacher.php'; ?>
-
 <?php include 'modals/newClass.php'; ?>
+<?php include 'modals/deleteConfirmation.php'; ?>
 
 
 

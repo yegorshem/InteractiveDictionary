@@ -186,8 +186,6 @@ $(function () {
         });
     })
 
-    // New Class --------------------------------------------------
-
 
     // Add Word --------------------------------------------------
     Dropzone.options.myDropzone = {
@@ -322,6 +320,13 @@ $(function () {
 
     // Delete word --------------------------------------------------
     $('#delete-btn').click(function () {
+
+        $('#deleteModal').modal('show');
+
+    });
+
+    $('#delete-confirm-btn').click(function () {
+
         var ids = $.map($table.bootstrapTable('getSelections'), function (row) {
 
             var id = row.id;
@@ -350,7 +355,7 @@ $(function () {
             values: ids
         });
 
-        //$('#deleteModal').modal('hide');
+        $('#deleteModal').modal('hide');
     });
 
 }); // end-ajax calls
