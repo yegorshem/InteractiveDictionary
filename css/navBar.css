@@ -1,19 +1,25 @@
 .navbar-brand {
     font-size: 40px;
     text-transform: uppercase;
-    color: white;
+    color: black;
     padding-top: 0.8em;
 
 }
 
 .container-fluid {
-    background-color: #5cb85c;
+    background-color: #006400;
     font-size: 20px;
     font-weight: normal;
-    color: white;
+    color: black;
     height: 80px;
 
 }
 #bs-example-navbar-collapse-1 {
     padding-top: 1em;
+}
+.navbar-default .navbar-brand{
+    color: white;
+}
+.navbar-default .navbar-nav>li>a{
+    color: white;
 }
