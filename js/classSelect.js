@@ -4,13 +4,13 @@
 $(document).ready(function() {
 
     $.ajax({
-        url: '../api/classValidate.php',
+        url: '../api/classEndpoints.php',
         type: 'GET',
         dataType: 'json',
         success: function (result) {
             var options = $("#classPicker");
 
-            var i=0
+            var i=0;
             if (result.length > 0) {
                 $.each(result, function(i){
                     options.append($("<option />").val(result[i].class_id).text(result[i].class_name));

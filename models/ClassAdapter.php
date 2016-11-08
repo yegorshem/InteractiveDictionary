@@ -68,7 +68,7 @@ class ClassAdapter
      * @param-$class_name - String
      * @param-$admin_id - int
      */
-    public function createNewUser($class_name, $admin_id) {
+    public function createNewClass($class_name, $admin_id) {
         // Define the query
         $query = "INSERT INTO class (class_name, admin_id) VALUES (:class_name, :admin_id)";
 
@@ -86,11 +86,7 @@ class ClassAdapter
         $count = $statement->rowCount();
 
 
-        if($count == 1) {
-            return true;
-        } else {
-            return false;
-        }
+        return $count;
     }
 
     /**

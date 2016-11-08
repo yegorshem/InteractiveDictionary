@@ -23,10 +23,10 @@
                     <div class="row">
                         <div class="col-md-12">
                             <h4>Class</h4>
-
+                            <p id="create-class-error"></p>
                             <div class="row">
 
-                                <div class="col-md-5">
+                                <div class="col-md-7">
                                     <div class="input-group">
                                         <label class="input-group-addon" for="class_name">Class Name</label>
                                         <input required="required" type="text" class="form-control"

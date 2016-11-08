@@ -27,7 +27,7 @@ $(document).ready(function(){
 
         $.ajax({
             type: "POST",
-            url: '../api/adminLoginValidate.php',
+            url: '../api/teacherEndpoints.php',
             data: dataString,
             success: function(data) {
                 if (data[0]==1) {
@@ -56,7 +56,7 @@ $(document).ready(function(){
 
         $.ajax({
             type: "POST",
-            url: '../api/studentLoginValidate.php',
+            url: '../api/studentEndpoints.php',
             data: dataString,
             success: function(data) {
                 if (data[0] != null) {

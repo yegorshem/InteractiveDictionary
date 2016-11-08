@@ -24,6 +24,8 @@ if ($actual_link == '/views/adminView.php') {
     <!-- Bootstrap -->
     <link href="../css/bootstrap.min.css" rel="stylesheet" media="screen">
     <link href="../css/dropzone.min.css" rel="stylesheet" media="screen">
+    <link href="../css/form_formatter.css" rel="stylesheet" media="screen">
+
 </head>
 <body>
 <?php include "navbarView.php"; ?>
@@ -50,12 +52,12 @@ if ($actual_link == '/views/adminView.php') {
             Delete Word &nbsp;<span class="glyphicon glyphicon-minus"></span></button>
 
         <!-- new teacher button-->
-        <button type="button" id="add-btn" class="btn btn-primary" data-toggle="modal"
+        <button type="button" id="add-teacher-btn" class="btn btn-primary" data-toggle="modal"
                 data-target="#newTeacher">
             New Teacher &nbsp;<span class="glyphicon glyphicon-user"></span></button>
 
         <!-- new teacher button-->
-        <button type="button" id="add-btn" class="btn btn-info" data-toggle="modal"
+        <button type="button" id="add-class-btn" class="btn btn-info" data-toggle="modal"
                 data-target="#newClass">
             New Class &nbsp;<span class="glyphicon glyphicon-calendar"></span></button>
 
@@ -88,7 +90,8 @@ if ($actual_link == '/views/adminView.php') {
 <script src="http://code.responsivevoice.org/responsivevoice.js"></script>
 <!--custom JS-->
 <script src="../js/admin.js"></script>
-<script src="../js/class.js"></script>
+<script src="../js/classSelect.js"></script>
+<script src="../js/createClass.js"></script>
 
 </body>
 </html>

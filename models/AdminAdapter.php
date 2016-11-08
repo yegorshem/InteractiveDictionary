@@ -29,6 +29,42 @@ class AdminAdapter {
         $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
     }
 
+
+    public function getAdmins() {
+        // Define the query
+        $query = "SELECT * FROM teacher";
+
+        //prepare the statement
+        $statement = $this->db->prepare($query);
+
+        //execute
+        $statement->execute();
+        $rows = $statement->fetchAll();
+        $result = array();
+        foreach ($rows as $row) {
+            array_push($result, $this->read($row));
+        }
+
+        return $result;
+
+    }
+
+    private function read($row)
+    {
+
+        $result = new Admin();
+        $result->user_id = $row['admin_id'];
+        $result->first_name = $row['first_name'];
+        $result->last_name = $row['last_name'];
+        $result->username = $row['email'];
+        $result->setPassword($row['pass_code']);
+        $result->setPriority($row['priority']);
+
+        return $result;
+    }
+
+
+
     /**
      * This function logs the user in
      *
