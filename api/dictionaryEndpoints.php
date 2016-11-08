@@ -56,7 +56,6 @@ SWITCH ($_SERVER["REQUEST_METHOD"]) {
         //check if admin
         if ($_SESSION['priority'] != null) {
             $class_code = $_GET['classPicker'];
-            $_SESSION['class_code'] = $class_code;
             $result = $adapter->getAllWords($class_code);
         }
         else {

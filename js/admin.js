@@ -230,12 +230,6 @@ $(function () {
                         var width = event.target.width;
                         var height = event.target.height;
 
-                        // Don't resize if it's small enough
-                        if (width <= MAX_WIDTH && height <= MAX_HEIGHT) {
-                            dropzone.enqueueFile(origFile);
-                            return;
-                        }
-
                         // Calc new dims otherwise
                         if (width > height) {
                             if (width > MAX_WIDTH) {
@@ -281,9 +275,23 @@ $(function () {
 
                 $('#addModal').modal('hide');
 
-                $table.bootstrapTable('refresh', {
-                    silent: true
-                });
+                var classPicker = $("#classPicker").val();
+                //check if student or teacher
+                if (classPicker != null) {
+                    $.ajax({
+                        url: '../api/dictionaryEndpoints.php',
+                        type: 'GET',
+                        data: 'classPicker=' + classPicker,
+                        success: function (result) {
+                            console.log(result);
+                            $('#adminTable').bootstrapTable("load", result);
+                        }
+                    })
+                } else {
+                    $table.bootstrapTable('refresh', {
+                        silent: true
+                    });
+                }
             });
         }
     };
