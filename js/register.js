@@ -15,7 +15,7 @@ $(document).ready(function(){
 
         $.ajax({
             type: "POST",
-            url: "../api/registerValidate.php",
+            url: "../api/studentRegisterEndpoint.php",
             data: dataString,
             success: function(data) {
                 if (data[0]==true) {

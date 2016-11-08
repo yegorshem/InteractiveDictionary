@@ -134,11 +134,7 @@ class AdminAdapter {
         $count = $statement->rowCount();
 
 
-        if($count == 1) {
-            return true;
-        } else {
-            return false;
-        }
+        return $count;
     }
 
     /**

@@ -47,7 +47,7 @@ if ($isValid) {
 
         //get all students
         case "GET":
-            //$result = $adapter->getAllTeachers();
+            //$result = $adapter->getStudents();
             break;
 
         // student login

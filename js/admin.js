@@ -162,6 +162,29 @@ $table.bootstrapTable({
  */
 $(function () {
     // New Teacher --------------------------------------------------
+    $("#new-teacher-form").submit(function(e) {
+        e.preventDefault();
+        var first_name = $('#teacher_first_name').val();
+        var last_name = $('#teacher_last_name').val();
+        var email = $('#teacher_email').val();
+        var pass_code = $('#teacher_password').val();
+        var datastring = "teacher_first_name="+first_name+"&teacher_last_name="+last_name+"&teacher_email="+email+"&teacher_password="+pass_code;
+
+        $.ajax({
+            url: '../api/teacherRegisterEndpoint.php',
+            type: 'POST',
+            data: datastring,
+            success: function (result) {
+
+                if (result == 1) {
+                    $("#new-teacher-form").trigger('reset');
+                    $('#newTeacher').modal('hide');
+                } else {
+                    $("#create-teacher-error").text("There was an error while creating this teacher.")
+                }
+            }
+        });
+    })
 
     // New Class --------------------------------------------------
 

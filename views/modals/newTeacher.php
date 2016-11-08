@@ -24,21 +24,22 @@
                         <div class="col-md-12">
                             <h4>Teacher</h4>
 
+                            <p id="create-teacher-error"></p>
                             <div class="row">
 
                                 <div class="col-md-5">
                                     <div class="input-group">
-                                        <label class="input-group-addon" for="first_name">First Name</label>
+                                        <label class="input-group-addon" for="teacher_first_name">First Name</label>
                                         <input required="required" type="text" class="form-control"
-                                               id="first_name" name="first_name"/>
+                                               id="teacher_first_name" name="first_name"/>
                                     </div>
                                 </div>
 
                                 <div class="col-md-5">
                                     <div class="input-group">
-                                        <label class="input-group-addon" for="last_name">Last Name</label>
+                                        <label class="input-group-addon" for="teacher_last_name">Last Name</label>
                                         <input required="required" type="text" class="form-control"
-                                               id="last_name" name="last_name"/>
+                                               id="teacher_last_name" name="last_name"/>
                                     </div>
                                 </div>
 
@@ -47,19 +48,19 @@
                             <br>
 
                             <div class="row">
-                                <div class="col-md-7">
+                                <div class="col-md-6">
                                     <div class="input-group">
-                                        <label class="input-group-addon" for="email">Email</label>
+                                        <label class="input-group-addon" for="teacher_email">Email</label>
                                         <input required="required" type="email" class="form-control"
-                                               id="email" name="email"/>
+                                               id="teacher_email" name="email"/>
                                     </div>
                                 </div>
 
                                 <div class="col-md-4">
                                     <div class="input-group">
-                                        <label class="input-group-addon" for="password">Password</label>
-                                        <input required="required" type="text" class="form-control"
-                                               id="password" name="password"/>
+                                        <label class="input-group-addon" for="teacher_password">Password</label>
+                                        <input required="required" type="password" class="form-control"
+                                               id="teacher_password" name="password"/>
                                     </div>
                                 </div>
                             </div>
