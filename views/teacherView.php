@@ -1,10 +1,10 @@
 <?php
 /**
- * Created by PhpStorm.
  * User: Yegor Shemereko
- * Date: 10/4/2016
- * Time: 2:32 PM
+ * Date: 11/17/2016
+ * Time: 8:12 AM
  */
+
 $actual_link = $_SERVER['PHP_SELF'];
 
 if ($actual_link == '/views/adminView.php') {
@@ -30,7 +30,7 @@ if ($actual_link == '/views/adminView.php') {
 <body>
 <?php include "navbarView.php"; ?>
 <div class="container">
-    <h1>Carpentry English - Admin Panel</h1>
+    <h1>Carpentry English - Teacher Panel</h1>
     <br>
 
     <div class="form-group row">
@@ -51,15 +51,6 @@ if ($actual_link == '/views/adminView.php') {
         <button type="button" id="delete-btn" class="btn btn-danger" data-toggle="modal">
             Delete Word &nbsp;<span class="glyphicon glyphicon-minus"></span></button>
 
-        <!-- new teacher button-->
-        <button type="button" id="add-teacher-btn" class="btn btn-primary" data-toggle="modal"
-                data-target="#newTeacher">
-            New Teacher &nbsp;<span class="glyphicon glyphicon-user"></span></button>
-
-        <!-- new class button-->
-        <button type="button" id="add-class-btn" class="btn btn-info" data-toggle="modal"
-                data-target="#newClass">
-            New Class &nbsp;<span class="glyphicon glyphicon-calendar"></span></button>
 
     </div>
 
