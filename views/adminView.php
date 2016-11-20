@@ -47,6 +47,10 @@ if ($actual_link == '/views/adminView.php') {
                 data-target="#addModal">
             Add Word &nbsp;<span class="glyphicon glyphicon-plus"></span></button>
 
+        <!-- Edit button-->
+        <button type="button" id="update-btn" class="btn btn-warning" data-toggle="modal">
+            Edit Word &nbsp;<span class="glyphicon glyphicon-edit edit-icon"></span></button>
+
         <!-- delete button-->
         <button type="button" id="delete-btn" class="btn btn-danger" data-toggle="modal">
             Delete Word &nbsp;<span class="glyphicon glyphicon-minus"></span></button>
@@ -78,6 +82,7 @@ if ($actual_link == '/views/adminView.php') {
 
 
 
+
 <!--   jQuery-->
 <script src="http://code.jquery.com/jquery.js"></script>
 <!-- javascript for table -->
@@ -90,7 +95,7 @@ if ($actual_link == '/views/adminView.php') {
 <script src="http://code.responsivevoice.org/responsivevoice.js"></script>
 <!--custom JS-->
 <script src="../js/admin.js"></script>
-<script src="../js/classSelect.js"></script>
+<script src="../js/classWordsSelect.js"></script>
 <script src="../js/createClass.js"></script>
 
 </body>

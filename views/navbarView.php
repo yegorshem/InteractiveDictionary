@@ -33,6 +33,16 @@
                 }
                 ?>
                     id='aboutLink'><a href="../controllers/aboutController.php">Home</a></li>
+                <li <?php if ($thisPage == 'Class') {
+                    echo "class='active'";
+                }
+                ?>
+                    id='classLink'><a href=<?php if ($_SESSION['priority'] != null) {
+                        //admin goes to classController
+                        echo "../controllers/classController.php";
+                    } else {
+                        echo "../controllers/gradeController.php";
+                    }?>>Grades</a></li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">

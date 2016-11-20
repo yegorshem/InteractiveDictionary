@@ -51,7 +51,6 @@ if ($actual_link == '/views/studentView.php' ) {
 <!--dropzone JS-->
 <script src="../js/dropzone.min.js"></script>
 <!-- custom JS-->
-<script src="../js/admin.js"></script>
 <script src="../js/student.js"></script>
 <script src="http://code.responsivevoice.org/responsivevoice.js"></script>
 
