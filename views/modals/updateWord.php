@@ -23,6 +23,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <h4>Word</h4>
+                            <div id="update_word_error"></div>
 
                             <div class="row">
 
@@ -33,6 +34,16 @@
                                         <label class="input-group-addon" for="word_update">Word</label>
                                         <input required="required" type="text" class="form-control"
                                                id="word_update" name="word_update"/>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="input-group">
+                                        <label class="input-group-addon" for="category_update">Category</label>
+                                        <select id="category_update" class="form-control" name="category_update" required>
+                                            <option value="">Select Category</option>
+                                            <option value="Hand Tool">Hand Tool</option>
+                                            <option value="Power Tool">Power Tool</option>
+                                        </select>
                                     </div>
                                 </div>
                             </div>
