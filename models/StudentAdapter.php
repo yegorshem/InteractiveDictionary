@@ -23,6 +23,43 @@ class StudentAdapter
         $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
     }
 
+    public function getStudents($class_code) {
+        // Define the query
+        $query = "SELECT * FROM student WHERE class_code = :class_code";
+
+        //prepare the statement
+        $statement = $this->db->prepare($query);
+
+        $statement->bindParam(':class_code', $class_code, PDO::PARAM_INT);
+
+        //execute
+        $statement->execute();
+        $rows = $statement->fetchAll();
+        $result = array();
+        foreach ($rows as $row) {
+            array_push($result, $this->read($row));
+        }
+
+        return $result;
+
+    }
+
+    private function read($row)
+    {
+
+        $result = new Student();
+        $result->user_id = $row['student_id'];
+        $result->first_name = $row['first_name'];
+        $result->last_name = $row['last_name'];
+        $result->username = $row['email'];
+        $result->setPassword($row['pass_code']);
+        $result->setClassCode($row['class_code']);
+
+        return $result;
+    }
+
+
+
     /**
      * This function logs the user in
      *
@@ -48,7 +85,7 @@ class StudentAdapter
         $row = $statement->fetch();
         if ($row != null) {
             $user = new Student();
-            $user->user_id = $row['user_id'];
+            $user->user_id = $row['student_id'];
             $user->first_name = $row['first_name'];
             $user->last_name = $row['last_name'];
             $user->username = $row['email'];
