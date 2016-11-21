@@ -33,6 +33,9 @@ $(document).ready(function(){
                 if (data[0]==1) {
                     window.location.replace('adminController.php');
                 }
+                else if (data[0]==0) {
+                    window.location.replace('teacherController.php')
+                }
                 else    {
                     $("#add_err").css('display', 'inline', 'important');
                     $("#add_err").text("Incorrect username or password");

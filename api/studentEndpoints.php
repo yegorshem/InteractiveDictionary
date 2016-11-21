@@ -8,88 +8,75 @@
 
 session_start();
 
-//validation
-$isValid = true;
+//Includes DB files
+$config = include("../config.php");
 
-if (isset($_POST['studentUsername']) && $_POST['studentUsername'] != "") {
-    $studentUsername = $_POST['studentUsername'];
-} else {
-    $isValid = false;
+try {
+    $db = new PDO ($config["connectionString"], $config["username"], $config["password"]);
+
+    //set the PDO error mode to exception
+    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    //echo "Connected successfully";
+} catch (PDOException $e) {
+    echo "Connection failed: " . $e->getMessage();
 }
-if (isset($_POST['studentPassword']) && $_POST['studentPassword'] != "") {
-    $studentPassword = $_POST['studentPassword'];
-} else {
-    $isValid = false;
-}
 
-if ($isValid) {
-    //Includes DB files
-    $studentPassword = md5($studentPassword);
-    $studentUsername = strtolower($studentUsername);
-    $config = include("../config.php");
+require '../models/StudentAdapter.php';
 
-    try {
-        $db = new PDO ($config["connectionString"], $config["username"], $config["password"]);
+$adapter = new StudentAdapter($db);
 
-        //set the PDO error mode to exception
-        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        //echo "Connected successfully";
-    } catch (PDOException $e) {
-        echo "Connection failed: " . $e->getMessage();
-    }
+//The switch chooses what server Request_Method is being submitted
+SWITCH ($_SERVER["REQUEST_METHOD"]) {
 
-    require '../models/StudentAdapter.php';
+    //get all students
+    case "GET":
+        $class = $_GET['classPicker'];
+        $result = $adapter->getStudents($class);
+        break;
 
-    $adapter = new StudentAdapter($db);
+    // student login
+    case "POST":
 
-    //The switch chooses what server Request_Method is being submitted
-    SWITCH ($_SERVER["REQUEST_METHOD"]) {
+        $studentPassword = md5($_POST['studentPassword']);
+        $studentUsername = strtolower($_POST['studentUsername']);
+        $user = $adapter->loginFunction($studentUsername, $studentPassword);
 
-        //get all students
-        case "GET":
-            //$result = $adapter->getStudents();
-            break;
-
-        // student login
-        case "POST":
-            $user = $adapter->loginFunction($studentUsername, $studentPassword);
-
-            if ($user != null) {
-                $_SESSION['class_code'] = $user->getClassCode();
-                $_SESSION['name'] = $user->first_name . ' ' . $user->last_name;
-                echo $user->getClassCode();
-            }
-            break;
+        if ($user != null) {
+            $_SESSION['class_code'] = $user->getClassCode();
+            $_SESSION['name'] = $user->first_name.' '.$user->last_name;
+            $_SESSION['student_id'] = $user->user_id;
+            echo $user->getClassCode();
+        }
+        break;
 
 
-        // Update student
-        case "PUT":
-            // Workaround... PHP does not support DELETE or PUT superglobals
-            parse_str(file_get_contents("php://input"), $_PUT);
-            //TODO
+    // Update student
+    case "PUT":
+        // Workaround... PHP does not support DELETE or PUT superglobals
+        parse_str(file_get_contents("php://input"), $_PUT);
+        //TODO
 
 //            $result = $_PUT;
-            break;
+        break;
 
-        // Delete teacher
-        case "DELETE":
-            // Workaround... PHP does not support DELETE or PUT superglobals
-            parse_str(file_get_contents("php://input"), $_DELETE);
-            //TODO
+    // Delete teacher
+    case "DELETE":
+        // Workaround... PHP does not support DELETE or PUT superglobals
+        parse_str(file_get_contents("php://input"), $_DELETE);
+        //TODO
 
 //            $result = $_DELETE;
-            break;
-    }
+        break;
+}
 
 
 
-    if ($result != null)
-    {
-        //set header to JSON
-        header("Content-Type: application/json");
+if ($result != null)
+{
+    //set header to JSON
+    header("Content-Type: application/json");
 
-        //transform PHP array to JSON
+    //transform PHP array to JSON
 
-        echo json_encode($result);
-    }
+    echo json_encode($result);
 }

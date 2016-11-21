@@ -8,9 +8,12 @@
 session_start();
 $thisPage = 'Dictionary';
 
-if ($_SESSION['priority'] == null) {
+if ($_SESSION['priority'] == 0) {
+    header("Location: teacherController.php");
+} else if ($_SESSION['priority'] == null) {
     header("Location: studentController.php");
-} else {
+}
+else {
 
     require '../views/adminView.php';
 }

@@ -2,16 +2,15 @@
 /**
  * Created by PhpStorm.
  * User: Joel
- * Date: 10/8/2016
- * Time: 5:07 PM
+ * Date: 11/19/2016
+ * Time: 8:07 PM
  */
-
 session_start();
-$thisPage = 'Dictionary';
+$thisPage = 'Class';
 
 if ($_SESSION['class_code'] == null) {
     header("Location: aboutController.php");
 } else {
 
-    require '../views/studentView.php';
+    require '../views/gradeView.php';
 }

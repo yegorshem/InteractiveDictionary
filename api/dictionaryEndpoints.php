@@ -55,9 +55,26 @@ SWITCH ($_SERVER["REQUEST_METHOD"]) {
     case "GET":
         //check if admin
         if ($_SESSION['priority'] != null) {
+
+
+            $student = $_GET['creator_id'];
+            $graded = $_GET['graded'];
             $class_code = $_GET['classPicker'];
             $_SESSION['class_code'] = $class_code;
-            $result = $adapter->getAllWords($class_code);
+            if ($student != null) {
+                //by student and graded
+                $result = $adapter->getStudentWords($student, $graded);
+            }
+            else if($graded != null)
+            {
+                //by class and graded
+                $result = $adapter->getGradedWords($class_code, $graded);
+            }
+            else
+            {
+                //by class
+                $result = $adapter->getAllWords($class_code);
+            }
         }
         else {
             //student
@@ -71,12 +88,12 @@ SWITCH ($_SERVER["REQUEST_METHOD"]) {
         $definition = $_POST['definition'];
         $category = $_POST['category'];
         if ($_SESSION['priority'] != null) {
-            //admin
-            $adapter->submitWord($word, $definition, $image, $category, $_SESSION['name'], $_SESSION['class_code']);
+            //admin submits with student_id of 0 and already graded.
+            $adapter->submitWord($word, $definition, $image, $category, $_SESSION['name'], 0, $_SESSION['class_code'], 1);
         }
         else {
             //student
-            $adapter->submitWord($word, $definition, $image, $category, $_SESSION['name'], $_SESSION['class_code']);
+            $adapter->submitWord($word, $definition, $image, $category, $_SESSION['name'], $_SESSION['student_id'], $_SESSION['class_code'], 0);
         }
         //Initializing array to hold possible errors
         //$error = array();
@@ -96,9 +113,9 @@ SWITCH ($_SERVER["REQUEST_METHOD"]) {
         $id = $_PUT['id_update'];
         $word = $_PUT['word_update'];
         $definition = $_PUT['definition_update'];
+        $category = $_PUT['category_update'];
 
-        $adapter->updateWord($id, $word, $definition);
-
+        $adapter->updateWord($id, $word, $definition, $category);
 
         $result = $_PUT;
         break;

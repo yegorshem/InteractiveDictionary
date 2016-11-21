@@ -1,10 +1,20 @@
 /**
- * Created by Josh on 10/11/2016.
- */
+ * Created by Yegor Shemereko on 11/17/2016.
+*/
 
-var $table = $('#studentTable');
+var $table = $('#adminTable');
+
 
 window.operateEvents = {
+    'click .edit': function (e, value, row, index) {
+        console.log("edit clicked")
+        $("#updateModal").modal("show");
+        //Populate from inputs with row data
+        $("#id_update").val(row.id);
+        $("#word_update").val(row.word);
+        $("#definition_update").val(row.definition);
+    },
+
     'click .voice': function (e, value, row, index) {
         responsiveVoice.speak(row.word, "US English Female");
     },
@@ -54,6 +64,18 @@ function base64ToFile(dataURI, origFile) {
     return newFile;
 }
 
+
+/**
+ * The edit button in the Bootsrap table
+ */
+function operateFormatter(value, row, index) {
+    return [
+        '<a class="edit" href="javascript:void(0)" title="Edit">',
+        '<i class="glyphicon glyphicon-edit edit-icon"></i>',
+        '</a>'
+    ].join('');
+}
+
 /**
  * The image in the boostrap table
  */
@@ -64,6 +86,7 @@ function imageFormatter(value, row, index) {
         '</a>'
     ].join('');
 }
+
 
 function voiceFormatter(value, row, index) {
     return [
@@ -83,6 +106,14 @@ $table.bootstrapTable({
     search: true,
     clickToSelect: true,
     columns: [{
+        field: "state",
+        radio: true
+    }, {
+        field: 'id',
+        title: 'ID',
+        visible: false
+
+    }, {
         field: 'word',
         title: 'Word',
         sortable: true
@@ -113,6 +144,12 @@ $table.bootstrapTable({
         field: 'class_name',
         title: 'Class',
         sortable: true
+    }, {
+        field: 'edit',
+        title: 'Edit',
+        align: 'center',
+        events: operateEvents,
+        formatter: operateFormatter
     }],
     onClickRow: function (row, elm) {
         //...
@@ -120,13 +157,37 @@ $table.bootstrapTable({
 });
 
 
-
 /**
  * Ajax/dropzone calls
  */
 $(function () {
+    // New Teacher --------------------------------------------------
+    $("#new-teacher-form").submit(function(e) {
+        e.preventDefault();
+        var first_name = $('#teacher_first_name').val();
+        var last_name = $('#teacher_last_name').val();
+        var email = $('#teacher_email').val();
+        var pass_code = $('#teacher_password').val();
+        var datastring = "teacher_first_name="+first_name+"&teacher_last_name="+last_name+"&teacher_email="+email+"&teacher_password="+pass_code;
 
-    //Add Word---
+        $.ajax({
+            url: '../api/teacherRegisterEndpoint.php',
+            type: 'POST',
+            data: datastring,
+            success: function (result) {
+
+                if (result == 1) {
+                    $("#new-teacher-form").trigger('reset');
+                    $('#newTeacher').modal('hide');
+                } else {
+                    $("#create-teacher-error").text("There was an error while creating this teacher.")
+                }
+            }
+        });
+    })
+
+
+    // Add Word --------------------------------------------------
     Dropzone.options.myDropzone = {
         url: '../api/dictionaryEndpoints.php',
         autoProcessQueue: false,
@@ -139,7 +200,6 @@ $(function () {
         init: function () {
             var submitButton = document.querySelector("#submit-all");
             dzClosure = this; // Makes sure that 'this' is understood inside the functions below.
-
 
             // for Dropzone to process the queue (instead of default form behavior):
             submitButton.addEventListener("click", function (e) {
@@ -207,20 +267,95 @@ $(function () {
                 formData.append("category", jQuery("#category").val());
             });
 
-            this.on("success", function (result) {
-                console.log(result);
+            this.on("success", function () {
                 //Clear form
                 $('#add-word-form').trigger("reset");
 
                 $('#addModal').modal('hide');
-                this.removeAllFiles();
-                $table.bootstrapTable('refresh', {
-                    silent: true
-                });
 
+                var classPicker = $("#classPicker").val();
+                //check if student or teacher
+                if (classPicker != null) {
+                    $.ajax({
+                        url: '../api/dictionaryEndpoints.php',
+                        type: 'GET',
+                        data: 'classPicker=' + classPicker,
+                        success: function (result) {
+                            console.log(result);
+                            $('#adminTable').bootstrapTable("load", result);
+                        }
+                    })
+                } else {
+                    $table.bootstrapTable('refresh', {
+                        silent: true
+                    });
+                }
             });
         }
     };
-});
+
+    // Update word --------------------------------------------------
+    $("#update-word-form").on('submit', function (e) {
+        e.preventDefault();
+
+        //Server call to delete post
+        $.ajax({
+            url: '../api/dictionaryEndpoints.php',
+            type: 'PUT',
+            data: $('#update-word-form').serialize(),
+            contentType: 'application/json',
+            dataType: 'text',
+            success: function (result) {
+
+                console.log(result);
+                // Refresh table to display updated contact
+                $table.bootstrapTable('refresh', {
+                    silent: true
+                });
+            }
+        });
+
+        $('#updateModal').modal('hide');
+    });
+
+    // Delete word --------------------------------------------------
+    $('#delete-btn').click(function () {
+
+        $('#deleteModal').modal('show');
+
+    });
+
+    $('#delete-confirm-btn').click(function () {
+
+        var ids = $.map($table.bootstrapTable('getSelections'), function (row) {
+
+            var id = row.id;
 
 
+            //Server call to delete post
+            $.ajax({
+                url: '../api/dictionaryEndpoints.php',
+                type: 'DELETE',
+                data: {
+                    id: id
+                },
+                contentType: 'application/json',
+                dataType: 'text',
+                success: function (result) {
+                    // Do something with the result
+                    console.log(result);
+                }
+            });
+
+            return id;
+        });
+
+        $table.bootstrapTable('remove', {
+            field: 'id',
+            values: ids
+        });
+
+        $('#deleteModal').modal('hide');
+    });
+
+}); // end-ajax calls

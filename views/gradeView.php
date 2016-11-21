@@ -1,15 +1,15 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: Yegor Shemereko
- * Date: 10/7/2016
- * Time: 10:42 AM
+ * User: Joel
+ * Date: 11/19/2016
+ * Time: 8:07 PM
  */
+$actual_link = $_SERVER['PHP_SELF'];
 
-if ($actual_link == '/views/studentView.php' ) {
-    header('Location: ../controllers/studentController.php');
+if ($actual_link == '/views/gradeView.php') {
+    header('Location: ../controllers/gradeController.php');
 }
-
 ?>
 <!doctype html>
 
@@ -17,42 +17,39 @@ if ($actual_link == '/views/studentView.php' ) {
 <head>
     <meta charset="utf-8">
 
-    <title>Carpentry Dictionary</title>
+    <title>Carpentry English</title>
     <meta name="description" content="Phonetic and visual dictionary for I-BEST Students">
     <meta name="author" content="Team J.J.A.Y.">
 
     <!-- Bootstrap -->
     <link href="../css/bootstrap.min.css" rel="stylesheet" media="screen">
-    <link href="../css/dropzone.min.css" rel="stylesheet" media="screen">
     <link href="../css/form_formatter.css" rel="stylesheet" media="screen">
 
 </head>
 <body>
-    <?php include "navbarView.php"; ?>
-    <div class="container">
+<?php include "navbarView.php"; ?>
 
-        <h1>Student Panel</h1>
-        <br>
-        <button type="button" id="add-btn" class="btn btn-primary btn-success" data-toggle="modal" data-target="#addModal">
-        Add Word &nbsp;<span class="glyphicon glyphicon-plus"></span></button>
-        <br>
-        <table id="studentTable"></table>
-        
-    </div>
-<?php include 'modals/addWord.php'; ?>
-<?php include 'modals/showImage.php'; ?>
+<div class="container">
+    <h1>Graded Work</h1>
+    <br>
 
+    <table id="gradeTable"></table>
+
+</div>
+
+</body>
 <!--   jQuery-->
 <script src="http://code.jquery.com/jquery.js"></script>
 <!-- javascript for table -->
 <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.js"></script>
-<!-- bootstrap JS-->
+<!--bootstrap JS-->
 <script src="../js/bootstrap.min.js"></script>
 <!--dropzone JS-->
 <script src="../js/dropzone.min.js"></script>
-<!-- custom JS-->
-<script src="../js/student.js"></script>
+<!--responsiveVoice JS-->
 <script src="http://code.responsivevoice.org/responsivevoice.js"></script>
+<!--custom JS-->
+<script src="../js/gradeTable.js"></script>
 
-</body>
+
 </html>
