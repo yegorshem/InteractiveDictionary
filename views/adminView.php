@@ -99,4 +99,5 @@ if ($actual_link == '/views/adminView.php') {
 <script src="../js/createClass.js"></script>
 
 </body>
+
 </html>
