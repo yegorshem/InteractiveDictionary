@@ -56,16 +56,23 @@ SWITCH ($_SERVER["REQUEST_METHOD"]) {
         //check if admin
         if ($_SESSION['priority'] != null) {
 
-            //check if its by student or by class
+
             $student = $_GET['creator_id'];
             $graded = $_GET['graded'];
+            $class_code = $_GET['classPicker'];
+            $_SESSION['class_code'] = $class_code;
             if ($student != null) {
+                //by student and graded
                 $result = $adapter->getStudentWords($student, $graded);
+            }
+            else if($graded != null)
+            {
+                //by class and graded
+                $result = $adapter->getGradedWords($class_code, $graded);
             }
             else
             {
-                $class_code = $_GET['classPicker'];
-                $_SESSION['class_code'] = $class_code;
+                //by class
                 $result = $adapter->getAllWords($class_code);
             }
         }

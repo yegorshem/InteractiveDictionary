@@ -62,6 +62,28 @@ class DictionaryAdapter
         return $result;
     }
 
+
+    public function getGradedWords($class_code, $graded)
+    {
+        $sql = "SELECT dictionary.id, dictionary.word, dictionary.definition, dictionary.category, dictionary.image, dictionary.created_by, dictionary.creator_id, dictionary.graded, class.class_name FROM dictionary INNER JOIN  class ON dictionary.class_id = class.class_id WHERE dictionary.class_id = :class_code AND dictionary.graded = :graded";
+        $statement = $this->db->prepare($sql);
+
+        $statement->bindValue(':class_code', $class_code, PDO::PARAM_INT);
+        $statement->bindValue(':graded', $graded, PDO::PARAM_INT);
+
+
+        $statement->execute();
+        $rows = $statement->fetchAll();
+
+        //turn rows into in array so that it can later be easily converted to JSON
+        $result = array();
+        foreach ($rows as $row) {
+            array_push($result, $this->read($row));
+        }
+
+        return $result;
+    }
+
     private function read($row)
     {
         $result = new Word();

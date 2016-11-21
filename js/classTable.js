@@ -62,6 +62,10 @@ $table.bootstrapTable({
         title: 'Word',
         sortable: true
     }, {
+        field: 'created_by',
+        title: 'Author',
+        sortable: true
+    }, {
         field: 'definition',
         title: 'Definition',
         sortable: true
