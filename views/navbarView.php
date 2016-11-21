@@ -23,16 +23,17 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li <?php if ($thisPage == 'Dictionary') {
-                    echo "class='active'";
-                }
-                ?>
-                    id='dictionaryLink'><a href="../controllers/adminController.php">Dictionary</a></li>
                 <li <?php if ($thisPage == 'About') {
                     echo "class='active'";
                 }
                 ?>
                     id='aboutLink'><a href="../controllers/aboutController.php">Home</a></li>
+                <li <?php if ($thisPage == 'Dictionary') {
+                    echo "class='active'";
+                }
+                ?>
+                    id='dictionaryLink'><a href="../controllers/adminController.php">Dictionary</a></li>
+
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
