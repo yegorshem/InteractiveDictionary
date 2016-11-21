@@ -83,6 +83,13 @@ $table.bootstrapTable({
     search: true,
     clickToSelect: true,
     columns: [{
+        field: 'creator_id',
+        title: 'Creator ID',
+        visible: false
+    }, {
+        field: "state",
+        radio: true
+    }, {
         field: 'word',
         title: 'Word',
         sortable: true
@@ -221,6 +228,46 @@ $(function () {
             });
         }
     };
+
+    // Update word --------------------------------------------------
+    $('#update-btn').click(function () {
+        var row = $table.bootstrapTable('getSelections');
+        var update_id = $("#update_id").val()
+        console.log(row.creator_id);
+        //if selected id = current user id
+        if(update_id == row[0].creator_id) {
+            $('#updateModal').modal('show');
+            //Populate from inputs with row data
+            $("#id_update").val(row[0].id);
+            $("#word_update").val(row[0].word);
+            $("#definition_update").val(row[0].definition);
+            $("#category_update").val(row[0].category);
+        }
+    });
+
+
+    $("#update-word-form").on('submit', function (e) {
+        e.preventDefault();
+        //Server call to delete post
+        $.ajax({
+            url: '../api/dictionaryEndpoints.php',
+            type: 'PUT',
+            data: $('#update-word-form').serialize(),
+            contentType: 'application/json',
+            dataType: 'text',
+            success: function (result) {
+
+                console.log(result);
+                // Refresh table to display updated contact
+                $table.bootstrapTable('refresh', {
+                    silent: true
+                });
+            }
+        });
+
+        $('#updateModal').modal('hide');
+    });
+
 });
 
 

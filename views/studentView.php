@@ -33,16 +33,24 @@ if ($actual_link == '/views/studentView.php' ) {
 
         <h1>Student Panel</h1>
         <br>
+        <input id="update_id" value="<?php echo $_SESSION['student_id']; ?>" hidden>
+        <!-- Add button-->
         <button type="button" id="add-btn" class="btn btn-primary btn-success" data-toggle="modal" data-target="#addModal">
         Add Word &nbsp;<span class="glyphicon glyphicon-plus"></span></button>
+
+        <!-- Edit button-->
+        <button type="button" id="update-btn" class="btn btn-warning" data-toggle="modal">
+            Edit Word &nbsp;<span class="glyphicon glyphicon-edit edit-icon"></span></button>
         <br>
         <table id="studentTable"></table>
         
     </div>
 <?php include 'modals/addWord.php'; ?>
 <?php include 'modals/showImage.php'; ?>
+<?php include 'modals/updateWord.php'; ?>
 
-<!--   jQuery-->
+
+    <!--   jQuery-->
 <script src="http://code.jquery.com/jquery.js"></script>
 <!-- javascript for table -->
 <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.js"></script>

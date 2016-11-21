@@ -24,7 +24,7 @@ class DictionaryAdapter
 
     public function getAllWords($class_id)
     {
-        $sql = "SELECT dictionary.id, dictionary.word, dictionary.definition, dictionary.category, dictionary.image, dictionary.created_by, class.class_name FROM dictionary INNER JOIN  class ON dictionary.class_id = class.class_id WHERE dictionary.class_id = :class_id";
+        $sql = "SELECT dictionary.id, dictionary.word, dictionary.definition, dictionary.category, dictionary.image, dictionary.created_by, dictionary.creator_id, class.class_name FROM dictionary INNER JOIN  class ON dictionary.class_id = class.class_id WHERE dictionary.class_id = :class_id";
         $statement = $this->db->prepare($sql);
 
         $statement->bindValue(':class_id', $class_id, PDO::PARAM_INT);

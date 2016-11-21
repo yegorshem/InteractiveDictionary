@@ -56,7 +56,6 @@ $table.bootstrapTable({
         field: 'id',
         title: 'ID',
         visible: false
-
     }, {
         field: 'word',
         title: 'Word',

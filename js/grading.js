@@ -2,6 +2,7 @@
  * Created by Joel on 11/18/2016.
  */
 $(document).ready(function(){
+    //character count
     $('#comments').keyup(function () {
         var max = 255;
         var len = $(this).val().length;
