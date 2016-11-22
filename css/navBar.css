@@ -1,5 +1,5 @@
 .navbar-brand {
-    font-size: 40px;
+    font-size: 30px;
     text-transform: uppercase;
     color: black;
     padding-top: 0.8em;
@@ -11,11 +11,13 @@
     font-size: 20px;
     font-weight: normal;
     color: black;
-    height: 80px;
+    height: 70px;
 
 }
 #bs-example-navbar-collapse-1 {
-    padding-top: 1em;
+    padding-top: 0.5em;
+    background-color: #006400;
+
 }
 .navbar-default .navbar-brand{
     color: white;
@@ -23,3 +25,7 @@
 .navbar-default .navbar-nav>li>a{
     color: white;
 }
+.navbar {
+    z-index: 9999;
+}
+

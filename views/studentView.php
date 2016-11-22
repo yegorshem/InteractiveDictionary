@@ -16,6 +16,8 @@ if ($actual_link == '/views/studentView.php' ) {
 <html lang="en">
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
 
     <title>Carpentry Dictionary</title>
     <meta name="description" content="Phonetic and visual dictionary for I-BEST Students">

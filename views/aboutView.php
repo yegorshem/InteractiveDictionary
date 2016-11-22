@@ -12,6 +12,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Carpentry English</title>
 
@@ -22,7 +23,6 @@
     <link href="../css/bootstrap.min.css" rel="stylesheet" media="screen">
     <link href="../css/form_formatter.css" rel="stylesheet" media="screen">
     <link href="../css/background.css" rel="stylesheet" media="screen">
-    <link href="../css/footer.css" rel="stylesheet">
 </head>
 <body>
     <?php include "navbarView.php"; ?>
@@ -35,11 +35,7 @@
     <?php include 'modals/login.php'; ?>
     <?php include 'modals/register.php'; ?>
 </body>
-<footer>
-    <div id="footer">
-        <img src=../imgs/greenriverWhite.JPG>;
-    </div>
-</footer>
+
 <script src="http://code.jquery.com/jquery.js"></script>
 <script src="../js/bootstrap.min.js"></script>
 <script src="../js/login.js"></script>
