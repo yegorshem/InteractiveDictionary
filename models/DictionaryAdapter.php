@@ -22,12 +22,14 @@ class DictionaryAdapter
         $this->db = $db;
     }
 
-    public function getAllWords($class_id)
+    public function getAllWords($class_id, $deleted)
     {
-        $sql = "SELECT dictionary.id, dictionary.word, dictionary.definition, dictionary.category, dictionary.image, dictionary.created_by, dictionary.creator_id, class.class_name FROM dictionary INNER JOIN  class ON dictionary.class_id = class.class_id WHERE dictionary.class_id = :class_id";
+        $sql = "SELECT dictionary.id, dictionary.word, dictionary.definition, dictionary.category, dictionary.image, dictionary.created_by, dictionary.creator_id, dictionary.deleted, class.class_name FROM dictionary INNER JOIN  class ON dictionary.class_id = class.class_id WHERE dictionary.class_id = :class_id AND dictionary.deleted = :deleted";
         $statement = $this->db->prepare($sql);
 
         $statement->bindValue(':class_id', $class_id, PDO::PARAM_INT);
+        $statement->bindValue(':deleted', $deleted, PDO::PARAM_INT);
+
 
         $statement->execute();
         $rows = $statement->fetchAll();
@@ -41,13 +43,15 @@ class DictionaryAdapter
         return $result;
     }
 
-    public function getStudentWords($creator_id, $graded)
+    public function getStudentWords($creator_id, $deleted, $graded)
     {
-        $sql = "SELECT dictionary.id, dictionary.word, dictionary.definition, dictionary.category, dictionary.image, dictionary.created_by, dictionary.creator_id, dictionary.graded, class.class_name FROM dictionary INNER JOIN  class ON dictionary.class_id = class.class_id WHERE dictionary.creator_id = :creator_id AND dictionary.graded = :graded";
+        $sql = "SELECT dictionary.id, dictionary.word, dictionary.definition, dictionary.category, dictionary.image, dictionary.created_by, dictionary.creator_id, dictionary.graded, dictionary.deleted, class.class_name FROM dictionary INNER JOIN  class ON dictionary.class_id = class.class_id WHERE dictionary.creator_id = :creator_id AND dictionary.deleted = :deleted AND dictionary.graded = :graded";
         $statement = $this->db->prepare($sql);
 
         $statement->bindValue(':creator_id', $creator_id, PDO::PARAM_INT);
         $statement->bindValue(':graded', $graded, PDO::PARAM_INT);
+        $statement->bindValue(':deleted', $deleted, PDO::PARAM_INT);
+
 
 
         $statement->execute();
@@ -63,13 +67,14 @@ class DictionaryAdapter
     }
 
 
-    public function getGradedWords($class_code, $graded)
+    public function getGradedWords($class_code, $deleted, $graded)
     {
-        $sql = "SELECT dictionary.id, dictionary.word, dictionary.definition, dictionary.category, dictionary.image, dictionary.created_by, dictionary.creator_id, dictionary.graded, class.class_name FROM dictionary INNER JOIN  class ON dictionary.class_id = class.class_id WHERE dictionary.class_id = :class_code AND dictionary.graded = :graded";
+        $sql = "SELECT dictionary.id, dictionary.word, dictionary.definition, dictionary.category, dictionary.image, dictionary.created_by, dictionary.creator_id, dictionary.graded, dictionary.deleted, class.class_name FROM dictionary INNER JOIN  class ON dictionary.class_id = class.class_id WHERE dictionary.class_id = :class_code AND dictionary.deleted = :deleted AND dictionary.graded = :graded";
         $statement = $this->db->prepare($sql);
 
         $statement->bindValue(':class_code', $class_code, PDO::PARAM_INT);
         $statement->bindValue(':graded', $graded, PDO::PARAM_INT);
+        $statement->bindValue(':deleted', $deleted, PDO::PARAM_INT);
 
 
         $statement->execute();
@@ -97,13 +102,14 @@ class DictionaryAdapter
         $result->class_name = $row['class_name'];
         $result->class_id = $row['class_id'];
         $result->graded = $row['graded'];
+        $result->deleted = $row['deleted'];
         return $result;
     }
 
-    public function submitWord($word, $definition, $image, $category, $created_by, $creator_id, $class_id, $graded)
+    public function submitWord($word, $definition, $image, $category, $created_by, $creator_id, $class_id, $graded, $deleted)
     {
 
-        $sql = "INSERT INTO dictionary (word, definition, image, category, created_by, creator_id, class_id, graded) VALUES (:word, :definition, :image, :category, :created_by, :creator_id, :class_id, :graded)";
+        $sql = "INSERT INTO dictionary (word, definition, image, category, created_by, creator_id, class_id, graded, deleted) VALUES (:word, :definition, :image, :category, :created_by, :creator_id, :class_id, :graded, :deleted)";
         $statement = $this->db->prepare($sql);
 
         $statement->bindValue(':word', $word, PDO::PARAM_STR);
@@ -114,6 +120,8 @@ class DictionaryAdapter
         $statement->bindValue(':creator_id', $creator_id, PDO::PARAM_INT);
         $statement->bindValue(':class_id', $class_id, PDO::PARAM_INT);
         $statement->bindValue(':graded', $graded, PDO::PARAM_INT);
+        $statement->bindValue(':deleted', $deleted, PDO::PARAM_INT);
+
 
         $statement->execute();
     }
@@ -136,7 +144,7 @@ class DictionaryAdapter
     public function deleteWord($id)
     {
 
-        $sql = "DELETE FROM dictionary WHERE id= :id";
+        $sql = "UPDATE dictionary SET deleted = 1 WHERE id= :id";
         $statement = $this->db->prepare($sql);
 
         $statement->bindValue(':id', $id, PDO::PARAM_INT);

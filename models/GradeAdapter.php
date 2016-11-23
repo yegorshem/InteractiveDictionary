@@ -52,12 +52,14 @@ class gradeAdapter
         $statement->execute();
     }
 
-    public function getGrades($creator_id)
+    public function getGrades($creator_id, $deleted)
     {
-        $sql = "SELECT grading.grade_id, grading.word, grading.definition, grading.category, grading.image, grading.score, grading.comment, grading.word_id, dictionary.word AS wordTxt, dictionary.creator_id FROM grading INNER JOIN dictionary ON grading.word_id = dictionary.id WHERE dictionary.creator_id = :creator_id";
+        $sql = "SELECT grading.grade_id, grading.word, grading.definition, grading.category, grading.image, grading.score, grading.comment, grading.word_id, dictionary.word AS wordTxt, dictionary.creator_id, dictionary.deleted FROM grading INNER JOIN dictionary ON grading.word_id = dictionary.id WHERE dictionary.creator_id = :creator_id AND dictionary.deleted = :deleted";
         $statement = $this->db->prepare($sql);
 
         $statement->bindValue(':creator_id', $creator_id, PDO::PARAM_INT);
+        $statement->bindValue(':deleted', $deleted, PDO::PARAM_INT);
+
 
         $statement->execute();
         $rows = $statement->fetchAll();

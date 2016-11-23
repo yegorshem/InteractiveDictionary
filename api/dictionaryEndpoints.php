@@ -62,23 +62,23 @@ SWITCH ($_SERVER["REQUEST_METHOD"]) {
             $class_code = $_GET['classPicker'];
             $_SESSION['class_code'] = $class_code;
             if ($student != null) {
-                //by student and graded
-                $result = $adapter->getStudentWords($student, $graded);
+                //by student and graded (zero is for not deleted)
+                $result = $adapter->getStudentWords($student, 0, $graded);
             }
             else if($graded != null)
             {
-                //by class and graded
-                $result = $adapter->getGradedWords($class_code, $graded);
+                //by class and graded (zero is for not deleted)
+                $result = $adapter->getGradedWords($class_code, 0, $graded);
             }
             else
             {
-                //by class
-                $result = $adapter->getAllWords($class_code);
+                //by class (zero is for not deleted)
+                $result = $adapter->getAllWords($class_code, 0);
             }
         }
         else {
-            //student
-            $result = $adapter->getAllWords($_SESSION['class_code']);
+            //student (zero is for not deleted)
+            $result = $adapter->getAllWords($_SESSION['class_code'], 0);
         }
         break;
 
@@ -88,12 +88,12 @@ SWITCH ($_SERVER["REQUEST_METHOD"]) {
         $definition = $_POST['definition'];
         $category = $_POST['category'];
         if ($_SESSION['priority'] != null) {
-            //admin submits with student_id of 0 and already graded.
-            $adapter->submitWord($word, $definition, $image, $category, $_SESSION['name'], 0, $_SESSION['class_code'], 1);
+            //admin submits with student_id of 0 and already graded (the 1). Second 0 is for not deleted
+            $adapter->submitWord($word, $definition, $image, $category, $_SESSION['name'], 0, $_SESSION['class_code'], 1, 0);
         }
         else {
             //student
-            $adapter->submitWord($word, $definition, $image, $category, $_SESSION['name'], $_SESSION['student_id'], $_SESSION['class_code'], 0);
+            $adapter->submitWord($word, $definition, $image, $category, $_SESSION['name'], $_SESSION['student_id'], $_SESSION['class_code'], 0, 0);
         }
         //Initializing array to hold possible errors
         //$error = array();

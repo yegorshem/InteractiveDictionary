@@ -28,7 +28,8 @@ SWITCH ($_SERVER["REQUEST_METHOD"]) {
 
     //get all classes associated with this admin
     case "GET":
-        $result = $adapter->getGrades($_SESSION['student_id']);
+        //gets all not deleted grades for the student
+        $result = $adapter->getGrades($_SESSION['student_id'], 0);
         break;
 
     case "POST":
