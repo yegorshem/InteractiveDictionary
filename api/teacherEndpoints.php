@@ -44,6 +44,7 @@ SWITCH ($_SERVER["REQUEST_METHOD"]) {
         if ($user != null) {
             $_SESSION['admin_id'] = $user->user_id;
             $_SESSION['priority'] = $user->getPriority();
+            $_SESSION['first_name'] = $user->first_name;
             $_SESSION['name'] = $user->first_name . ' ' . $user->last_name;
             echo $user->getPriority();
         }
