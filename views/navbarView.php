@@ -17,7 +17,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand">
+            <a class="navbar-brand" id="credentials-btn" data-toggle="modal">
                 <?php if ($_SESSION['name'] == null) {
                     echo "Carpentry English";
                 } else {

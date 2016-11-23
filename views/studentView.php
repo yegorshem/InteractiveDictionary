@@ -50,6 +50,8 @@ if ($actual_link == '/views/studentView.php' ) {
 <?php include 'modals/addWord.php'; ?>
 <?php include 'modals/showImage.php'; ?>
 <?php include 'modals/updateWord.php'; ?>
+<?php include 'modals/editCredentials.php'; ?>
+
 
 
     <!--   jQuery-->
@@ -63,6 +65,8 @@ if ($actual_link == '/views/studentView.php' ) {
 <!-- custom JS-->
 <script src="../js/student.js"></script>
 <script src="http://code.responsivevoice.org/responsivevoice.js"></script>
+<script src="../js/studentCredentials.js"></script>
+
 
 </body>
 </html>

@@ -81,6 +81,8 @@ if ($actual_link == '/views/adminView.php') {
 <?php include 'modals/newTeacher.php'; ?>
 <?php include 'modals/newClass.php'; ?>
 <?php include 'modals/deleteConfirmation.php'; ?>
+<?php include 'modals/editCredentials.php'; ?>
+
 
 
 
@@ -99,6 +101,8 @@ if ($actual_link == '/views/adminView.php') {
 <script src="../js/admin.js"></script>
 <script src="../js/classWordsSelect.js"></script>
 <script src="../js/createClass.js"></script>
+<script src="../js/teacherCredentials.js"></script>
+
 
 </body>
 </html>

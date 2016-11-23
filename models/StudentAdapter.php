@@ -44,6 +44,28 @@ class StudentAdapter
 
     }
 
+    public function getOneStudent($student_id) {
+        // Define the query
+        $query = "SELECT * FROM student WHERE student_id = :student_id";
+
+        //prepare the statement
+        $statement = $this->db->prepare($query);
+
+        $statement->bindParam(':student_id', $student_id, PDO::PARAM_INT);
+
+        //execute
+        $statement->execute();
+        $rows = $statement->fetchAll();
+        $result = array();
+        foreach ($rows as $row) {
+            array_push($result, $this->read($row));
+        }
+
+        return $result;
+
+    }
+
+
     private function read($row)
     {
 
@@ -52,8 +74,8 @@ class StudentAdapter
         $result->first_name = $row['first_name'];
         $result->last_name = $row['last_name'];
         $result->username = $row['email'];
-        $result->setPassword($row['pass_code']);
-        $result->setClassCode($row['class_code']);
+        $result->password = ($row['pass_code']);
+        $result->class_code = ($row['class_code']);
 
         return $result;
     }
@@ -89,8 +111,8 @@ class StudentAdapter
             $user->first_name = $row['first_name'];
             $user->last_name = $row['last_name'];
             $user->username = $row['email'];
-            $user->setPassword($row['pass_code']);
-            $user->setClassCode($row['class_code']);
+            $user->password = ($row['pass_code']);
+            $user->class_code = ($row['class_code']);
 
             return $user;
         }
@@ -165,9 +187,26 @@ class StudentAdapter
     }
 
     /**
-     * This function destroys the session, logging out the current user
+     * This function updates the current user
      */
-    public function logout() {
-        session_destroy();
+    public function updateStudent($first_name, $last_name, $pass_code, $student_id) {
+        $sql = "UPDATE student SET first_name= :first_name, last_name= :last_name, pass_code= :pass_code WHERE student_id= :student_id";
+
+        $statement = $this->db->prepare($sql);
+
+        $statement->bindValue(':first_name', $first_name, PDO::PARAM_STR);
+        $statement->bindValue(':last_name', $last_name, PDO::PARAM_STR);
+        $statement->bindValue(':pass_code', $pass_code, PDO::PARAM_STR);
+        $statement->bindValue(':student_id', $student_id, PDO::PARAM_STR);
+
+        $statement->execute();
+
+        $count = $statement->rowCount();
+
+        if($count == 1) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

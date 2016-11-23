@@ -29,7 +29,6 @@ $(document).ready(function() {
             type: 'GET',
             data: 'classPicker='+classPicker,
             success: function(result) {
-                console.log(result);
                 $('#adminTable').bootstrapTable("load", result);
             }
         })

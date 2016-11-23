@@ -19,33 +19,8 @@ class Admin
     public $first_name;
     public $last_name;
     public $username;
-    private $password;
-    private $priority;
+    public $password;
+    public $priority;
 
 
-    /**
-     * This function sets the password for a user
-     * @param $pass- A string of the desired password
-     */
-    public function setPassword($pass) {
-        $password = $pass;
-    }
-
-    /**
-     * This function gets the priority of the user
-     * @return int- priority
-     */
-    public function getPriority()
-    {
-        return $this->priority;
-    }
-
-    /**
-     * This function sets the priority of the user
-     * @param $priority
-     */
-    public function setPriority($priority)
-    {
-        $this->priority = $priority;
-    }
 }

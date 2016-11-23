@@ -31,7 +31,13 @@ SWITCH ($_SERVER["REQUEST_METHOD"]) {
 
     //get all admins
     case "GET":
-        $result = $adapter->getAdmins();
+        $string = $_GET['string'];
+        if (string ==  null) {
+            $result = $adapter->getAdmins();
+        }
+        else {
+            $result = $adapter->getOneAdmin($_SESSION['admin_id']);
+        }
         break;
 
     // admin login
@@ -43,10 +49,10 @@ SWITCH ($_SERVER["REQUEST_METHOD"]) {
 
         if ($user != null) {
             $_SESSION['admin_id'] = $user->user_id;
-            $_SESSION['priority'] = $user->getPriority();
+            $_SESSION['priority'] = $user->priority;
             $_SESSION['first_name'] = $user->first_name;
             $_SESSION['name'] = $user->first_name . ' ' . $user->last_name;
-            echo $user->getPriority();
+            echo $user->priority;
         }
         break;
 
@@ -55,9 +61,16 @@ SWITCH ($_SERVER["REQUEST_METHOD"]) {
     case "PUT":
         // Workaround... PHP does not support DELETE or PUT superglobals
         parse_str(file_get_contents("php://input"), $_PUT);
-        //TODO
-
-        // $result = $_PUT;
+        $first_name = $_PUT['first_name'];
+        $last_name = $_PUT['last_name'];
+        $old_pass_code = md5($_PUT['old_pass_code']);
+        $old_pass = $_PUT['old_pass'];
+        $new_pass_code = md5($_PUT['new_pass_code']);
+        if ($old_pass == $old_pass_code){
+            $result = $adapter->updateAdmin($first_name, $last_name, $new_pass_code, $_SESSION['admin_id']);
+        } else {
+            $result = "Incorrect Password.";
+        }
         break;
 
     // Delete teacher

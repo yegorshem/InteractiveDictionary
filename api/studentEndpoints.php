@@ -31,7 +31,13 @@ SWITCH ($_SERVER["REQUEST_METHOD"]) {
     //get all students
     case "GET":
         $class = $_GET['classPicker'];
-        $result = $adapter->getStudents($class);
+        $string = $_GET['string'];
+        if (string ==  null) {
+            $result = $adapter->getStudents($class);
+        }
+        else {
+            $result = $adapter->getOneStudent($_SESSION['student_id']);
+        }
         break;
 
     // student login
@@ -42,11 +48,11 @@ SWITCH ($_SERVER["REQUEST_METHOD"]) {
         $user = $adapter->loginFunction($studentUsername, $studentPassword);
 
         if ($user != null) {
-            $_SESSION['class_code'] = $user->getClassCode();
+            $_SESSION['class_code'] = $user->class_code;
             $_SESSION['first_name'] = $user->first_name;
             $_SESSION['name'] = $user->first_name.' '.$user->last_name;
             $_SESSION['student_id'] = $user->user_id;
-            echo $user->getClassCode();
+            echo $user->class_code;
         }
         break;
 
@@ -55,9 +61,16 @@ SWITCH ($_SERVER["REQUEST_METHOD"]) {
     case "PUT":
         // Workaround... PHP does not support DELETE or PUT superglobals
         parse_str(file_get_contents("php://input"), $_PUT);
-        //TODO
-
-//            $result = $_PUT;
+        $first_name = $_PUT['first_name'];
+        $last_name = $_PUT['last_name'];
+        $old_pass_code = md5($_PUT['old_pass_code']);
+        $old_pass = $_PUT['old_pass'];
+        $new_pass_code = md5($_PUT['new_pass_code']);
+        if ($old_pass == $old_pass_code){
+            $result = $adapter->updateStudent($first_name, $last_name, $new_pass_code, $_SESSION['student_id']);
+        } else {
+            $result = "Incorrect Password.";
+        }
         break;
 
     // Delete teacher
