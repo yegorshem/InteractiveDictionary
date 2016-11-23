@@ -7,17 +7,23 @@
  */
 ?>
 <link href="../css/navBar.css" rel="stylesheet">
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-default" role="navigation">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <button type="button" id="collapse-btn" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand">Carpentry English</a>
+            <a class="navbar-brand">
+                <?php if ($_SESSION['name'] == null) {
+                    echo "Carpentry English";
+                } else {
+                    echo "Welcome ".$_SESSION['first_name'];
+                } ?>
+            </a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -49,7 +55,6 @@
                 <?php if ($_SESSION['name'] == null) {
                     print "<li><a href='#' data-toggle='modal' data-target='#loginModal'>Sign In</a></li>";
                 } else {
-                    print "<li><a>Welcome ".$_SESSION['name']."</a></li>";
                     print "<li><a href='../views/logout.php'>Sign Out</a></li>";
                 } ?>
             </ul>

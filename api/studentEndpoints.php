@@ -43,6 +43,7 @@ SWITCH ($_SERVER["REQUEST_METHOD"]) {
 
         if ($user != null) {
             $_SESSION['class_code'] = $user->getClassCode();
+            $_SESSION['first_name'] = $user->first_name;
             $_SESSION['name'] = $user->first_name.' '.$user->last_name;
             $_SESSION['student_id'] = $user->user_id;
             echo $user->getClassCode();
