@@ -37,6 +37,8 @@ $(document).ready(function () {
                         $("#credentials-form").trigger('reset');
 
                     } else {
+                        $("#old_pass_code").val('');
+                        $('#verify_pass_code').val('');
                         $("#credentials-error").text("Incorrect old password was given.");
                     }
                 }

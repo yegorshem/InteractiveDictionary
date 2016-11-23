@@ -67,6 +67,8 @@ SWITCH ($_SERVER["REQUEST_METHOD"]) {
         $old_pass = $_PUT['old_pass'];
         $new_pass_code = md5($_PUT['new_pass_code']);
         if ($old_pass == $old_pass_code){
+            $_SESSION['name'] = $first_name." ".$last_name;
+            $_SESSION['first_name'] = $first_name;
             $result = $adapter->updateStudent($first_name, $last_name, $new_pass_code, $_SESSION['student_id']);
         } else {
             $result = "Incorrect Password.";
