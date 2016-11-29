@@ -28,8 +28,21 @@ SWITCH ($_SERVER["REQUEST_METHOD"]) {
 
     //get all classes associated with this admin
     case "GET":
-        //gets all not deleted grades for the student
-        $result = $adapter->getGrades($_SESSION['student_id'], 0);
+        //check if teacher
+        if ($_SESSION['student_id'] != null) {
+            //gets all not deleted grades for the student
+            $result = $adapter->getGrades($_SESSION['student_id'], 0);
+        } else {
+            //gets all not deleted grades for the class
+            $class_id = $_GET['classPicker'];
+            $creator_id = $_GET['creator_id'];
+            if ( $creator_id == null) {
+                $result = $adapter->getClassGrades($class_id, 0);
+            } else {
+                $result = $adapter->getGrades($creator_id, 0);
+            }
+
+        }
         break;
 
     case "POST":

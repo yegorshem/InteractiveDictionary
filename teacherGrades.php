@@ -2,15 +2,15 @@
 /**
  * Created by PhpStorm.
  * User: Joel
- * Date: 11/19/2016
- * Time: 8:07 PM
+ * Date: 11/29/2016
+ * Time: 12:40 PM
  */
 session_start();
 $thisPage = 'Class';
 
-if ($_SESSION['class_code'] == null) {
+if ($_SESSION['priority'] == null) {
     header("Location: about.php");
 } else {
 
-    require 'views/gradeView.php';
+    require 'views/teacherGradesView.php';
 }

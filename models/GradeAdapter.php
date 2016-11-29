@@ -73,6 +73,26 @@ class gradeAdapter
         return $result;
     }
 
+    public function getClassGrades($class_id, $deleted) {
+        $sql = "SELECT grading.grade_id, grading.word, grading.definition, grading.category, grading.image, grading.score, grading.comment, grading.word_id, dictionary.word AS wordTxt, dictionary.creator_id, dictionary.deleted FROM grading INNER JOIN dictionary ON grading.word_id = dictionary.id WHERE dictionary.class_id = :class_id AND dictionary.deleted = :deleted";
+        $statement = $this->db->prepare($sql);
+
+        $statement->bindValue(':class_id', $class_id, PDO::PARAM_INT);
+        $statement->bindValue(':deleted', $deleted, PDO::PARAM_INT);
+
+
+        $statement->execute();
+        $rows = $statement->fetchAll();
+
+        //turn rows into in array so that it can later be easily converted to JSON
+        $result = array();
+        foreach ($rows as $row) {
+            array_push($result, $this->read($row));
+        }
+
+        return $result;
+    }
+
     private function read($row)
     {
         $result = new Grade();

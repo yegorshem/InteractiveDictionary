@@ -4,13 +4,6 @@
 
 var $table = $('#gradeTable');
 
-$.ajax({
-    url: 'api/gradeEndpoints.php',
-    type: 'GET',
-    success: function(result) {
-        console.log(result)
-    }
-})
 
 /**
  * The score formatter in the boostrap table

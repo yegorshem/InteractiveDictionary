@@ -7,8 +7,8 @@
  */
 $actual_link = $_SERVER['PHP_SELF'];
 
-if ($actual_link == '/views/gradeView.php') {
-    header('Location: ../controllers/grade.php');
+if ($actual_link == '/views/studentGradeView.php') {
+    header('Location: ../controllers/studentGrades.php');
 }
 ?>
 <!doctype html>

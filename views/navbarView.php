@@ -47,7 +47,7 @@
                         //admin goes to classController
                         echo "class.php";
                     } else {
-                        echo "grade.php";
+                        echo "studentGrades.php";
                     }?>>Grades</a></li>
             </ul>
 
