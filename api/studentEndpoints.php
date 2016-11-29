@@ -32,11 +32,12 @@ SWITCH ($_SERVER["REQUEST_METHOD"]) {
     case "GET":
         $class = $_GET['classPicker'];
         $string = $_GET['string'];
-        if (string ==  null) {
-            $result = $adapter->getStudents($class);
+        if ($string !=  null) {
+            $result = $adapter->getOneStudent($_SESSION['student_id']);
         }
         else {
-            $result = $adapter->getOneStudent($_SESSION['student_id']);
+            $result = $adapter->getStudents($class);
+
         }
         break;
 

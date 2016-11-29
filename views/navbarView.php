@@ -21,7 +21,7 @@
                 <?php if ($_SESSION['name'] == null) {
                     echo "Carpentry English";
                 } else {
-                    echo "Welcome ".$_SESSION['first_name'];
+                    echo "Welcome ".$_SESSION['first_name']."&nbsp<span class='glyphicon glyphicon-cog'></span>";
                 } ?>
             </a>
         </div>
