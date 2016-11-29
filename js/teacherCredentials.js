@@ -5,7 +5,7 @@ $(document).ready(function () {
     var pass;
     $("#credentials-btn").click(function() {
         $.ajax({
-            url: '../api/teacherEndpoints.php',
+            url: 'api/teacherEndpoints.php',
             type: 'GET',
             data: "string=string", //this allows to distinguish the select query to use
             dataType: 'json',
@@ -27,7 +27,7 @@ $(document).ready(function () {
             $("#credentials-error").text("Your new passwords don't match.");
         } else {
             $.ajax({
-                url: '../api/teacherEndpoints.php',
+                url: 'api/teacherEndpoints.php',
                 type: 'PUT',
                 data: $('#credentials-form').serialize()+"&old_pass="+pass,
                 dataType: 'json',

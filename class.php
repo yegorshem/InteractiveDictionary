@@ -9,7 +9,7 @@ session_start();
 $thisPage = 'Class';
 
 if ($_SESSION['priority'] == null) {
-    header("Location: studentController.php");
+    header("Location: student.php");
 } else {
-    require '../views/classView.php';
+    require 'views/classView.php';
 }

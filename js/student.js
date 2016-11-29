@@ -12,7 +12,7 @@ window.operateEvents = {
     'click .image': function (e, value, row, index) {
         console.log("image clicked")
         $("#showImage").modal("show");
-        $("#imageDisplay").attr("src", "../uploads/" + row.image);
+        $("#imageDisplay").attr("src", "uploads/" + row.image);
         $("#imageName").text(row.word);
     }
 };
@@ -60,7 +60,7 @@ function base64ToFile(dataURI, origFile) {
 function imageFormatter(value, row, index) {
     return [
         '<a class="image" href="javascript:void(0)" title="Image">',
-        '<img height="100" src="../uploads/' + value + '">',
+        '<img height="100" src="uploads/' + value + '">',
         '</a>'
     ].join('');
 }
@@ -77,7 +77,7 @@ function voiceFormatter(value, row, index) {
  * Bootstrap table configurations
  */
 $table.bootstrapTable({
-    url: "../api/dictionaryEndpoints.php",
+    url: "api/dictionaryEndpoints.php",
     pagination: true,
     toolbar: "#toolbar",
     search: true,
@@ -135,7 +135,7 @@ $(function () {
 
     //Add Word---
     Dropzone.options.myDropzone = {
-        url: '../api/dictionaryEndpoints.php',
+        url: 'api/dictionaryEndpoints.php',
         autoProcessQueue: false,
         uploadMultiple: true,
         parallelUploads: 5,
@@ -250,7 +250,7 @@ $(function () {
         e.preventDefault();
         //Server call to delete post
         $.ajax({
-            url: '../api/dictionaryEndpoints.php',
+            url: 'api/dictionaryEndpoints.php',
             type: 'PUT',
             data: $('#update-word-form').serialize(),
             contentType: 'application/json',

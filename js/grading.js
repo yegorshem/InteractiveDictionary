@@ -18,7 +18,7 @@ $(document).ready(function(){
         e.preventDefault();
         e.stopPropagation();
         $.ajax({
-            url: '../api/gradeEndpoints.php',
+            url: 'api/gradeEndpoints.php',
             type: 'POST',
             data: $("#grade-word-form").serialize(),
             success: function (result) {

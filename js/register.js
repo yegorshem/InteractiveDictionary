@@ -19,7 +19,7 @@ $(document).ready(function(){
             data: dataString,
             success: function(data) {
                 if (data[0]==true) {
-                    window.location.replace('aboutController.php');
+                    window.location.replace('about.php');
                 }
                 else    {
                     $("#register_err").css('display', 'inline', 'important');

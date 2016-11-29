@@ -27,14 +27,14 @@ $(document).ready(function(){
 
         $.ajax({
             type: "POST",
-            url: '../api/teacherEndpoints.php',
+            url: 'api/teacherEndpoints.php',
             data: dataString,
             success: function(data) {
                 if (data[0]==1) {
-                    window.location.replace('adminController.php');
+                    window.location.replace('admin.php');
                 }
                 else if (data[0]==0) {
-                    window.location.replace('teacherController.php')
+                    window.location.replace('teacher.php')
                 }
                 else    {
                     $("#add_err").css('display', 'inline', 'important');
@@ -59,11 +59,11 @@ $(document).ready(function(){
 
         $.ajax({
             type: "POST",
-            url: '../api/studentEndpoints.php',
+            url: 'api/studentEndpoints.php',
             data: dataString,
             success: function(data) {
                 if (data[0] != null) {
-                    window.location.replace('studentController.php');
+                    window.location.replace('student.php');
                 }
                 else    {
                     $("#add_err").css('display', 'inline', 'important');

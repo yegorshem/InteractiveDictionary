@@ -5,7 +5,7 @@
 var $table = $('#gradeTable');
 
 $.ajax({
-    url: '../api/gradeEndpoints.php',
+    url: 'api/gradeEndpoints.php',
     type: 'GET',
     success: function(result) {
         console.log(result)
@@ -28,7 +28,7 @@ function scoreFormatter(value, row, index) {
  * Bootstrap table configurations
  */
 $table.bootstrapTable({
-    url: "../api/gradeEndpoints.php",
+    url: "api/gradeEndpoints.php",
     pagination: true,
     toolbar: "#toolbar",
     search: true,

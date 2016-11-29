@@ -47,7 +47,7 @@ function imageFormatter(value, row, index) {
  * Bootstrap table configurations
  */
 $table.bootstrapTable({
-    url: "../api/dictionaryEndpoints.php",
+    url: "api/dictionaryEndpoints.php",
     pagination: true,
     toolbar: "#toolbar",
     search: true,

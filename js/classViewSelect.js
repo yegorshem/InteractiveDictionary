@@ -3,7 +3,7 @@
  */
 $(document).ready(function() {
     $.ajax({
-        url: '../api/classEndpoints.php',
+        url: 'api/classEndpoints.php',
         type: 'GET',
         dataType: 'json',
         success: function (result) {
@@ -31,7 +31,7 @@ $(document).ready(function() {
             "<option value='0' disabled='disabled' selected='selected'>Select a student</option>"+
         "</select>")
         $.ajax({
-            url: '../api/dictionaryEndpoints.php',
+            url: 'api/dictionaryEndpoints.php',
             type: 'GET',
             data: 'classPicker='+classPicker+"&graded="+graded,
             success: function(result) {
@@ -39,7 +39,7 @@ $(document).ready(function() {
                 var classPicker = $("#classPicker").val();
                 var students = $("#studentPicker");
                 $.ajax({
-                    url: '../api/studentEndpoints.php',
+                    url: 'api/studentEndpoints.php',
                     type: 'GET',
                     data: 'classPicker='+classPicker,
                     success: function(result) {
@@ -65,7 +65,7 @@ $(document).ready(function() {
             console.log(creator_id | classPicker | graded);
 
             $.ajax({
-                url: '../api/dictionaryEndpoints.php',
+                url: 'api/dictionaryEndpoints.php',
                 type: 'GET',
                 data: 'creator_id='+creator_id+"&graded="+graded+"&classPicker="+classPicker,
                 success: function(result) {
@@ -91,7 +91,7 @@ $(document).ready(function() {
             dataString = "graded="+graded+"&classPicker="+classPicker;
         }
         $.ajax({
-            url: '../api/dictionaryEndpoints.php',
+            url: 'api/dictionaryEndpoints.php',
             type: 'GET',
             data: dataString,
             success: function(result) {

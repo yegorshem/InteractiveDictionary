@@ -9,8 +9,8 @@ session_start();
 $thisPage = 'Class';
 
 if ($_SESSION['class_code'] == null) {
-    header("Location: aboutController.php");
+    header("Location: about.php");
 } else {
 
-    require '../views/gradeView.php';
+    require 'views/gradeView.php';
 }

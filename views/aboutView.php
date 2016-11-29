@@ -20,9 +20,9 @@
     <meta name="author" content="Team J.J.A.Y.">
 
     <!-- Bootstrap -->
-    <link href="../css/bootstrap.min.css" rel="stylesheet" media="screen">
-    <link href="../css/form_formatter.css" rel="stylesheet" media="screen">
-    <link href="../css/background.css" rel="stylesheet" media="screen">
+    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="css/form_formatter.css" rel="stylesheet" media="screen">
+    <link href="css/background.css" rel="stylesheet" media="screen">
 </head>
 <body>
     <?php include "navbarView.php"; ?>
@@ -37,8 +37,8 @@
 </body>
 
 <script src="http://code.jquery.com/jquery.js"></script>
-<script src="../js/bootstrap.min.js"></script>
-<script src="../js/login.js"></script>
-<script src="../js/register.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/login.js"></script>
+<script src="js/register.js"></script>
 
 </html>

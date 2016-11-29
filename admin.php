@@ -9,11 +9,11 @@ session_start();
 $thisPage = 'Dictionary';
 
 if ($_SESSION['priority'] == 0) {
-    header("Location: teacherController.php");
+    header("Location: teacher.php");
 } else if ($_SESSION['priority'] == null) {
-    header("Location: studentController.php");
+    header("Location: student.php");
 }
 else {
 
-    require '../views/adminView.php';
+    require 'views/adminView.php';
 }

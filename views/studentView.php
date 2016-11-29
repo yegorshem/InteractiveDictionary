@@ -7,7 +7,7 @@
  */
 
 if ($actual_link == '/views/studentView.php' ) {
-    header('Location: ../controllers/studentController.php');
+    header('Location: ../student.php');
 }
 
 ?>
@@ -24,9 +24,9 @@ if ($actual_link == '/views/studentView.php' ) {
     <meta name="author" content="Team J.J.A.Y.">
 
     <!-- Bootstrap -->
-    <link href="../css/bootstrap.min.css" rel="stylesheet" media="screen">
-    <link href="../css/dropzone.min.css" rel="stylesheet" media="screen">
-    <link href="../css/form_formatter.css" rel="stylesheet" media="screen">
+    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="css/dropzone.min.css" rel="stylesheet" media="screen">
+    <link href="css/form_formatter.css" rel="stylesheet" media="screen">
 
 </head>
 <body>
@@ -53,19 +53,18 @@ if ($actual_link == '/views/studentView.php' ) {
 <?php include 'modals/editCredentials.php'; ?>
 
 
-
-    <!--   jQuery-->
+<!--   jQuery-->
 <script src="http://code.jquery.com/jquery.js"></script>
 <!-- javascript for table -->
 <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.js"></script>
 <!-- bootstrap JS-->
-<script src="../js/bootstrap.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
 <!--dropzone JS-->
-<script src="../js/dropzone.min.js"></script>
+<script src="js/dropzone.min.js"></script>
 <!-- custom JS-->
-<script src="../js/student.js"></script>
+<script src="js/student.js"></script>
 <script src="http://code.responsivevoice.org/responsivevoice.js"></script>
-<script src="../js/studentCredentials.js"></script>
+<script src="js/studentCredentials.js"></script>
 
 
 </body>

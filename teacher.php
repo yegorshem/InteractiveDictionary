@@ -8,7 +8,7 @@ session_start();
 $thisPage = 'Dictionary';
 
 if ($_SESSION['priority'] == null) {
-    header("Location: studentController.php");
+    header("Location: student.php");
 } else {
-    require '../views/teacherView.php';
+    require 'views/teacherView.php';
 }

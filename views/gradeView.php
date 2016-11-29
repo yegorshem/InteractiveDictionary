@@ -8,7 +8,7 @@
 $actual_link = $_SERVER['PHP_SELF'];
 
 if ($actual_link == '/views/gradeView.php') {
-    header('Location: ../controllers/gradeController.php');
+    header('Location: ../controllers/grade.php');
 }
 ?>
 <!doctype html>
@@ -24,8 +24,8 @@ if ($actual_link == '/views/gradeView.php') {
     <meta name="author" content="Team J.J.A.Y.">
 
     <!-- Bootstrap -->
-    <link href="../css/bootstrap.min.css" rel="stylesheet" media="screen">
-    <link href="../css/form_formatter.css" rel="stylesheet" media="screen">
+    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="css/form_formatter.css" rel="stylesheet" media="screen">
 
 </head>
 <body>
@@ -45,13 +45,13 @@ if ($actual_link == '/views/gradeView.php') {
 <!-- javascript for table -->
 <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.js"></script>
 <!--bootstrap JS-->
-<script src="../js/bootstrap.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
 <!--dropzone JS-->
-<script src="../js/dropzone.min.js"></script>
+<script src="js/dropzone.min.js"></script>
 <!--responsiveVoice JS-->
 <script src="http://code.responsivevoice.org/responsivevoice.js"></script>
 <!--custom JS-->
-<script src="../js/gradeTable.js"></script>
+<script src="js/gradeTable.js"></script>
 
 
 </html>

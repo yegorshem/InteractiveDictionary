@@ -6,7 +6,7 @@
  * Time: 6:00 PM
  */
 ?>
-<link href="../css/navBar.css" rel="stylesheet">
+<link href="css/navBar.css" rel="stylesheet">
 <nav class="navbar navbar-default" role="navigation">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -33,21 +33,21 @@
                     echo "class='active'";
                 }
                 ?>
-                    id='aboutLink'><a href="../controllers/aboutController.php">Home</a></li>
+                    id='aboutLink'><a href="about.php">Home</a></li>
                 <li <?php if ($thisPage == 'Dictionary') {
                     echo "class='active'";
                 }
                 ?>
-                    id='dictionaryLink'><a href="../controllers/adminController.php">Dictionary</a></li>
+                    id='dictionaryLink'><a href="admin.php">Dictionary</a></li>
                 <li <?php if ($thisPage == 'Class') {
                     echo "class='active'";
                 }
                 ?>
                     id='classLink'><a href=<?php if ($_SESSION['priority'] != null) {
                         //admin goes to classController
-                        echo "../controllers/classController.php";
+                        echo "class.php";
                     } else {
-                        echo "../controllers/gradeController.php";
+                        echo "grade.php";
                     }?>>Grades</a></li>
             </ul>
 
@@ -55,7 +55,7 @@
                 <?php if ($_SESSION['name'] == null) {
                     print "<li><a href='#' data-toggle='modal' data-target='#loginModal'>Sign In</a></li>";
                 } else {
-                    print "<li><a href='../views/logout.php'>Sign Out</a></li>";
+                    print "<li><a href='views/logout.php'>Sign Out</a></li>";
                 } ?>
             </ul>
         </div><!-- /.navbar-collapse -->
