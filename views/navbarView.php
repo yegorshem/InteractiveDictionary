@@ -45,7 +45,7 @@
                 ?>
                     id='classLink'><a href=<?php if ($_SESSION['priority'] != null) {
                         //admin goes to classController
-                        echo "class.php";
+                        echo "teacherGrades.php";
                     } else {
                         echo "studentGrades.php";
                     }?>>Grades</a></li>
