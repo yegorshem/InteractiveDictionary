@@ -44,11 +44,17 @@
                 }
                 ?>
                     id='classLink'><a href=<?php if ($_SESSION['priority'] != null) {
-                        //admin goes to classController
-                        echo "class.php";
+                        //admin goes to teacherController
+                        echo "teacherGrades.php";
                     } else {
                         echo "studentGrades.php";
                     }?>>Grades</a></li>
+                <?php if($_SESSION['priority'] != null) { ?>
+                    <li <?php if ($thisPage == 'Grades') {
+                        echo "class='active'";
+                    } ?>
+                        id='gradingLink'><a href='class.php'>Grading</a></li>
+                <?php } ?>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">

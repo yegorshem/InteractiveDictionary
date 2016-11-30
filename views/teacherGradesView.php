@@ -33,7 +33,7 @@ if ($actual_link == '/views/teacherGradeView.php') {
 <?php include "navbarView.php"; ?>
 
 <div class="container">
-    <h1>Submissions</h1>
+    <h1>Graded Submissions</h1>
     <br>
 
     <div class="form-group row">
