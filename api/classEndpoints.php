@@ -23,6 +23,7 @@ require '../models/ClassAdapter.php';
 
 $adapter = new ClassAdapter($db);
 
+
 //The switch chooses what server Request_Method is being submitted
 SWITCH ($_SERVER["REQUEST_METHOD"]) {
 
@@ -34,8 +35,16 @@ SWITCH ($_SERVER["REQUEST_METHOD"]) {
     case "POST":
         $class_name = $_POST['class_name'];
         $admin_id = $_POST['admin_id'];
-        $created = $adapter->createNewClass($class_name, $admin_id);
-        echo $created;
+
+
+        $randomFourDigitNumber = 9999;
+
+        do{
+            $randomFourDigitNumber = mt_rand(1001, 1010);
+        }while($adapter->checkIfExists($randomFourDigitNumber) != 0);
+
+
+        $created = $adapter->createNewClass($class_name, $admin_id, $randomFourDigitNumber);
         break;
 
 
@@ -43,9 +52,7 @@ SWITCH ($_SERVER["REQUEST_METHOD"]) {
     case "PUT":
         // Workaround... PHP does not support DELETE or PUT superglobals
         parse_str(file_get_contents("php://input"), $_PUT);
-        //TODO
-
-        // $result = $_PUT;
+        //$result =
         break;
 
     // Delete class
