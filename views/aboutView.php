@@ -31,14 +31,15 @@
 
     </div>
 
-
     <?php include 'modals/login.php'; ?>
     <?php include 'modals/register.php'; ?>
+    <?php include 'modals/forgotPassword.php'; ?>
 </body>
 
 <script src="http://code.jquery.com/jquery.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/login.js"></script>
 <script src="js/register.js"></script>
+<script src="js/forgotPassword.js"></script>
 
 </html>

@@ -9,25 +9,26 @@ html, body {
     position: relative;
     margin-left: auto;
     margin-right: auto;
-
 }
 
 #container {
-
     position:relative;
     background-repeat: inherit;
     min-height: 80%;
     opacity: 0.3;
-
 }
 
 #introduction {
     background-color: rgba(0, 0, 0, 0.7);
     border-style: solid;
     border-color: rgba(10, 100, 0, 0.7);
-        
 }
 
+#selectUserType {
+    display: block;
+    margin: auto;
+    text-align: center;
+}
 
 
 

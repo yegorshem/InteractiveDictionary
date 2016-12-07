@@ -79,8 +79,17 @@ SWITCH ($_SERVER["REQUEST_METHOD"]) {
     case "DELETE":
         // Workaround... PHP does not support DELETE or PUT superglobals
         parse_str(file_get_contents("php://input"), $_DELETE);
-        //TODO
-        // $result = $_DELETE;
+        $pass = generateRandomString();
+        $new_pass = md5($pass);
+        $email = $_DELETE['email'];
+
+        $count = $adapter->forgotTeacherPassword($email, $new_pass);
+
+        $email_subject = "Password Reset";
+        $email_body = "You have recently requested to reset your password.\n\n" . "Here is your password: $pass\n\n";
+        $headers = "From: noreply@yourdomain.com\n";
+        mail($email, $email_subject, $email_body, $headers);
+        echo "$count";
         break;
 }
 
