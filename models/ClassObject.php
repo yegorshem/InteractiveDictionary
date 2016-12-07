@@ -11,6 +11,7 @@ class ClassObject
 
     public $class_id;
     public $class_name;
+    public $class_code;
     public $admin_id;
 
 }

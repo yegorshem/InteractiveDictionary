@@ -13,7 +13,7 @@ $(document).ready(function() {
             var i=0;
             if (result.length > 0) {
                 $.each(result, function(i){
-                    options.append($("<option />").val(result[i].class_id).text(result[i].class_name));
+                    options.append($("<option />").val(result[i].class_id).text(result[i].class_name + " | Class code: " + result[i].class_code));
                     i++;
                 });
             } else {
