@@ -2,13 +2,13 @@
  * Created by Joel on 10/10/2016.
  */
 
-$(document).ready(function(){
+$(document).ready(function () {
     $("#add_err").css('display', 'none', 'important');
 
     $("#student-login-form").hide();
 
-    $('input[type="radio"]').click(function() {
-        if($(this).attr('id') == 'adminForm') {
+    $('input[type="radio"]').click(function () {
+        if ($(this).attr('id') == 'adminForm') {
             $('#admin-login-form').show();
             $('#student-login-form').hide();
         }
@@ -19,27 +19,27 @@ $(document).ready(function(){
         }
     });
 
-    $("#admin-login-form").submit(function(e) {
+    $("#admin-login-form").submit(function (e) {
         e.preventDefault();
-        var adminUsername=$("#adminUsername").val();
-        var adminPassword=$("#adminPassword").val();
-        var dataString = 'adminUsername='+adminUsername+'&adminPassword='+adminPassword;
+        var adminUsername = $("#adminUsername").val();
+        var adminPassword = $("#adminPassword").val();
+        var dataString = 'adminUsername=' + adminUsername + '&adminPassword=' + adminPassword;
 
         $.ajax({
             type: "POST",
             url: '../api/teacherEndpoints.php',
             data: dataString,
-            success: function(data) {
-                if (data[0]==1) {
+            success: function (data) {
+                if (data[0] == 1) {
                     window.location.replace('adminController.php');
                 }
-                else    {
+                else {
                     $("#add_err").css('display', 'inline', 'important');
                     $("#add_err").text("Incorrect username or password");
                     $("#password").val('');
                 }
             },
-            beforeSend:function() {
+            beforeSend: function () {
                 $("#add_err").css('display', 'inline', 'important');
                 $("#add_err").text("Loading...");
             }
@@ -48,27 +48,27 @@ $(document).ready(function(){
     });
 
 
-    $("#student-login-form").submit(function(e) {
+    $("#student-login-form").submit(function (e) {
         e.preventDefault();
-        var studentUsername=$("#studentUsername").val();
-        var studentPassword=$("#studentPassword").val();
-        var dataString = 'studentUsername='+studentUsername+'&studentPassword='+studentPassword;
+        var studentUsername = $("#studentUsername").val();
+        var studentPassword = $("#studentPassword").val();
+        var dataString = 'studentUsername=' + studentUsername + '&studentPassword=' + studentPassword;
 
         $.ajax({
             type: "POST",
             url: '../api/studentEndpoints.php',
             data: dataString,
-            success: function(data) {
+            success: function (data) {
                 if (data[0] != null) {
                     window.location.replace('studentController.php');
                 }
-                else    {
+                else {
                     $("#add_err").css('display', 'inline', 'important');
                     $("#add_err").text("Incorrect username or password");
                     $("#password").val('');
                 }
             },
-            beforeSend:function() {
+            beforeSend: function () {
                 $("#add_err").css('display', 'inline', 'important');
                 $("#add_err").text("Loading...");
             }
