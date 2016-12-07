@@ -40,7 +40,7 @@ SWITCH ($_SERVER["REQUEST_METHOD"]) {
         $randomFourDigitNumber = 9999;
 
         do{
-            $randomFourDigitNumber = mt_rand(1001, 1010);
+            $randomFourDigitNumber = mt_rand(1001, 9998);
         }while($adapter->checkIfExists($randomFourDigitNumber) != 0);
 
 
