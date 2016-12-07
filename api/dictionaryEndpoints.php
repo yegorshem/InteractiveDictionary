@@ -55,13 +55,30 @@ SWITCH ($_SERVER["REQUEST_METHOD"]) {
     case "GET":
         //check if admin
         if ($_SESSION['priority'] != null) {
+
+
+            $student = $_GET['creator_id'];
+            $graded = $_GET['graded'];
             $class_code = $_GET['classPicker'];
             $_SESSION['class_code'] = $class_code;
-            $result = $adapter->getAllWords($class_code);
+            if ($student != null) {
+                //by student and graded (zero is for not deleted)
+                $result = $adapter->getStudentWords($student, 0, $graded);
+            }
+            else if($graded != null)
+            {
+                //by class and graded (zero is for not deleted)
+                $result = $adapter->getGradedWords($class_code, 0, $graded);
+            }
+            else
+            {
+                //by class (zero is for not deleted)
+                $result = $adapter->getAllWords($class_code, 0);
+            }
         }
         else {
-            //student
-            $result = $adapter->getAllWords($_SESSION['class_code']);
+            //student (zero is for not deleted)
+            $result = $adapter->getAllWords($_SESSION['class_code'], 0);
         }
         break;
 
@@ -71,12 +88,12 @@ SWITCH ($_SERVER["REQUEST_METHOD"]) {
         $definition = $_POST['definition'];
         $category = $_POST['category'];
         if ($_SESSION['priority'] != null) {
-            //admin
-            $adapter->submitWord($word, $definition, $image, $category, $_SESSION['name'], $_SESSION['class_code']);
+            //admin submits with student_id of 0 and already graded (the 1). Second 0 is for not deleted
+            $adapter->submitWord($word, $definition, $image, $category, $_SESSION['name'], 0, $_SESSION['class_code'], 1, 0);
         }
         else {
             //student
-            $adapter->submitWord($word, $definition, $image, $category, $_SESSION['name'], $_SESSION['class_code']);
+            $adapter->submitWord($word, $definition, $image, $category, $_SESSION['name'], $_SESSION['student_id'], $_SESSION['class_code'], 0, 0);
         }
         //Initializing array to hold possible errors
         //$error = array();
@@ -96,9 +113,9 @@ SWITCH ($_SERVER["REQUEST_METHOD"]) {
         $id = $_PUT['id_update'];
         $word = $_PUT['word_update'];
         $definition = $_PUT['definition_update'];
+        $category = $_PUT['category_update'];
 
-        $adapter->updateWord($id, $word, $definition);
-
+        $adapter->updateWord($id, $word, $definition, $category);
 
         $result = $_PUT;
         break;

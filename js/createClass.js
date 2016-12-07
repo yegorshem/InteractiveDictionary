@@ -4,7 +4,7 @@
 $(document).ready(function() {
 
     $.ajax({
-        url: '../api/teacherEndpoints.php',
+        url: 'api/teacherEndpoints.php',
         type: 'GET',
         dataType: 'json',
         success: function (result) {
@@ -30,7 +30,7 @@ $(document).ready(function() {
 
 
         $.ajax({
-            url: '../api/classEndpoints.php',
+            url: 'api/classEndpoints.php',
             type: 'POST',
             data: datastring,
             success: function (result) {

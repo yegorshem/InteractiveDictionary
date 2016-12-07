@@ -10,8 +10,8 @@ session_start();
 $thisPage = 'Dictionary';
 
 if ($_SESSION['class_code'] == null) {
-    header("Location: aboutController.php");
+    header("Location: about.php");
 } else {
 
-    require '../views/studentView.php';
+    require 'views/studentView.php';
 }

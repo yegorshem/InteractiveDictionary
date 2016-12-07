@@ -1,3 +1,12 @@
 .input-group-addon {
     min-width: 100px;
 }
+
+#grading_image {
+    max-width: 80%;
+    margin-bottom: 15px;
+}
+
+textarea {
+    resize: none;
+}

@@ -6,4 +6,4 @@
  * Time: 10:39 AM
  */
 
-header('Location: /controllers/studentController.php');
+header('Location: student.php');

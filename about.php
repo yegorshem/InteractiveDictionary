@@ -8,5 +8,5 @@
 session_start();
 $thisPage = 'About';
 
-require '../views/aboutView.php';
+require 'views/aboutView.php';
 ?>

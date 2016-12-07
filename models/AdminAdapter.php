@@ -49,6 +49,27 @@ class AdminAdapter {
 
     }
 
+    public function getOneAdmin($admin_id) {
+        // Define the query
+        $query = "SELECT * FROM teacher WHERE admin_id = :admin_id";
+
+        //prepare the statement
+        $statement = $this->db->prepare($query);
+
+        $statement->bindParam(':admin_id', $admin_id, PDO::PARAM_STR);
+
+        //execute
+        $statement->execute();
+        $rows = $statement->fetchAll();
+        $result = array();
+        foreach ($rows as $row) {
+            array_push($result, $this->read($row));
+        }
+
+        return $result;
+
+    }
+
     private function read($row)
     {
 
@@ -57,8 +78,8 @@ class AdminAdapter {
         $result->first_name = $row['first_name'];
         $result->last_name = $row['last_name'];
         $result->username = $row['email'];
-        $result->setPassword($row['pass_code']);
-        $result->setPriority($row['priority']);
+        $result->password = ($row['pass_code']);
+        $result->priority = ($row['priority']);
 
         return $result;
     }
@@ -94,8 +115,8 @@ class AdminAdapter {
             $user->first_name = $row['first_name'];
             $user->last_name = $row['last_name'];
             $user->username = $row['email'];
-            $user->setPassword($row['pass_code']);
-            $user->setPriority($row['priority']);
+            $user->password = ($row['pass_code']);
+            $user->priority = ($row['priority']);
 
             return $user;
         }
@@ -167,9 +188,26 @@ class AdminAdapter {
     }
 
     /**
-     * This function destroys the session, logging out the current user
+     * This function updates the current user
      */
-    public function logout() {
-        session_destroy();
+    public function updateAdmin($first_name, $last_name, $pass_code, $admin_id) {
+        $sql = "UPDATE teacher SET first_name= :first_name, last_name= :last_name, pass_code= :pass_code WHERE admin_id= :admin_id";
+
+        $statement = $this->db->prepare($sql);
+
+        $statement->bindValue(':first_name', $first_name, PDO::PARAM_STR);
+        $statement->bindValue(':last_name', $last_name, PDO::PARAM_STR);
+        $statement->bindValue(':pass_code', $pass_code, PDO::PARAM_STR);
+        $statement->bindValue(':admin_id', $admin_id, PDO::PARAM_STR);
+
+        $statement->execute();
+
+        $count = $statement->rowCount();
+
+        if($count == 1) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

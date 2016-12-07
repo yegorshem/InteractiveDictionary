@@ -22,7 +22,7 @@ window.operateEvents = {
     'click .image': function (e, value, row, index) {
         console.log("image clicked")
         $("#showImage").modal("show");
-        $("#imageDisplay").attr("src", "../uploads/" + row.image);
+        $("#imageDisplay").attr("src", "uploads/" + row.image);
         $("#imageName").text(row.word);
     }
 };
@@ -82,7 +82,7 @@ function operateFormatter(value, row, index) {
 function imageFormatter(value, row, index) {
     return [
         '<a class="image" href="javascript:void(0)" title="Image">',
-        '<img height="100" src="../uploads/' + value + '">',
+        '<img height="100" src="uploads/' + value + '">',
         '</a>'
     ].join('');
 }
@@ -100,7 +100,7 @@ function voiceFormatter(value, row, index) {
  * Bootstrap table configurations
  */
 $table.bootstrapTable({
-    url: "../api/dictionaryEndpoints.php",
+    url: "api/dictionaryEndpoints.php",
     pagination: true,
     toolbar: "#toolbar",
     search: true,
@@ -171,7 +171,7 @@ $(function () {
         var datastring = "teacher_first_name="+first_name+"&teacher_last_name="+last_name+"&teacher_email="+email+"&teacher_password="+pass_code;
 
         $.ajax({
-            url: '../api/teacherRegisterEndpoint.php',
+            url: 'api/teacherRegisterEndpoint.php',
             type: 'POST',
             data: datastring,
             success: function (result) {
@@ -189,7 +189,7 @@ $(function () {
 
     // Add Word --------------------------------------------------
     Dropzone.options.myDropzone = {
-        url: '../api/dictionaryEndpoints.php',
+        url: 'api/dictionaryEndpoints.php',
         autoProcessQueue: false,
         uploadMultiple: true,
         parallelUploads: 5,
@@ -277,7 +277,7 @@ $(function () {
                 //check if student or teacher
                 if (classPicker != null) {
                     $.ajax({
-                        url: '../api/dictionaryEndpoints.php',
+                        url: 'api/dictionaryEndpoints.php',
                         type: 'GET',
                         data: 'classPicker=' + classPicker,
                         success: function (result) {
@@ -300,7 +300,7 @@ $(function () {
 
         //Server call to delete post
         $.ajax({
-            url: '../api/dictionaryEndpoints.php',
+            url: 'api/dictionaryEndpoints.php',
             type: 'PUT',
             data: $('#update-word-form').serialize(),
             contentType: 'application/json',
@@ -334,7 +334,7 @@ $(function () {
 
             //Server call to delete post
             $.ajax({
-                url: '../api/dictionaryEndpoints.php',
+                url: 'api/dictionaryEndpoints.php',
                 type: 'DELETE',
                 data: {
                     id: id

@@ -6,14 +6,6 @@ var $table = $('#adminTable');
 
 
 window.operateEvents = {
-    'click .edit': function (e, value, row, index) {
-        console.log("edit clicked")
-        $("#updateModal").modal("show");
-        //Populate from inputs with row data
-        $("#id_update").val(row.id);
-        $("#word_update").val(row.word);
-        $("#definition_update").val(row.definition);
-    },
 
     'click .voice': function (e, value, row, index) {
         responsiveVoice.speak(row.word, "US English Female");
@@ -22,7 +14,7 @@ window.operateEvents = {
     'click .image': function (e, value, row, index) {
         console.log("image clicked")
         $("#showImage").modal("show");
-        $("#imageDisplay").attr("src", "../uploads/" + row.image);
+        $("#imageDisplay").attr("src", "uploads/" + row.image);
         $("#imageName").text(row.word);
     }
 };
@@ -65,16 +57,7 @@ function base64ToFile(dataURI, origFile) {
 }
 
 
-/**
- * The edit button in the Bootsrap table
- */
-function operateFormatter(value, row, index) {
-    return [
-        '<a class="edit" href="javascript:void(0)" title="Edit">',
-        '<i class="glyphicon glyphicon-edit edit-icon"></i>',
-        '</a>'
-    ].join('');
-}
+
 
 /**
  * The image in the boostrap table
@@ -82,7 +65,7 @@ function operateFormatter(value, row, index) {
 function imageFormatter(value, row, index) {
     return [
         '<a class="image" href="javascript:void(0)" title="Image">',
-        '<img height="100" src="../uploads/' + value + '">',
+        '<img height="100" src="uploads/' + value + '">',
         '</a>'
     ].join('');
 }
@@ -100,7 +83,7 @@ function voiceFormatter(value, row, index) {
  * Bootstrap table configurations
  */
 $table.bootstrapTable({
-    url: "../api/dictionaryEndpoints.php",
+    url: "api/dictionaryEndpoints.php",
     pagination: true,
     toolbar: "#toolbar",
     search: true,
@@ -144,12 +127,6 @@ $table.bootstrapTable({
         field: 'class_name',
         title: 'Class',
         sortable: true
-    }, {
-        field: 'edit',
-        title: 'Edit',
-        align: 'center',
-        events: operateEvents,
-        formatter: operateFormatter
     }],
     onClickRow: function (row, elm) {
         //...
@@ -171,7 +148,7 @@ $(function () {
         var datastring = "teacher_first_name="+first_name+"&teacher_last_name="+last_name+"&teacher_email="+email+"&teacher_password="+pass_code;
 
         $.ajax({
-            url: '../api/teacherRegisterEndpoint.php',
+            url: 'api/teacherRegisterEndpoint.php',
             type: 'POST',
             data: datastring,
             success: function (result) {
@@ -189,7 +166,7 @@ $(function () {
 
     // Add Word --------------------------------------------------
     Dropzone.options.myDropzone = {
-        url: '../api/dictionaryEndpoints.php',
+        url: 'api/dictionaryEndpoints.php',
         autoProcessQueue: false,
         uploadMultiple: true,
         parallelUploads: 5,
@@ -272,35 +249,39 @@ $(function () {
                 $('#add-word-form').trigger("reset");
 
                 $('#addModal').modal('hide');
+                this.removeAllFiles();
 
                 var classPicker = $("#classPicker").val();
-                //check if student or teacher
-                if (classPicker != null) {
-                    $.ajax({
-                        url: '../api/dictionaryEndpoints.php',
-                        type: 'GET',
-                        data: 'classPicker=' + classPicker,
-                        success: function (result) {
-                            console.log(result);
-                            $('#adminTable').bootstrapTable("load", result);
-                        }
-                    })
-                } else {
-                    $table.bootstrapTable('refresh', {
-                        silent: true
-                    });
-                }
+                $.ajax({
+                    url: 'api/dictionaryEndpoints.php',
+                    type: 'GET',
+                    data: 'classPicker=' + classPicker,
+                    success: function (result) {
+                        console.log(result);
+                        $('#adminTable').bootstrapTable("load", result);
+                    }
+                })
             });
         }
     };
 
     // Update word --------------------------------------------------
+    $('#update-btn').click(function () {
+        $('#updateModal').modal('show');
+        var row = $table.bootstrapTable('getSelections');
+        //Populate from inputs with row data
+        $("#id_update").val(row[0].id);
+        $("#word_update").val(row[0].word);
+        $("#definition_update").val(row[0].definition);
+        $("#category_update").val(row[0].category);
+    });
+
+
     $("#update-word-form").on('submit', function (e) {
         e.preventDefault();
-
         //Server call to delete post
         $.ajax({
-            url: '../api/dictionaryEndpoints.php',
+            url: 'api/dictionaryEndpoints.php',
             type: 'PUT',
             data: $('#update-word-form').serialize(),
             contentType: 'application/json',
@@ -334,7 +315,7 @@ $(function () {
 
             //Server call to delete post
             $.ajax({
-                url: '../api/dictionaryEndpoints.php',
+                url: 'api/dictionaryEndpoints.php',
                 type: 'DELETE',
                 data: {
                     id: id

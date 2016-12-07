@@ -1,14 +1,14 @@
 <?php
 /**
- * User: Yegor Shemereko
- * Date: 11/17/2016
- * Time: 8:12 AM
+ * Created by PhpStorm.
+ * User: Joel
+ * Date: 11/19/2016
+ * Time: 1:10 PM
  */
-
 $actual_link = $_SERVER['PHP_SELF'];
 
-if ($actual_link == '/views/adminView.php') {
-    header('Location: ../admin.php');
+if ($actual_link == '/views/classView.php') {
+    header('Location: class.php');
 }
 ?>
 <!doctype html>
@@ -25,58 +25,43 @@ if ($actual_link == '/views/adminView.php') {
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
-    <link href="css/dropzone.min.css" rel="stylesheet" media="screen">
     <link href="css/form_formatter.css" rel="stylesheet" media="screen">
 
 </head>
 <body>
 <?php include "navbarView.php"; ?>
+
 <div class="container">
-    <h1>Carpentry English - Teacher Panel</h1>
+    <h1>Student Submissions</h1>
     <br>
 
     <div class="form-group row">
-
+        <div class="col-xs-4">
+            <select id="studentGraded" class="selectpicker form-control">
+                <option value="0" selected="selected">Ungraded</option>
+                <option value="1">Graded</option>
+            </select>
+        </div>
         <!-- class selector-->
         <div class="col-xs-4">
             <select id="classPicker" class="selectpicker form-control">
                 <option value="0" disabled="disabled" selected="selected">Select a class</option>
             </select>
         </div>
+        <div id="selection" class="col-xs-4">
 
-        <!-- add button-->
-        <button type="button" id="add-btn" class="btn btn-success" data-toggle="modal"
-                data-target="#addModal">
-            Add Word &nbsp;<span class="glyphicon glyphicon-plus"></span></button>
-
-        <!-- Edit button-->
-        <button type="button" id="update-btn" class="btn btn-warning" data-toggle="modal">
-            Edit Word &nbsp;<span class="glyphicon glyphicon-edit edit-icon"></span></button>
-
-        <!-- delete button-->
-        <button type="button" id="delete-btn" class="btn btn-danger" data-toggle="modal">
-            Delete Word &nbsp;<span class="glyphicon glyphicon-minus"></span></button>
-
-
+        </div>
     </div>
-
     <hr>
 
-    <table id="adminTable"></table>
+    <table id="classTable"></table>
 
 </div>
 
-<?php include 'modals/addWord.php'; ?>
-<?php include 'modals/updateWord.php'; ?>
-<?php include 'modals/showImage.php'; ?>
-<?php include 'modals/newTeacher.php'; ?>
-<?php include 'modals/newClass.php'; ?>
-<?php include 'modals/deleteConfirmation.php'; ?>
-<?php include 'modals/editCredentials.php'; ?>
+<?php include 'modals/gradeSubmission.php'; ?>
 
 
-
-
+</body>
 <!--   jQuery-->
 <script src="http://code.jquery.com/jquery.js"></script>
 <!-- javascript for table -->
@@ -88,11 +73,10 @@ if ($actual_link == '/views/adminView.php') {
 <!--responsiveVoice JS-->
 <script src="http://code.responsivevoice.org/responsivevoice.js"></script>
 <!--custom JS-->
-<script src="js/admin.js"></script>
-<script src="js/classWordsSelect.js"></script>
+<script src="js/classTable.js"></script>
+<script src="js/classViewSelect.js"></script>
 <script src="js/createClass.js"></script>
-<script src="js/teacherCredentials.js"></script>
+<script src="js/grading.js"></script>
 
 
-</body>
 </html>

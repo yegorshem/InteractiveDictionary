@@ -4,7 +4,7 @@
 $(document).ready(function() {
 
     $.ajax({
-        url: '../api/classEndpoints.php',
+        url: 'api/classEndpoints.php',
         type: 'GET',
         dataType: 'json',
         success: function (result) {
@@ -25,11 +25,10 @@ $(document).ready(function() {
     $("#classPicker").on('change', function () {
         var classPicker = $("#classPicker").val();
         $.ajax({
-            url: '../api/dictionaryEndpoints.php',
+            url: 'api/dictionaryEndpoints.php',
             type: 'GET',
             data: 'classPicker='+classPicker,
             success: function(result) {
-                console.log(result);
                 $('#adminTable').bootstrapTable("load", result);
             }
         })
