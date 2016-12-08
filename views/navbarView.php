@@ -55,7 +55,7 @@
                     } ?>
                         id='gradingLink'><a href='class.php'>Grading</a></li>
                 <?php } ?>
-                <?php if($_SESSION['priority'] == 0) { ?>
+                <?php if($_SESSION['priority'] == 1) { ?>
                     <li <?php if ($thisPage == 'ManageWords') {
                         echo "class='active'";
                     } ?>
