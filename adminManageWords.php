@@ -8,5 +8,12 @@
 session_start();
 $thisPage = 'ManageWords';
 
-require 'views/manageWordsView.php';
+if ($_SESSION['priority'] == 0) {
+    header("Location: teacher.php");
+} else if ($_SESSION['priority'] == null) {
+    header("Location: student.php");
+}
+else {
+    require 'views/manageWordsView.php';
+}
 ?>
