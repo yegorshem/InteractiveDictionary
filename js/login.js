@@ -12,7 +12,6 @@ $(document).ready(function () {
             $('#admin-login-form').show();
             $('#student-login-form').hide();
         }
-
         else {
             $('#admin-login-form').hide();
             $('#student-login-form').show();

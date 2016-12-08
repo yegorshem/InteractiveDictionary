@@ -210,4 +210,23 @@ class AdminAdapter {
             return false;
         }
     }
+
+    /**
+     * This function updates the current user password
+     */
+    public function forgotTeacherPassword($email, $pass_code)
+    {
+        $sql = "UPDATE teacher SET pass_code= :pass_code WHERE email= :email";
+
+        $statement = $this->db->prepare($sql);
+
+        $statement->bindValue(':pass_code', $pass_code, PDO::PARAM_STR);
+        $statement->bindValue(':email', $email, PDO::PARAM_STR);
+
+        $statement->execute();
+
+        $count = $statement->rowCount();
+
+        return $count;
+    }
 }
