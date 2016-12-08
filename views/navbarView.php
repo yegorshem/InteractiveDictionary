@@ -55,6 +55,12 @@
                     } ?>
                         id='gradingLink'><a href='class.php'>Grading</a></li>
                 <?php } ?>
+                <?php if($_SESSION['priority'] == 0) { ?>
+                    <li <?php if ($thisPage == 'ManageWords') {
+                        echo "class='active'";
+                    } ?>
+                            id='gradingLink'><a href='adminManageWords.php'>Archive</a></li>
+                <?php } ?>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
