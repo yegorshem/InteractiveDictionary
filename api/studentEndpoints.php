@@ -25,6 +25,18 @@ require '../models/StudentAdapter.php';
 
 $adapter = new StudentAdapter($db);
 
+//this function creates random strings for forgotten password
+function generateRandomString($length = 10)
+{
+    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $charactersLength = strlen($characters);
+    $randomString = '';
+    for ($i = 0; $i < $length; $i++) {
+        $randomString .= $characters[rand(0, $charactersLength - 1)];
+    }
+    return $randomString;
+}
+
 //The switch chooses what server Request_Method is being submitted
 SWITCH ($_SERVER["REQUEST_METHOD"]) {
 
@@ -32,10 +44,9 @@ SWITCH ($_SERVER["REQUEST_METHOD"]) {
     case "GET":
         $class = $_GET['classPicker'];
         $string = $_GET['string'];
-        if ($string !=  null) {
+        if ($string != null) {
             $result = $adapter->getOneStudent($_SESSION['student_id']);
-        }
-        else {
+        } else {
             $result = $adapter->getStudents($class);
 
         }
@@ -51,7 +62,7 @@ SWITCH ($_SERVER["REQUEST_METHOD"]) {
         if ($user != null) {
             $_SESSION['class_code'] = $user->class_code;
             $_SESSION['first_name'] = $user->first_name;
-            $_SESSION['name'] = $user->first_name.' '.$user->last_name;
+            $_SESSION['name'] = $user->first_name . ' ' . $user->last_name;
             $_SESSION['student_id'] = $user->user_id;
             echo $user->class_code;
         }
@@ -67,8 +78,8 @@ SWITCH ($_SERVER["REQUEST_METHOD"]) {
         $old_pass_code = md5($_PUT['old_pass_code']);
         $old_pass = $_PUT['old_pass'];
         $new_pass_code = md5($_PUT['new_pass_code']);
-        if ($old_pass == $old_pass_code){
-            $_SESSION['name'] = $first_name." ".$last_name;
+        if ($old_pass == $old_pass_code) {
+            $_SESSION['name'] = $first_name . " " . $last_name;
             $_SESSION['first_name'] = $first_name;
             $result = $adapter->updateStudent($first_name, $last_name, $new_pass_code, $_SESSION['student_id']);
         } else {
@@ -80,16 +91,23 @@ SWITCH ($_SERVER["REQUEST_METHOD"]) {
     case "DELETE":
         // Workaround... PHP does not support DELETE or PUT superglobals
         parse_str(file_get_contents("php://input"), $_DELETE);
-        //TODO
+        //changing password for forgotten password
+        $pass = generateRandomString();
+        $new_pass = md5($pass);
+        $email = $_DELETE['email'];
 
-//            $result = $_DELETE;
+        $count = $adapter->forgotStudentPassword($email, $new_pass);
+
+        $email_subject = "Password Reset";
+        $email_body = "You have recently requested to reset your password.\n\n" . "Here is your password: $pass\n\n";
+        $headers = "From: noreply@yourdomain.com\n";
+        mail($email, $email_subject, $email_body, $headers);
+        echo "$count";
         break;
 }
 
 
-
-if ($result != null)
-{
+if ($result != null) {
     //set header to JSON
     header("Content-Type: application/json");
 

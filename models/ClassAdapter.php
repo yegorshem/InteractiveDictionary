@@ -17,7 +17,8 @@ class ClassAdapter
      * @param PDO $db - the database we are storing information in.
      * @return db
      */
-    public function __construct(PDO $db) {
+    public function __construct(PDO $db)
+    {
         $this->db = $db;
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
@@ -28,9 +29,10 @@ class ClassAdapter
      *
      * @param-admin_id - Int of the admin id
      *
-     *@return class
+     * @return class
      */
-    public function getClasses($admin_id) {
+    public function getClasses($admin_id)
+    {
         // Define the query
         $query = "SELECT * FROM class WHERE admin_id = :admin_id";
 
@@ -57,20 +59,18 @@ class ClassAdapter
         $result = new ClassObject();
         $result->class_id = $row['class_id'];
         $result->class_name = $row['class_name'];
+        $result->class_code = $row['class_code'];
         $result->admin_id = $row['admin_id'];
 
         return $result;
     }
 
-    /**
-     * This function creates a new user in the user table.
-     *
-     * @param-$class_name - String
-     * @param-$admin_id - int
-     */
-    public function createNewClass($class_name, $admin_id) {
+
+    public function createNewClass($class_name, $admin_id, $class_code)
+    {
+
         // Define the query
-        $query = "INSERT INTO class (class_name, admin_id) VALUES (:class_name, :admin_id)";
+        $query = "INSERT INTO class (class_name, admin_id, class_code) VALUES (:class_name, :admin_id, :class_code)";
 
         // prepare the statement
         $statement = $this->db->prepare($query);
@@ -78,7 +78,7 @@ class ClassAdapter
         //bind parameters
         $statement->bindParam(':class_name', $class_name, PDO::PARAM_STR);
         $statement->bindParam(':admin_id', $admin_id, PDO::PARAM_STR);
-
+        $statement->bindParam(':class_code', $class_code, PDO::PARAM_INT);
 
         //execute the statement
         $success = $statement->execute();
@@ -96,25 +96,65 @@ class ClassAdapter
      * @return bool- true if one row was removed from the table
      *
      */
-    public function deleteOneClass($class_code) {
+    public function deleteOneClass($class_code)
+    {
         // define query
         $query = "DELETE FROM class WHERE class_id = :class_code";
 
         //prepare the statement
         $statement = $this->db->prepare($query);
 
-        $statement->bindParam(':class_code', $class_code, PDO::PARAM_STR);
+        $statement->bindParam(':class_code', $class_code, PDO::PARAM_INT);
 
         //execute
         $success = $statement->execute();
 
         $count = $statement->rowCount();
 
-        if($count == 1) {
+        if ($count == 1) {
             return true;
         } else {
             return false;
         }
+    }
+
+    public function checkIfExists($class_code)
+    {
+        // Define the query
+        //$query = "SELECT * FROM class WHERE admin_id = :admin_id"
+
+        $query = "SELECT 1 FROM class WHERE class_code = :class_code";
+        //prepare the statement
+        $statement = $this->db->prepare($query);
+
+        $statement->bindParam(':class_code', $class_code, PDO::PARAM_INT);
+
+        //execute
+        $statement->execute();
+
+        if($statement->rowCount() == 0) {
+            return 0;
+        }else{
+            return 1;
+        }
+
+
+//        $row = $statement->fetchAll();
+//
+//        if (!$row) {
+//            print_r("false");
+//            return 0;
+//        }
+//
+////        $count = $statement->rowCount();
+////
+////        if ($count == 1) {
+////            return true;
+////        } else {
+////            return false;
+////        }
+//        //print_r("true");
+//        return 1;
     }
 
 }

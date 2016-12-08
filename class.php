@@ -6,7 +6,7 @@
  * Time: 1:24 PM
  */
 session_start();
-$thisPage = 'Class';
+$thisPage = 'Grades';
 
 if ($_SESSION['priority'] == null) {
     header("Location: student.php");

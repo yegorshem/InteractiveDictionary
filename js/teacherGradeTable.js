@@ -4,7 +4,7 @@
 
 var $table = $('#teacherGradeTable');
 
-$(document).ready(function() {
+$(document).ready(function () {
     $.ajax({
         url: 'api/classEndpoints.php',
         type: 'GET',
@@ -15,7 +15,7 @@ $(document).ready(function() {
             var i = 0;
             if (result.length > 0) {
                 $.each(result, function (i) {
-                    options.append($("<option />").val(result[i].class_id).text(result[i].class_name));
+                    options.append($("<option />").val(result[i].class_id).text(result[i].class_name + " | Class code: " + result[i].class_code));
                     i++;
                 });
             } else {
@@ -31,14 +31,14 @@ $(document).ready(function() {
         $("#studentPicker").remove();
         //add new empty list of students
         $("#selection").append("<select id='studentPicker' class='selectpicker form-control'>" +
-            "<option value='0' disabled='disabled' selected='selected'>Select a student</option>"+
+            "<option value='0' disabled='disabled' selected='selected'>Select a student</option>" +
             "</select>")
         $.ajax({
             url: 'api/gradeEndpoints.php',
             type: 'GET',
-            data: 'classPicker='+classPicker,
+            data: 'classPicker=' + classPicker,
             dataType: 'json',
-            success: function(result) {
+            success: function (result) {
                 console.log(result);
                 $table.bootstrapTable("load", result);
                 var classPicker = $("#classPicker").val();
@@ -46,13 +46,13 @@ $(document).ready(function() {
                 $.ajax({
                     url: 'api/studentEndpoints.php',
                     type: 'GET',
-                    data: 'classPicker='+classPicker,
+                    data: 'classPicker=' + classPicker,
                     dataType: 'json',
-                    success: function(result) {
+                    success: function (result) {
                         var i = 0;
                         if (result.length > 0) {
                             $.each(result, function (i) {
-                                students.append($("<option />").val(result[i].user_id).text(result[i].first_name+" "+result[i].last_name+" | "+result[i].username));
+                                students.append($("<option />").val(result[i].user_id).text(result[i].first_name + " " + result[i].last_name + " | " + result[i].username));
                                 i++;
                             });
                         } else {
@@ -74,9 +74,9 @@ $(document).ready(function() {
             $.ajax({
                 url: 'api/gradeEndpoints.php',
                 type: 'GET',
-                data: 'creator_id='+creator_id+"&graded="+graded+"&classPicker="+classPicker,
+                data: 'creator_id=' + creator_id + "&graded=" + graded + "&classPicker=" + classPicker,
                 dataType: 'json',
-                success: function(result) {
+                success: function (result) {
                     $table.bootstrapTable("load", result);
                 }
             })
@@ -93,7 +93,7 @@ $(document).ready(function() {
  */
 function scoreFormatter(value, row, index) {
     return [
-        '<p class="score">'+value+' of 4</p>',
+        '<p class="score">' + value + ' of 4</p>',
     ].join('');
 }
 
@@ -143,7 +143,7 @@ $table.bootstrapTable({
     onClickRow: function (row, elm) {
         //...
     },
-    success: function(result) {
+    success: function (result) {
         console.log(result);
     }
 });

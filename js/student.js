@@ -73,6 +73,12 @@ function voiceFormatter(value, row, index) {
     ].join('');
 }
 
+function invisibleFormatter(value, row, index) {
+    return [
+        '<span class="hidden-xs">'+value+'</span>'
+    ]
+}
+
 /**
  * Bootstrap table configurations
  */
@@ -105,8 +111,9 @@ $table.bootstrapTable({
         sortable: true
     }, {
         field: 'category',
-        title: 'Category',
-        sortable: true
+        title: '<span class="hidden-xs">Category</span>',
+        sortable: true,
+        formatter: invisibleFormatter
     }, {
         field: 'image',
         title: 'Image',
@@ -114,12 +121,14 @@ $table.bootstrapTable({
         formatter: imageFormatter
     }, {
         field: 'created_by',
-        title: 'Author',
-        sortable: true
+        title: '<span class="hidden-xs">Author</span>',
+        sortable: true,
+        formatter: invisibleFormatter
     }, {
         field: 'class_name',
-        title: 'Class',
-        sortable: true
+        title: '<span class="hidden-xs">Class</span>',
+        sortable: true,
+        formatter: invisibleFormatter
     }],
     onClickRow: function (row, elm) {
         //...

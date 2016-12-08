@@ -1,14 +1,14 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: Joel
- * Date: 11/19/2016
- * Time: 1:10 PM
+ * User: Josh
+ * Date: 12/7/2016
+ * Time: 12:56 PM
  */
 $actual_link = $_SERVER['PHP_SELF'];
 
-if ($actual_link == '/views/classView.php') {
-    header('Location: class.php');
+if ($actual_link == '/views/manageWordsView.php') {
+    header('Location: ../adminManageWords.php');
 }
 ?>
 <!doctype html>
@@ -18,50 +18,38 @@ if ($actual_link == '/views/classView.php') {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-
     <title>Carpentry English</title>
     <meta name="description" content="Phonetic and visual dictionary for I-BEST Students">
     <meta name="author" content="Team J.J.A.Y.">
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="css/dropzone.min.css" rel="stylesheet" media="screen">
     <link href="css/form_formatter.css" rel="stylesheet" media="screen">
 
 </head>
 <body>
 <?php include "navbarView.php"; ?>
-
 <div class="container">
-    <h1>Student Submissions</h1>
+    <h1>Carpentry English - Admin Manage Words</h1>
     <br>
 
     <div class="form-group row">
-        <div class="col-xs-4">
-            <select id="studentGraded" class="selectpicker form-control">
-                <option value="0" selected="selected">Ungraded</option>
-                <option value="1">Graded</option>
-            </select>
-        </div>
-        <!-- class selector-->
-        <div class="col-xs-4">
-            <select id="classPicker" class="selectpicker form-control">
-                <option value="0" disabled="disabled" selected="selected">Select a class</option>
-            </select>
-        </div>
-        <div id="selection" class="col-xs-4">
-
-        </div>
+        <!-- delete button-->
+        <button type="button" id="delete-btn" class="btn btn-danger" data-toggle="modal">
+            Delete Word &nbsp;<span class="glyphicon glyphicon-minus"></span></button>
     </div>
+
     <hr>
 
-    <table id="classTable"></table>
+    <table id="manageWordsTable"></table>
 
 </div>
 
-<?php include 'modals/gradeSubmission.php'; ?>
+<?php include 'modals/showImage.php'; ?>
+<?php include 'modals/manageModal.php'; ?>
+<?php include 'modals/editCredentials.php'; ?>
 
-
-</body>
 <!--   jQuery-->
 <script src="http://code.jquery.com/jquery.js"></script>
 <!-- javascript for table -->
@@ -73,10 +61,8 @@ if ($actual_link == '/views/classView.php') {
 <!--responsiveVoice JS-->
 <script src="http://code.responsivevoice.org/responsivevoice.js"></script>
 <!--custom JS-->
-<script src="js/classTable.js"></script>
-<script src="js/classViewSelect.js"></script>
-<script src="js/createClass.js"></script>
-<script src="js/grading.js"></script>
+<script src="js/manageWords.js"></script>
+<script src="js/teacherCredentials.js"></script>
 
-
+</body>
 </html>

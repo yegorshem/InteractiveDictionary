@@ -89,6 +89,22 @@ class DictionaryAdapter
         return $result;
     }
 
+    public function getDeletedWords()
+    {
+        $sql = "SELECT dictionary.id, dictionary.word, dictionary.definition, dictionary.category, dictionary.image, dictionary.created_by, dictionary.creator_id, dictionary.graded, dictionary.deleted, class.class_name FROM dictionary INNER JOIN  class ON dictionary.class_id = class.class_id WHERE dictionary.deleted = 1";
+        $statement = $this->db->prepare($sql);
+        $statement->execute();
+        $rows = $statement->fetchAll();
+
+        //turn rows into in array so that it can later be easily converted to JSON
+        $result = array();
+        foreach ($rows as $row) {
+            array_push($result, $this->read($row));
+        }
+
+        return $result;
+    }
+
     private function read($row)
     {
         $result = new Word();
@@ -143,13 +159,28 @@ class DictionaryAdapter
 
     public function deleteWord($id)
     {
-
         $sql = "UPDATE dictionary SET deleted = 1 WHERE id= :id";
         $statement = $this->db->prepare($sql);
-
         $statement->bindValue(':id', $id, PDO::PARAM_INT);
         $statement->execute();
     }
 
+    public function deleteWordForever($id)
+    {
+        $sql = "SELECT * FROM dictionary WHERE id= :id";
+        $statement = $this->db->prepare($sql);
+        $statement->bindValue(':id', $id, PDO::PARAM_INT);
+        $statement->execute();
+        $result = $statement->fetchAll();
 
+        foreach($result as $row) {
+            $imagename = $row['image'];
+            unlink("../uploads/" . $imagename);
+        }
+
+        $sql = "DELETE FROM dictionary WHERE id= :id";
+        $statement = $this->db->prepare($sql);
+        $statement->bindValue(':id', $id, PDO::PARAM_INT);
+        $statement->execute();
+    }
 }

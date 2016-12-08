@@ -22,10 +22,11 @@
                 <div class="row">
                     <div class="col-md-10 col-md-offset-2">
                         <div class="input-group">
-                            <label for="adminForm">Admin &nbsp</label>
-                            <input type="radio"  id="adminForm" name="selectForm" checked="checked">
                             <label for="studentForm">&nbsp Student &nbsp</label>
-                            <input type="radio"  id="studentForm" name="selectForm">
+                            <input type="radio"  id="studentForm" name="selectForm" checked="checked">
+                            <label for="adminForm">Admin &nbsp</label>
+                            <input type="radio"  id="adminForm" name="selectForm" >
+
                         </div>
                     </div>
                 </div>

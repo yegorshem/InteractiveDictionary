@@ -26,13 +26,26 @@ require '../models/AdminAdapter.php';
 
 $adapter = new AdminAdapter($db);
 
+//this function creates random strings for forgotten password
+function generateRandomString($length = 10)
+{
+    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $charactersLength = strlen($characters);
+    $randomString = '';
+    for ($i = 0; $i < $length; $i++) {
+        $randomString .= $characters[rand(0, $charactersLength - 1)];
+    }
+    return $randomString;
+}
+
+
 //The switch chooses what server Request_Method is being submitted
 SWITCH ($_SERVER["REQUEST_METHOD"]) {
 
     //get all admins
     case "GET":
         $string = $_GET['string'];
-        if (string ==  null) {
+        if ($string ==  null) {
             $result = $adapter->getAdmins();
         }
         else {
@@ -79,12 +92,21 @@ SWITCH ($_SERVER["REQUEST_METHOD"]) {
     case "DELETE":
         // Workaround... PHP does not support DELETE or PUT superglobals
         parse_str(file_get_contents("php://input"), $_DELETE);
-        //TODO
-        // $result = $_DELETE;
+        $pass = generateRandomString();
+        $new_pass = md5($pass);
+        $email = $_DELETE['email'];
+
+        $count = $adapter->forgotTeacherPassword($email, $new_pass);
+        $email_subject = "Password Reset";
+        $email_body = "You have recently requested to reset your password.\n\n" . "Here is your password: $pass\n\n";
+        $headers = "From: noreply@yourdomain.com\n";
+        mail($email, $email_subject, $email_body, $headers);
+        echo "$count";
         break;
 }
 
-
-//transform PHP array to JSON
-echo json_encode($result);
+if ($result != null) {
+    //transform PHP array to JSON
+    echo json_encode($result);
+}
 
