@@ -5,15 +5,13 @@
 $(document).ready(function () {
     $("#add_err").css('display', 'none', 'important');
 
-    $("#student-login-form").hide();
+    $("#admin-login-form").hide();
 
     $('input[type="radio"]').click(function () {
         if ($(this).attr('id') == 'adminForm') {
             $('#admin-login-form').show();
             $('#student-login-form').hide();
-        }
-
-        else {
+        } else {
             $('#admin-login-form').hide();
             $('#student-login-form').show();
         }
