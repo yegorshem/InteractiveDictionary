@@ -40,7 +40,21 @@
                                         <select id="category" class="form-control" required>
                                             <option value="">Select Category</option>
                                             <option value="Hand Tool">Hand Tool</option>
-                                            <option value="Power Tool">Power Tool</option>
+                                            <option value="Power Hand Tool">Power Hand Tool</option>
+                                            <option value="Power Stationary Tool">Power Stationary Tools</option>
+                                            <option value="Construction Equipment">Construction Equipment</option>
+                                            <option value="Personal Protection Equipment">Personal Protection Equipment</option>
+                                            <option value="Wood">Wood</option>
+                                            <option value="Engineered Wood">Engineered Wood</option>
+                                            <option value="Other building supplies">Other building supplies</option>
+                                            <option value="Fastening systems and equipment">Fastening systems and equipment</option>
+                                            <option value="Building design and equipment">Building design and equipment</option>
+                                            <option value="Survey Instruments">Survey Instruments</option>
+                                            <option value="Foundations">Foundations</option>
+                                            <option value="Framing">Framing</option>
+                                            <option value="Roofs and Roofing Supplies">Roofs and Roofing Supplies</option>
+                                            <option value="Window and Door Frames">Window and Door Frames</option>
+                                            <option value="Stairways">Stairways</option>
                                         </select>
                                     </div>
                                 </div>
