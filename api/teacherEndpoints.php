@@ -45,7 +45,7 @@ SWITCH ($_SERVER["REQUEST_METHOD"]) {
     //get all admins
     case "GET":
         $string = $_GET['string'];
-        if (string ==  null) {
+        if ($string ==  null) {
             $result = $adapter->getAdmins();
         }
         else {
