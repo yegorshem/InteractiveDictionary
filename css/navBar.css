@@ -10,7 +10,7 @@
     background-color: #006400;
     font-size: 20px;
     font-weight: normal;
-    color: black;
+    color: yellow;
     height: 65px;
 
 }
@@ -43,6 +43,14 @@
     border-radius: 25px;
 }
 
+.navbar-default .navbar-nav>li>a:focus, .navbar-default .navbar-nav>li>a:hover {
+    color: yellow;
+}
+
+.navbar-default .navbar-brand:focus, .navbar-default .navbar-brand:hover {
+    color: yellow;
+}
+
 @media (max-width: 900px) {
     .navbar-header {
         float: none;
@@ -68,6 +76,10 @@
         padding-top: 10px;
         padding-bottom: 10px;
     }
+
 }
+
+
+
 
 
