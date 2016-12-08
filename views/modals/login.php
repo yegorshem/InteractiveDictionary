@@ -22,7 +22,7 @@
                 <div class="row">
                     <div class="col-md-10 col-md-offset-2">
                         <div class="input-group">
-                            <div id="selectUserType">
+                            <div id="selectUserType" class="center">
                                 <p id="forgot-btn"><a href="#" data-toggle="modal"
                                                                       data-target="#forgotModal">Forgot Password</a></p>
                                 <label for="adminForm">Admin &nbsp</label>
@@ -47,7 +47,6 @@
                                                id="adminUsername" name="adminUsername"/>
                                     </div>
                                 </div>
-                                <br>
                                 <br>
                                 <div class="col-md-10 col-md-offset-1">
                                     <div class="input-group">
@@ -76,7 +75,7 @@
                                                id="studentUsername" name="studentUsername"/>
                                     </div>
                                 </div>
-
+                                <br>
                                 <div class="col-md-10 col-md-offset-1">
                                     <div class="input-group">
                                         <label class="input-group-addon" for="studentPassword">Password</label>

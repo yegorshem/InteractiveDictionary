@@ -29,7 +29,10 @@ html, body {
     margin: auto;
     text-align: center;
 }
-
-
+.center {
+    display: block;
+    margin: auto;
+    text-align: center;
+}
 
 

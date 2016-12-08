@@ -217,7 +217,7 @@ class StudentAdapter
 
 
     /**
-     * This function updates the current user
+     * This function updates the current user password
      */
     public function forgotStudentPassword($email, $pass_code)
     {
