@@ -17,11 +17,11 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" id="credentials-btn" data-toggle="modal">
+            <a class="navbar-brand" data-toggle="modal">
                 <?php if ($_SESSION['name'] == null) {
                     echo "Carpentry English";
                 } else {
-                    echo "Welcome ".$_SESSION['first_name']."&nbsp<span class='glyphicon glyphicon-cog'></span>";
+                    echo "<span class='hidden-xs'>Welcome ".$_SESSION['first_name']."</span>&nbsp<span id='credentials-btn' class='glyphicon glyphicon-cog'></span>";
                 } ?>
             </a>
         </div>
