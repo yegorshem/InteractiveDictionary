@@ -159,19 +159,27 @@ class DictionaryAdapter
 
     public function deleteWord($id)
     {
-
         $sql = "UPDATE dictionary SET deleted = 1 WHERE id= :id";
         $statement = $this->db->prepare($sql);
-
         $statement->bindValue(':id', $id, PDO::PARAM_INT);
         $statement->execute();
     }
 
     public function deleteWordForever($id)
     {
+        $sql = "SELECT * FROM dictionary WHERE id= :id";
+        $statement = $this->db->prepare($sql);
+        $statement->bindValue(':id', $id, PDO::PARAM_INT);
+        $statement->execute();
+        $result = $statement->fetchAll();
+
+        foreach($result as $row) {
+            $imagename = $row['image'];
+            unlink("../uploads/" . $imagename);
+        }
+
         $sql = "DELETE FROM dictionary WHERE id= :id";
         $statement = $this->db->prepare($sql);
-
         $statement->bindValue(':id', $id, PDO::PARAM_INT);
         $statement->execute();
     }

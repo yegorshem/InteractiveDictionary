@@ -17,13 +17,15 @@ class StudentAdapter
      * @param PDO $db - the database we are storing information in.
      * @return db
      */
-    public function __construct(PDO $db) {
+    public function __construct(PDO $db)
+    {
         $this->db = $db;
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
     }
 
-    public function getStudents($class_code) {
+    public function getStudents($class_code)
+    {
         // Define the query
         $query = "SELECT * FROM student WHERE class_code = :class_code";
 
@@ -44,7 +46,8 @@ class StudentAdapter
 
     }
 
-    public function getOneStudent($student_id) {
+    public function getOneStudent($student_id)
+    {
         // Define the query
         $query = "SELECT * FROM student WHERE student_id = :student_id";
 
@@ -81,16 +84,16 @@ class StudentAdapter
     }
 
 
-
     /**
      * This function logs the user in
      *
      * @param string $login - the username the admin uses to log in
      * @param string $pass - the password the admin uses to log in
      *
-     *@return login
+     * @return login
      */
-    public function loginFunction($login, $pass) {
+    public function loginFunction($login, $pass)
+    {
         // Define the query
         $query = "SELECT * FROM student WHERE email = :login AND pass_code = :password";
 
@@ -115,8 +118,7 @@ class StudentAdapter
             $user->class_code = ($row['class_code']);
 
             return $user;
-        }
-        else {
+        } else {
             return null;
         }
     }
@@ -129,7 +131,8 @@ class StudentAdapter
      * @param-$priority is an int
      * @return Admin
      */
-    public function createNewUser($first_name, $last_name, $email, $pass_code, $class_code) {
+    public function createNewUser($first_name, $last_name, $email, $pass_code, $class_code)
+    {
         // Define the query
         $query = "INSERT INTO student (first_name, last_name, email, pass_code, class_code) VALUES 
                       (:first_name, :last_name, :email, :pass_code, :class_code)";
@@ -151,7 +154,7 @@ class StudentAdapter
         $count = $statement->rowCount();
 
 
-        if($count == 1) {
+        if ($count == 1) {
             return true;
         } else {
             return false;
@@ -165,7 +168,8 @@ class StudentAdapter
      * @return bool- true if one row was removed from the table
      *
      */
-    public function deleteOneUser($username) {
+    public function deleteOneUser($username)
+    {
         // define query
         $query = "DELETE FROM student WHERE username = :username";
 
@@ -179,7 +183,7 @@ class StudentAdapter
 
         $count = $statement->rowCount();
 
-        if($count == 1) {
+        if ($count == 1) {
             return true;
         } else {
             return false;
@@ -189,7 +193,8 @@ class StudentAdapter
     /**
      * This function updates the current user
      */
-    public function updateStudent($first_name, $last_name, $pass_code, $student_id) {
+    public function updateStudent($first_name, $last_name, $pass_code, $student_id)
+    {
         $sql = "UPDATE student SET first_name= :first_name, last_name= :last_name, pass_code= :pass_code WHERE student_id= :student_id";
 
         $statement = $this->db->prepare($sql);
@@ -203,10 +208,30 @@ class StudentAdapter
 
         $count = $statement->rowCount();
 
-        if($count == 1) {
+        if ($count == 1) {
             return true;
         } else {
             return false;
         }
+    }
+
+
+    /**
+     * This function updates the current user password
+     */
+    public function forgotStudentPassword($email, $pass_code)
+    {
+        $sql = "UPDATE student SET pass_code= :pass_code WHERE email= :email";
+
+        $statement = $this->db->prepare($sql);
+
+        $statement->bindValue(':pass_code', $pass_code, PDO::PARAM_STR);
+        $statement->bindValue(':email', $email, PDO::PARAM_STR);
+
+        $statement->execute();
+
+        $count = $statement->rowCount();
+
+        return $count;
     }
 }
